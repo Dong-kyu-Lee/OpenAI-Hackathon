@@ -1,0 +1,129 @@
+# ============================================================
+# 기본: 텍스트 파일은 저장소에 LF로 저장, 체크아웃 시 OS에 맞게 변환
+# ============================================================
+* text=auto
+
+# ============================================================
+# Unity YAML 에셋
+# - eol=lf : Windows/Mac 간 줄바꿈 차이로 인한 가짜 diff 방지
+# - merge=unityyamlmerge : Unity SmartMerge 로 충돌 해결
+#   (이 설정만으로는 동작하지 않는다. 팀원 각자 아래 명령을 1회 실행해야 한다.
+#    실행하지 않으면 merge 드라이버가 무시되고 일반 텍스트 머지로 처리된다.
+#
+#    git config --global merge.unityyamlmerge.name "Unity SmartMerge"
+#    git config --global merge.unityyamlmerge.driver "'C:/Program Files/Unity/Hub/Editor/6000.3.7f1/Editor/Data/Tools/UnityYAMLMerge.exe' merge -p %O %B %A %A"
+#    git config --global merge.unityyamlmerge.recursive binary
+#
+#    Unity 설치 경로가 다르면 위 경로를 각자 환경에 맞게 바꾼다.)
+# ============================================================
+*.unity          text eol=lf merge=unityyamlmerge
+*.prefab         text eol=lf merge=unityyamlmerge
+*.asset          text eol=lf merge=unityyamlmerge
+*.mat            text eol=lf merge=unityyamlmerge
+*.anim           text eol=lf merge=unityyamlmerge
+*.controller     text eol=lf merge=unityyamlmerge
+*.overrideController text eol=lf merge=unityyamlmerge
+*.physicMaterial text eol=lf merge=unityyamlmerge
+*.physicsMaterial2D text eol=lf merge=unityyamlmerge
+*.playable       text eol=lf merge=unityyamlmerge
+*.mask           text eol=lf merge=unityyamlmerge
+*.brush          text eol=lf merge=unityyamlmerge
+*.flare          text eol=lf merge=unityyamlmerge
+*.fontsettings   text eol=lf merge=unityyamlmerge
+*.guiskin        text eol=lf merge=unityyamlmerge
+*.giparams       text eol=lf merge=unityyamlmerge
+*.lighting       text eol=lf merge=unityyamlmerge
+*.mixer          text eol=lf merge=unityyamlmerge
+*.preset         text eol=lf merge=unityyamlmerge
+*.renderTexture  text eol=lf merge=unityyamlmerge
+*.shadervariants text eol=lf merge=unityyamlmerge
+*.signal         text eol=lf merge=unityyamlmerge
+*.spriteatlas    text eol=lf merge=unityyamlmerge
+*.spriteatlasv2  text eol=lf merge=unityyamlmerge
+*.terrainlayer   text eol=lf merge=unityyamlmerge
+
+# .meta 는 머지하지 않는다. 충돌 시 한쪽을 통째로 선택해야 한다
+*.meta           text eol=lf merge=binary
+
+# ============================================================
+# 코드 / 설정 (LF 고정)
+# ============================================================
+*.cs             text eol=lf diff=csharp
+*.asmdef         text eol=lf
+*.asmref         text eol=lf
+*.shader         text eol=lf
+*.shadergraph    text eol=lf
+*.compute        text eol=lf
+*.hlsl           text eol=lf
+*.cginc          text eol=lf
+*.inputactions   text eol=lf
+*.json           text eol=lf
+*.md             text eol=lf
+*.yml            text eol=lf
+*.yaml           text eol=lf
+*.gitattributes  text eol=lf
+*.gitignore      text eol=lf
+
+# ============================================================
+# 바이너리 — Git 이 내용을 변조하거나 머지하지 않도록 차단
+# ============================================================
+# 이미지
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.psd   binary
+*.psb   binary
+*.ai    binary
+*.tga   binary
+*.tif   binary
+*.tiff  binary
+*.bmp   binary
+*.exr   binary
+*.hdr   binary
+*.aseprite binary
+*.ase   binary
+
+# 오디오
+*.wav   binary
+*.mp3   binary
+*.ogg   binary
+*.aif   binary
+*.aiff  binary
+
+# 영상
+*.mp4   binary
+*.mov   binary
+*.webm  binary
+
+# 폰트 / 모델 / 기타
+*.ttf   binary
+*.otf   binary
+*.fbx   binary
+*.blend binary
+*.dll   binary
+*.so    binary
+*.dylib binary
+*.a     binary
+*.unitypackage binary
+*.zip   binary
+
+# ============================================================
+# Git LFS (현재 비활성)
+#
+# 2D 해커톤 규모에서는 에셋이 작아 LFS 없이 충분하다.
+# LFS 는 팀원 전원이 `git lfs install` 을 해야 하고, 빠뜨린 사람은
+# 이미지 대신 텍스트 포인터 파일을 받아 원인을 찾기 어려운 상태가 된다.
+#
+# 대용량 에셋(고해상도 psd, 긴 오디오/영상)이 들어오기 시작하면
+# 아래 줄의 주석을 풀고 위쪽의 같은 확장자 `binary` 줄을 지운다.
+# 단, 이미 커밋된 파일은 소급 적용되지 않는다 (git lfs migrate 필요).
+# ============================================================
+# *.psd  filter=lfs diff=lfs merge=lfs -text
+# *.psb  filter=lfs diff=lfs merge=lfs -text
+# *.wav  filter=lfs diff=lfs merge=lfs -text
+# *.mp3  filter=lfs diff=lfs merge=lfs -text
+# *.ogg  filter=lfs diff=lfs merge=lfs -text
+# *.mp4  filter=lfs diff=lfs merge=lfs -text
+# *.mov  filter=lfs diff=lfs merge=lfs -text
+# *.fbx  filter=lfs diff=lfs merge=lfs -text
