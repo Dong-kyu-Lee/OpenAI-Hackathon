@@ -1,0 +1,17 @@
+{
+    "name": "Game.UI",
+    "rootNamespace": "Game.UI",
+    "references": [
+        "Game.Core",
+        "Game.Data"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

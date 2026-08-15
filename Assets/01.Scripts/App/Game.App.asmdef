@@ -1,0 +1,20 @@
+{
+    "name": "Game.App",
+    "rootNamespace": "Game.App",
+    "references": [
+        "Game.Core",
+        "Game.Data",
+        "Game.Gameplay",
+        "Game.UI",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
