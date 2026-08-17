@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49ec62ea2e18d34fa17cb3aa7825db5, type: 3}
+  m_Name: PlayerStats
+  m_EditorClassIdentifier: Game.Data::Game.Data.PlayerStatsSO
+  _worldScrollSpeed: 5
+  _jumpClearHeight: 2.25
+  _gravityScale: 3
+  _groundCheckSize: {x: 0.8, y: 0.12}
+  _groundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  _standingHeight: 2
+  _slidingHeight: 1
+  _standingBlockerLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  _maxHealth: 100
+  _passiveDrainAmount: 1
+  _passiveDrainInterval: 1
+  _obstacleDamageMinimum: 5
+  _obstacleDamageMaximum: 10
+  _obstacleHitInvulnerabilityDuration: 2.5
+  _obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
