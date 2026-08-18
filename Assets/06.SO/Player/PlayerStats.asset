@@ -15,6 +15,7 @@ MonoBehaviour:
   _worldScrollSpeed: 5
   _jumpClearHeight: 2.25
   _gravityScale: 3
+  _jumpApexVelocityThreshold: 3
   _groundCheckSize: {x: 0.8, y: 0.12}
   _groundLayers:
     serializedVersion: 2
