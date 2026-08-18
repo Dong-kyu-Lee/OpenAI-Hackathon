@@ -11,6 +11,7 @@ namespace Game.Data
         [Header("Jump")]
         [SerializeField] private float _jumpClearHeight;
         [SerializeField] private float _gravityScale;
+        [SerializeField] private float _jumpApexVelocityThreshold = 3f;
         [SerializeField] private Vector2 _groundCheckSize;
         [SerializeField] private LayerMask _groundLayers;
 
@@ -31,6 +32,7 @@ namespace Game.Data
         public float WorldScrollSpeed => _worldScrollSpeed;
         public float JumpClearHeight => _jumpClearHeight;
         public float GravityScale => _gravityScale;
+        public float JumpApexVelocityThreshold => _jumpApexVelocityThreshold;
         public Vector2 GroundCheckSize => _groundCheckSize;
         public LayerMask GroundLayers => _groundLayers;
         public float StandingHeight => _standingHeight;

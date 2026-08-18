@@ -8,6 +8,7 @@ namespace Game.Gameplay.Player
     {
         private const float JumpVelocityCoefficient = 2f;
         private const float MinimumGravityMagnitude = 0.0001f;
+        private const int GroundHitCapacity = 8;
 
         [SerializeField] private PlayerStatsSO _stats;
         [SerializeField] private Transform _groundCheck;
@@ -15,6 +16,8 @@ namespace Game.Gameplay.Player
         [SerializeField] private PlayerHealth _playerHealth;
 
         private Rigidbody2D _rigidbody;
+        private ContactFilter2D _groundContactFilter;
+        private readonly Collider2D[] _groundHits = new Collider2D[GroundHitCapacity];
         private bool _jumpRequested;
 
         public bool IsGrounded { get; private set; }
@@ -35,6 +38,10 @@ namespace Game.Gameplay.Player
 
             _rigidbody.gravityScale = _stats.GravityScale;
             _rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
+            _groundContactFilter = new ContactFilter2D();
+            _groundContactFilter.SetLayerMask(_stats.GroundLayers);
+            _groundContactFilter.useTriggers = Physics2D.queriesHitTriggers;
         }
 
         private void FixedUpdate()
@@ -58,11 +65,25 @@ namespace Game.Gameplay.Player
 
         private void UpdateGroundedState()
         {
-            IsGrounded = Physics2D.OverlapBox(
+            int hitCount = Physics2D.OverlapBox(
                 _groundCheck.position,
                 _stats.GroundCheckSize,
                 0f,
-                _stats.GroundLayers) != null;
+                _groundContactFilter,
+                _groundHits);
+
+            IsGrounded = false;
+            for (int i = 0; i < hitCount; i++)
+            {
+                Collider2D groundHit = _groundHits[i];
+                if (groundHit == null || groundHit.attachedRigidbody == _rigidbody)
+                {
+                    continue;
+                }
+
+                IsGrounded = true;
+                return;
+            }
         }
 
         private void KeepPlayerAnchoredHorizontally()
