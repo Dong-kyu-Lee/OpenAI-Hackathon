@@ -279,7 +279,7 @@ MapSegment
 
 ### 메모
 
-- Unity 기본 Square Sprite로 `MapSegment_StartSafe`, `MapSegment_Ground_A`, `MapSegment_Ground_B`, `MapSegment_Rest`, `MapSegment_ConnectionTest`를 제작했으며 길이는 각각 24, 16, 20, 24, 8 유닛이다.
+- Unity 기본 Square Sprite로 `MapSegment_StartSafe`, `MapSegment_Ground_A`, `MapSegment_Ground_B`, `MapSegment_Ground_C`, `MapSegment_Ground_D`를 제작했으며 길이는 각각 24, 16, 20, 24, 8 유닛이다.
 - 5개 프리팹 모두 `MapSegment` 직렬화 참조, identity 계층, Kinematic `Rigidbody2D` 설정과 non-trigger `BoxCollider2D`의 상단 경계 `Y=0`을 검증했다.
 - 5개 세그먼트의 모든 ordered 25개 Entry/Exit 연결 조합이 통과했으며 Unity Console Error는 0건이다.
 

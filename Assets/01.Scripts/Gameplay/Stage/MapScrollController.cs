@@ -13,6 +13,9 @@ namespace Game.Gameplay.Stage
     {
         [SerializeField] private MapScrollSettingsSO _settings;
 
+        /// <summary>기존 대상의 물리 이동을 처리한 직후 실제 이동량과 함께 호출됩니다.</summary>
+        internal event System.Action<Vector2> AfterScrollStep;
+
         private readonly List<IMapScrollTarget> _targets = new();
         private readonly List<IMapScrollTarget> _pendingRegistrations = new();
         private readonly List<IMapScrollTarget> _pendingUnregistrations = new();
@@ -22,8 +25,6 @@ namespace Game.Gameplay.Stage
         private bool _isRunning;
         private bool _isPaused;
         private bool _isApplyingScroll;
-        private double _lastAppliedFixedTime = double.NaN;
-        private Vector2 _lastAppliedDisplacement;
 
         /// <summary>현재 맵 이동 속도의 크기를 초당 월드 유닛(units/s)으로 가져옵니다.</summary>
         public float CurrentSpeed => _currentSpeed;
@@ -77,11 +78,11 @@ namespace Game.Gameplay.Stage
                 ApplyPendingTargetChanges();
             }
 
-            // 모든 기존 대상의 이동을 끝낸 뒤 기록해, 이후 같은 물리 틱에 등록된 대상만
-            // 누락된 이동량을 정확히 한 번 따라잡을 수 있게 합니다.
-            _lastAppliedDisplacement = displacement;
-            _lastAppliedFixedTime = Time.fixedTimeAsDouble;
             _distanceTravelled += travelledThisStep;
+
+            // 기존 대상의 이동이 모두 예약된 뒤 실제 이동량을 전달해,
+            // 이 시점에 생성되는 세그먼트가 같은 양만큼 즉시 따라잡게 합니다.
+            AfterScrollStep?.Invoke(displacement);
         }
 
         /// <summary>맵 이동 속도의 크기를 변경하며 음수 입력은 절댓값으로 정규화합니다.</summary>
@@ -94,7 +95,6 @@ namespace Game.Gameplay.Stage
         /// <summary>현재 속도로 스크롤을 시작하며 기존 일시정지 상태를 해제합니다.</summary>
         public void StartScrolling()
         {
-            ClearAppliedDisplacementRecord();
             _isRunning = true;
             _isPaused = false;
         }
@@ -102,7 +102,6 @@ namespace Game.Gameplay.Stage
         /// <summary>스크롤을 정지하고 일시정지 상태를 해제합니다. 속도와 누적 거리는 유지됩니다.</summary>
         public void StopScrolling()
         {
-            ClearAppliedDisplacementRecord();
             _isRunning = false;
             _isPaused = false;
         }
@@ -113,7 +112,6 @@ namespace Game.Gameplay.Stage
             if (_isRunning)
             {
                 _isPaused = true;
-                ClearAppliedDisplacementRecord();
             }
         }
 
@@ -122,29 +120,8 @@ namespace Game.Gameplay.Stage
         {
             if (_isRunning)
             {
-                ClearAppliedDisplacementRecord();
                 _isPaused = false;
             }
-        }
-
-        /// <summary>
-        /// 현재 물리 틱에서 기존 스크롤 대상에 이미 적용한 이동량을 조회합니다.
-        /// 호출자는 같은 틱에 늦게 등록된 대상에만 반환된 이동량을 한 번 적용해야 합니다.
-        /// </summary>
-        /// <param name="displacement">성공 시 현재 물리 틱에 적용된 월드 유닛 단위 이동량입니다.</param>
-        /// <returns>실행 중이고 일시정지되지 않았으며 현재 물리 틱의 적용 기록이 있으면 <see langword="true"/>입니다.</returns>
-        internal bool TryGetAppliedDisplacementForCurrentFixedStep(out Vector2 displacement)
-        {
-            if (_isRunning &&
-                !_isPaused &&
-                _lastAppliedFixedTime == Time.fixedTimeAsDouble)
-            {
-                displacement = _lastAppliedDisplacement;
-                return true;
-            }
-
-            displacement = default;
-            return false;
         }
 
         /// <summary>
@@ -234,15 +211,11 @@ namespace Game.Gameplay.Stage
             _pendingRegistrations.Clear();
         }
 
-        private void ClearAppliedDisplacementRecord()
-        {
-            _lastAppliedFixedTime = double.NaN;
-            _lastAppliedDisplacement = default;
-        }
 
         private static bool IsUnavailable(IMapScrollTarget target)
         {
             return target is null || target is Object unityObject && unityObject == null;
         }
     }
+
 }

@@ -28,6 +28,8 @@ namespace Game.Gameplay.Stage
         private string _lastSegmentId;
         private bool _hasValidReferences;
         private bool _isStreaming;
+        private bool _isProcessingAfterScrollStep;
+        private Vector2 _appliedDisplacementForCurrentStep;
 
         /// <summary>진입 순서대로 관리되는 현재 활성 세그먼트의 읽기 전용 목록을 가져옵니다.</summary>
         public IReadOnlyList<MapSegment> ActiveSegments => _activeSegments;
@@ -43,32 +45,56 @@ namespace Game.Gameplay.Stage
             _segmentPool = _segmentPoolSource as IMapSegmentPool;
             _random = new System.Random(_testSeed);
             _hasValidReferences = ValidateReferences();
+
+            if (_hasValidReferences)
+            {
+                _scrollController.AfterScrollStep += ProcessStreamingAfterScroll;
+            }
         }
 
-        private void FixedUpdate()
+        private void ProcessStreamingAfterScroll(Vector2 appliedDisplacement)
         {
             if (!_isStreaming)
             {
                 return;
             }
 
-            ReturnExpiredSegments();
+            _isProcessingAfterScrollStep = true;
+            _appliedDisplacementForCurrentStep = appliedDisplacement;
 
-            if (_activeSegments.Count == default && !TryBuildInitialStream())
+            try
             {
-                FailStreaming("The map stream could not recover after all active segments were returned.");
-                return;
+                ReturnExpiredSegments();
+
+                if (_activeSegments.Count == default && !TryBuildInitialStream())
+                {
+                    FailStreaming("The map stream could not recover after all active segments were returned.");
+                    return;
+                }
+
+                if (!TryFillPreloadDistance())
+                {
+                    FailStreaming("The map stream could not maintain its preload distance.");
+                }
             }
-
-            if (!TryFillPreloadDistance())
+            finally
             {
-                FailStreaming("The map stream could not maintain its preload distance.");
+                _isProcessingAfterScrollStep = false;
+                _appliedDisplacementForCurrentStep = default;
             }
         }
 
         private void OnDisable()
         {
             StopStreaming();
+        }
+
+        private void OnDestroy()
+        {
+            if (_scrollController != null)
+            {
+                _scrollController.AfterScrollStep -= ProcessStreamingAfterScroll;
+            }
         }
 
         /// <summary>초기 맵 또는 부족한 선행 구간을 준비하고 맵 스크롤을 시작합니다.</summary>
@@ -299,11 +325,13 @@ namespace Game.Gameplay.Stage
             _scrollController.RegisterTarget(segment);
             _activeSegments.Add(segment);
 
-            // 스크롤 컨트롤러가 이 물리 틱을 먼저 처리했다면 새 대상만 이동을 놓쳤으므로
-            // 이미 적용된 동일 이동량을 한 번 따라잡아 실행 순서와 무관하게 연결을 유지합니다.
-            if (_scrollController.TryGetAppliedDisplacementForCurrentFixedStep(out Vector2 displacement))
+            // 기존 대상의 이동이 끝난 뒤 생성된 세그먼트는 같은 이동량만큼 즉시 맞춰
+            // 다음 물리 프레임을 기다리지 않고 직전 출구에 연결된 상태를 유지합니다.
+            if (_isProcessingAfterScrollStep)
             {
-                segment.ApplyScroll(displacement);
+                Vector3 caughtUpPosition =
+                    segment.transform.position + (Vector3)_appliedDisplacementForCurrentStep;
+                segment.SetWorldPositionForPlacement(caughtUpPosition);
             }
 
             _lastSegmentId = segment.SegmentId;
