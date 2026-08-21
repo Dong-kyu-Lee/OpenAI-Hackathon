@@ -12,6 +12,7 @@ namespace Game.Gameplay.Weapon
         private const int ExplosionHitCapacity = 32;
 
         [SerializeField] private TrailRenderer _trailRenderer;
+        [SerializeField] private PooledHitEffect _hitEffectPrefab;
 
         private readonly Collider2D[] _explosionHits = new Collider2D[ExplosionHitCapacity];
         private readonly HashSet<IDamageable> _damagedTargets = new();
@@ -60,11 +61,15 @@ namespace Game.Gameplay.Weapon
                 return;
             }
 
-            Vector2 impactPoint = collision.contactCount > 0
+            bool hasContact = collision.contactCount > 0;
+            Vector2 impactPoint = hasContact
                 ? collision.GetContact(0).point
                 : transform.position;
+            Vector2 impactNormal = hasContact
+                ? collision.GetContact(0).normal
+                : GetTravelBasedNormal();
 
-            ResolveImpact(collision.collider, impactPoint);
+            ResolveImpact(collision.collider, impactPoint, impactNormal);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -74,7 +79,8 @@ namespace Game.Gameplay.Weapon
                 return;
             }
 
-            ResolveImpact(other, other.ClosestPoint(transform.position));
+            // Trigger 충돌은 접촉 법선을 주지 않으므로 진행 방향의 역벡터로 대신한다.
+            ResolveImpact(other, other.ClosestPoint(transform.position), GetTravelBasedNormal());
         }
 
         public void Launch(WeaponDefinitionSO definition, Vector2 direction)
@@ -103,7 +109,7 @@ namespace Game.Gameplay.Weapon
             _trailRenderer?.Clear();
         }
 
-        private void ResolveImpact(Collider2D directHit, Vector2 impactPoint)
+        private void ResolveImpact(Collider2D directHit, Vector2 impactPoint, Vector2 impactNormal)
         {
             if (_isResolvingImpact || _definition == null)
             {
@@ -123,6 +129,7 @@ namespace Game.Gameplay.Weapon
                 ApplyDirectDamage(directHit);
             }
 
+            SpawnHitEffect(impactPoint, impactNormal);
             ReturnToPool();
         }
 
@@ -158,6 +165,36 @@ namespace Game.Gameplay.Weapon
 
                 damageable.TakeDamage(_definition.Damage);
             }
+        }
+
+        private void SpawnHitEffect(Vector2 position, Vector2 normal)
+        {
+            if (_hitEffectPrefab == null)
+            {
+                return;
+            }
+
+            ObjectPoolManager poolManager = ObjectPoolManager.Instance;
+            if (poolManager == null)
+            {
+                Debug.LogError("ObjectPoolManager is not available.", this);
+                return;
+            }
+
+            PooledHitEffect hitEffect = poolManager.Spawn(
+                _hitEffectPrefab,
+                position,
+                Quaternion.identity);
+
+            hitEffect?.Play(position, normal);
+        }
+
+        private Vector2 GetTravelBasedNormal()
+        {
+            Vector2 velocity = _rigidbody.linearVelocity;
+            return velocity.sqrMagnitude > 0f
+                ? -velocity.normalized
+                : -(Vector2)transform.right;
         }
 
         private bool IsInHitLayers(int layer)

@@ -1,4 +1,5 @@
 using Game.Core.Combat;
+using Game.Core.Pooling;
 using Game.Data;
 using UnityEngine;
 
@@ -8,7 +9,9 @@ namespace Game.Gameplay.Weapon
     {
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private LaserBeamVisual _beamVisual;
+        [SerializeField] private PooledHitEffect _hitEffectPrefab;
 
+        private PooledHitEffect _hitEffectInstance;
         private float _firingElapsed;
         private bool _isFiring;
 
@@ -83,6 +86,8 @@ namespace Game.Gameplay.Weapon
                 _lineRenderer.SetPosition(1, endPosition);
             }
 
+            UpdateHitEffect(hit);
+
             if (hit.collider == null)
             {
                 return;
@@ -103,8 +108,57 @@ namespace Game.Gameplay.Weapon
             }
         }
 
+        private void UpdateHitEffect(RaycastHit2D hit)
+        {
+            if (_hitEffectPrefab == null)
+            {
+                return;
+            }
+
+            if (hit.collider == null)
+            {
+                // 레이가 허공을 향한 동안에도 인스턴스는 유지하고 방출만 멈춰 풀 스래싱을 막는다.
+                _hitEffectInstance?.SetEmitting(false);
+                return;
+            }
+
+            if (_hitEffectInstance != null)
+            {
+                _hitEffectInstance.Follow(hit.point, hit.normal);
+                _hitEffectInstance.SetEmitting(true);
+                return;
+            }
+
+            ObjectPoolManager poolManager = ObjectPoolManager.Instance;
+            if (poolManager == null)
+            {
+                Debug.LogError("ObjectPoolManager is not available.", this);
+                return;
+            }
+
+            _hitEffectInstance = poolManager.Spawn(
+                _hitEffectPrefab,
+                hit.point,
+                Quaternion.identity);
+
+            _hitEffectInstance?.Play(hit.point, hit.normal);
+        }
+
+        private void ReleaseHitEffect()
+        {
+            if (_hitEffectInstance == null)
+            {
+                return;
+            }
+
+            _hitEffectInstance.Release();
+            _hitEffectInstance = null;
+        }
+
         private void StopAttack(bool startCooldown)
         {
+            ReleaseHitEffect();
+
             if (!_isFiring)
             {
                 SetLineVisible(false);
