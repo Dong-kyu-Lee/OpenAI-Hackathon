@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2690076214721014926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2439850134054580946}
+  m_Layer: 0
+  m_Name: ActiveSegments
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2439850134054580946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2690076214721014926}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2244621486925150147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3227780624000295019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 236013320110066629}
+  m_Layer: 0
+  m_Name: PoolRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &236013320110066629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227780624000295019}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2244621486925150147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5515997317209871263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2244621486925150147}
+  - component: {fileID: 8884110675804651043}
+  - component: {fileID: 4689053711719357201}
+  - component: {fileID: 9059717411377748750}
+  m_Layer: 0
+  m_Name: MapRuntime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2244621486925150147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515997317209871263}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2439850134054580946}
+  - {fileID: 236013320110066629}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8884110675804651043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515997317209871263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d12d84ce0e87b4cabd8f393850b14d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Stage.MapScrollController
+  _settings: {fileID: 11400000, guid: bd366b5f2116fb444a2a8c3d94730826, type: 2}
+--- !u!114 &4689053711719357201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515997317209871263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43cf78543552ff409bc1577d6a9f0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Stage.MapSegmentPool
+  _definitions:
+  - _prefab: {fileID: 8709325885325011305, guid: 426255aa83b8b8d44a4efa3636ab7ec0, type: 3}
+    _initialCapacity: 1
+  - _prefab: {fileID: 7717927100128225067, guid: e2da279f2582af8428725547a153f8cd, type: 3}
+    _initialCapacity: 2
+  - _prefab: {fileID: 5616384668205684931, guid: fc78bb2a9afe0844b84fb5065d3c2dec, type: 3}
+    _initialCapacity: 2
+  - _prefab: {fileID: 297052194231936484, guid: f5805c030a3352d42a5d835060a4ee2f, type: 3}
+    _initialCapacity: 2
+  - _prefab: {fileID: 8419579179638131766, guid: 5cf6d499c4981d843a1001fc9152fe13, type: 3}
+    _initialCapacity: 2
+  _poolRoot: {fileID: 236013320110066629}
+--- !u!114 &9059717411377748750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515997317209871263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab714d562d2f7748b29ec0cbb66877b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Stage.MapStreamManager
+  _layoutSettings: {fileID: 11400000, guid: efbcd969c2d079744894ba184e7657d5, type: 2}
+  _scrollController: {fileID: 8884110675804651043}
+  _segmentPoolSource: {fileID: 4689053711719357201}
+  _segmentParent: {fileID: 2439850134054580946}
+  _startSafePrefab: {fileID: 8709325885325011305, guid: 426255aa83b8b8d44a4efa3636ab7ec0, type: 3}
+  _candidatePrefabs:
+  - {fileID: 7717927100128225067, guid: e2da279f2582af8428725547a153f8cd, type: 3}
+  - {fileID: 5616384668205684931, guid: fc78bb2a9afe0844b84fb5065d3c2dec, type: 3}
+  - {fileID: 297052194231936484, guid: f5805c030a3352d42a5d835060a4ee2f, type: 3}
+  - {fileID: 8419579179638131766, guid: 5cf6d499c4981d843a1001fc9152fe13, type: 3}
+  _testSeed: 12345
