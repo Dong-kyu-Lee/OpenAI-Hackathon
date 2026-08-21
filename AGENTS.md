@@ -59,6 +59,8 @@ Assets/
 ├─ 05.Audio/
 ├─ 06.SO/              # ScriptableObject 에셋 인스턴스
 ├─ 07.UI/              # 폰트, UI 스프라이트
+├─ 08.Shaders/         # 셰이더 (.shader, .shadergraph)
+├─ 09.Materials/       # 머테리얼 (.mat)
 └─ 99.Sandbox/         # 개인 실험 영역
 ```
 
