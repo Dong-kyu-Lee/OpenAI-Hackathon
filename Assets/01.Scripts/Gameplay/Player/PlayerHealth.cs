@@ -1,5 +1,6 @@
 using Game.Core.Events;
 using Game.Data;
+using Game.Gameplay.Combat;
 using UnityEngine;
 
 namespace Game.Gameplay.Player
@@ -59,14 +60,28 @@ namespace Game.Gameplay.Player
 
         private void TryTakeObstacleDamage(Collider2D obstacle)
         {
-            if (IsDead || Time.time < _invulnerableUntil || !IsObstacle(obstacle.gameObject.layer))
+            if (IsDead || Time.time < _invulnerableUntil)
             {
                 return;
             }
 
-            int damage = Random.Range(
-                _stats.ObstacleDamageMinimum,
-                _stats.ObstacleDamageMaximum + 1);
+            int damage;
+
+            if (obstacle.TryGetComponent(out ContactDamage contactDamage))
+            {
+                damage = contactDamage.Damage;
+            }
+            else
+            {
+                if (!IsObstacle(obstacle.gameObject.layer))
+                {
+                    return;
+                }
+
+                damage = Random.Range(
+                    _stats.ObstacleDamageMinimum,
+                    _stats.ObstacleDamageMaximum + 1);
+            }
 
             _invulnerableUntil = Time.time + _stats.ObstacleHitInvulnerabilityDuration;
             ApplyDamage(damage);
