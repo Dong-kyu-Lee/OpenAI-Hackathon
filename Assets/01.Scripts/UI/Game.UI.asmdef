@@ -3,7 +3,10 @@
     "rootNamespace": "Game.UI",
     "references": [
         "Game.Core",
-        "Game.Data"
+        "Game.Data",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
