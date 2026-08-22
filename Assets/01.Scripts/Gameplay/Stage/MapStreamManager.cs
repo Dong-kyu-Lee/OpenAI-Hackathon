@@ -18,7 +18,9 @@ namespace Game.Gameplay.Stage
         [SerializeField] private MonoBehaviour _segmentPoolSource;
         [SerializeField] private Transform _segmentParent;
         [SerializeField] private MapSegment _startSafePrefab;
-        [SerializeField] private MapSegment[] _candidatePrefabs;
+        [SerializeField] private MapSegmentCatalogSO _segmentCatalog;
+        [SerializeField] private MapSegmentType[] _sequence;
+        [SerializeField] private MapSegmentSelectionMode _selectionMode;
         [SerializeField] private int _testSeed;
 
         private readonly List<MapSegment> _activeSegments = new();
@@ -28,6 +30,8 @@ namespace Game.Gameplay.Stage
         private string _lastSegmentId;
         private bool _hasValidReferences;
         private bool _isStreaming;
+        private MapSegmentSelectionMode _appliedSelectionMode;
+        private int _sequenceIndex;
         private bool _isProcessingAfterScrollStep;
         private Vector2 _appliedDisplacementForCurrentStep;
 
@@ -36,6 +40,9 @@ namespace Game.Gameplay.Stage
 
         /// <summary>세그먼트 선택 순서를 재현하는 테스트용 난수 시드를 가져옵니다.</summary>
         public int TestSeed => _testSeed;
+
+        /// <summary>현재 적용 중인 세그먼트 선택 방식을 가져옵니다.</summary>
+        public MapSegmentSelectionMode SelectionMode => _selectionMode;
 
         /// <summary>맵 반환과 선행 생성을 매 물리 프레임 처리 중인지 여부를 가져옵니다.</summary>
         public bool IsStreaming => _isStreaming;
@@ -110,7 +117,7 @@ namespace Game.Gameplay.Stage
 
             if (_activeSegments.Count == default)
             {
-                ResetRandom();
+                ResetSelectionState();
                 isReady = TryBuildInitialStream();
             }
             else
@@ -143,6 +150,25 @@ namespace Game.Gameplay.Stage
             ReturnAllActiveSegments();
         }
 
+        /// <summary>다음 세그먼트 선택 방식을 변경합니다.</summary>
+        /// <param name="selectionMode">즉시 적용할 선택 방식입니다.</param>
+        public void SetSelectionMode(MapSegmentSelectionMode selectionMode)
+        {
+            if (_selectionMode == selectionMode &&
+                _appliedSelectionMode == selectionMode)
+            {
+                return;
+            }
+
+            _selectionMode = selectionMode;
+            _appliedSelectionMode = selectionMode;
+
+            if (selectionMode == MapSegmentSelectionMode.Sequence)
+            {
+                _sequenceIndex = default;
+            }
+        }
+
         /// <summary>
         /// 활성 세그먼트, 난수 순서, 스크롤 속도와 누적 거리를 초기화한 뒤 안전 시작 맵을 준비합니다.
         /// 준비만 수행하므로 호출자는 성공 후 <see cref="StartStreaming"/>을 호출해야 실제 이동이 시작됩니다.
@@ -164,7 +190,7 @@ namespace Game.Gameplay.Stage
             }
 
             ReturnAllActiveSegments();
-            ResetRandom();
+            ResetSelectionState();
             _scrollController.ResetForRestart();
 
             if (TryBuildInitialStream())
@@ -184,9 +210,16 @@ namespace Game.Gameplay.Stage
                 _segmentPool == null ||
                 _segmentParent == null ||
                 _startSafePrefab == null ||
-                _candidatePrefabs == null)
+                _segmentCatalog == null ||
+                _sequence == null)
             {
                 Debug.LogError("MapStreamManager has missing or invalid required references.", this);
+                return false;
+            }
+
+            if (_segmentCatalog.Count == default)
+            {
+                Debug.LogError("MapStreamManager requires at least one catalog entry.", this);
                 return false;
             }
 
@@ -237,14 +270,21 @@ namespace Game.Gameplay.Stage
 
         private MapSegment SelectNextPrefab()
         {
+            SynchronizeSelectionMode();
+
+            return _selectionMode == MapSegmentSelectionMode.Sequence
+                ? SelectNextSequentialPrefab()
+                : SelectNextRandomPrefab();
+        }
+
+        private MapSegment SelectNextRandomPrefab()
+        {
             int alternativeCount = default;
             int validCount = default;
 
-            for (int index = default; index < _candidatePrefabs.Length; index++)
+            for (int index = default; index < _segmentCatalog.Count; index++)
             {
-                MapSegment candidate = _candidatePrefabs[index];
-
-                if (candidate == null)
+                if (!TryGetCatalogPrefab(index, out MapSegment candidate))
                 {
                     continue;
                 }
@@ -268,11 +308,9 @@ namespace Game.Gameplay.Stage
 
             int selectedIndex = _random.Next(selectionCount);
 
-            for (int index = default; index < _candidatePrefabs.Length; index++)
+            for (int index = default; index < _segmentCatalog.Count; index++)
             {
-                MapSegment candidate = _candidatePrefabs[index];
-
-                if (candidate == null ||
+                if (!TryGetCatalogPrefab(index, out MapSegment candidate) ||
                     excludePrevious && string.Equals(candidate.SegmentId, _lastSegmentId, StringComparison.Ordinal))
                 {
                     continue;
@@ -287,6 +325,66 @@ namespace Game.Gameplay.Stage
             }
 
             return null;
+        }
+
+        private MapSegment SelectNextSequentialPrefab()
+        {
+            if (_sequence.Length == default)
+            {
+                return null;
+            }
+
+            for (int attempt = default; attempt < _sequence.Length; attempt++)
+            {
+                int candidateIndex = _sequenceIndex;
+                _sequenceIndex = (_sequenceIndex + 1) % _sequence.Length;
+
+                if (TryGetCatalogPrefab(_sequence[candidateIndex], out MapSegment candidate))
+                {
+                    return candidate;
+                }
+            }
+
+            return null;
+        }
+
+        private bool TryGetCatalogPrefab(int index, out MapSegment prefab)
+        {
+            if (_segmentCatalog.TryGetEntry(index, out _, out GameObject prefabObject) &&
+                prefabObject.TryGetComponent(out prefab))
+            {
+                return true;
+            }
+
+            prefab = null;
+            return false;
+        }
+
+        private bool TryGetCatalogPrefab(MapSegmentType type, out MapSegment prefab)
+        {
+            if (_segmentCatalog.TryGetPrefab(type, out GameObject prefabObject) &&
+                prefabObject.TryGetComponent(out prefab))
+            {
+                return true;
+            }
+
+            prefab = null;
+            return false;
+        }
+
+        private void SynchronizeSelectionMode()
+        {
+            if (_appliedSelectionMode == _selectionMode)
+            {
+                return;
+            }
+
+            _appliedSelectionMode = _selectionMode;
+
+            if (_selectionMode == MapSegmentSelectionMode.Sequence)
+            {
+                _sequenceIndex = default;
+            }
         }
 
         private bool TryRentAndPlace(MapSegment prefab, Vector3 desiredEntryPosition)
@@ -420,11 +518,13 @@ namespace Game.Gameplay.Stage
             return lastSegment.TryGetPhysicsExitPosition(out exitPosition);
         }
 
-        private void ResetRandom()
+        private void ResetSelectionState()
         {
-            // 같은 테스트 시드로 재시작할 때 후보 선택 순서도 처음부터 동일하게 재현합니다.
+            // 같은 테스트 시드로 재시작할 때 난수 선택 순서와 순차 선택 위치를 함께 재현합니다.
             _random = new System.Random(_testSeed);
             _lastSegmentId = null;
+            _sequenceIndex = default;
+            _appliedSelectionMode = _selectionMode;
         }
 
         private void FailStreaming(string message)
