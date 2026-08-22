@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65362ee2ba1bfbd45909563eff601f2b, type: 3}
   m_Name: MapLayoutSettings
   m_EditorClassIdentifier: Game.Data::Game.Data.Stage.MapLayoutSettingsSO
-  _groundHeight: 0
+  _groundHeight: -3
   _despawnBoundaryX: -12
   _preloadDistance: 32
