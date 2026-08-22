@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 8884110675804651043}
   - component: {fileID: 4689053711719357201}
   - component: {fileID: 9059717411377748750}
+  - component: {fileID: 2638594530611346943}
   m_Layer: 0
   m_Name: MapRuntime
   m_TagString: Untagged
@@ -152,9 +153,19 @@ MonoBehaviour:
   _segmentPoolSource: {fileID: 4689053711719357201}
   _segmentParent: {fileID: 2439850134054580946}
   _startSafePrefab: {fileID: 8709325885325011305, guid: 426255aa83b8b8d44a4efa3636ab7ec0, type: 3}
-  _candidatePrefabs:
-  - {fileID: 7717927100128225067, guid: e2da279f2582af8428725547a153f8cd, type: 3}
-  - {fileID: 5616384668205684931, guid: fc78bb2a9afe0844b84fb5065d3c2dec, type: 3}
-  - {fileID: 297052194231936484, guid: f5805c030a3352d42a5d835060a4ee2f, type: 3}
-  - {fileID: 8419579179638131766, guid: 5cf6d499c4981d843a1001fc9152fe13, type: 3}
+  _segmentCatalog: {fileID: 11400000, guid: 2b4a2597aba37eb49bc8d2b65f15bfbb, type: 2}
+  _sequence: 00000000010000000200000003000000
+  _selectionMode: 1
   _testSeed: 12345
+--- !u!114 &2638594530611346943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515997317209871263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e811bf5c435d946acb0d1f60e33368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Sandbox.Stage.MapRuntimeTestStarter

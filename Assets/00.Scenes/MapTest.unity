@@ -129,11 +129,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2244621486925150147, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.27008
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2244621486925150147, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.38025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2244621486925150147, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -174,28 +174,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 47525587}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
---- !u!1 &47525586 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-  m_PrefabInstance: {fileID: 47525585}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &47525587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 47525586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e811bf5c435d946acb0d1f60e33368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Sandbox.Stage.MapRuntimeTestStarter
 --- !u!1 &797004020
 GameObject:
   m_ObjectHideFlags: 0
