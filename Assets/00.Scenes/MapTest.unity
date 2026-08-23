@@ -218,7 +218,6 @@ GameObject:
   - component: {fileID: 797004023}
   - component: {fileID: 797004022}
   - component: {fileID: 797004021}
-  - component: {fileID: 797004024}
   - component: {fileID: 797004025}
   m_Layer: 0
   m_Name: Main Camera
@@ -226,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &797004021
 AudioListener:
   m_ObjectHideFlags: 0
@@ -301,20 +300,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &797004024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797004020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902f3885a7ceab344965f12b796591e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.CameraEffects.CameraHitShake
-  _stats: {fileID: 11400000, guid: 16a0962d182e97147810064b5470e260, type: 2}
-  _playerHitChannel: {fileID: 11400000, guid: f46440097b42e134eb0bc9c138cc96d8, type: 2}
 --- !u!114 &797004025
 MonoBehaviour:
   m_ObjectHideFlags: 0

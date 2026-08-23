@@ -318,13 +318,14 @@ GameObject:
   - component: {fileID: 950754057}
   - component: {fileID: 950754056}
   - component: {fileID: 950754055}
+  - component: {fileID: 950754059}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &950754055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +377,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950754054}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &950754057
 Camera:
   m_ObjectHideFlags: 0
@@ -412,8 +413,8 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20.835842
-  m_Depth: 0
+  orthographic size: 5
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -437,12 +438,26 @@ Transform:
   m_GameObject: {fileID: 950754054}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.616837, y: -5.1166615, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &950754059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950754054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f3885a7ceab344965f12b796591e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.CameraEffects.CameraHitShake
+  _stats: {fileID: 11400000, guid: 16a0962d182e97147810064b5470e260, type: 2}
+  _playerHitChannel: {fileID: 11400000, guid: f46440097b42e134eb0bc9c138cc96d8, type: 2}
 --- !u!1001 &1517987359
 PrefabInstance:
   m_ObjectHideFlags: 0
