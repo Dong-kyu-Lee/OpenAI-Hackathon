@@ -627,6 +627,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3368584508159980051, guid: 52d11f25ae8f5e64aa02d7be6adad8d4, type: 3}
+      propertyPath: _iceBridgeBuilder
+      value: 
+      objectReference: {fileID: 1590800846}
     - target: {fileID: 8018698082035752955, guid: 52d11f25ae8f5e64aa02d7be6adad8d4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -634,8 +638,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2008565307398306498, guid: 52d11f25ae8f5e64aa02d7be6adad8d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1590800846}
   m_SourcePrefab: {fileID: 100100000, guid: 52d11f25ae8f5e64aa02d7be6adad8d4, type: 3}
+--- !u!1 &1590800842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2008565307398306498, guid: 52d11f25ae8f5e64aa02d7be6adad8d4, type: 3}
+  m_PrefabInstance: {fileID: 1438963034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1590800846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590800842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760d0eca650a43748a264131af551bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Weapon.IceBridgeBuilder
+  _bridgePrefab: {fileID: 269851440896858337, guid: 36e33b06d25b51c4295357c02a0fb512, type: 3}
+  _scrollController: {fileID: 2095730023}
+  _layoutSettings: {fileID: 11400000, guid: efbcd969c2d079744894ba184e7657d5, type: 2}
+  _surfaceLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  _bridgeThickness: 1
+  _maximumGapWidth: 12
+--- !u!114 &2095730023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8884110675804651043, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
+  m_PrefabInstance: {fileID: 47525585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d12d84ce0e87b4cabd8f393850b14d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Stage.MapScrollController
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
