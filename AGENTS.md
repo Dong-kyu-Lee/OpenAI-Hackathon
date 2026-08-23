@@ -73,10 +73,27 @@ Assets/
 
 ```
 00.Scenes/
-├─ Bootstrap.unity      # 시작 씬 (Build index 0). 로더 하나만 존재
-├─ System_Scene.unity   # GameManager, AudioManager, ObjectPoolManager. 게임 내내 유지
-├─ UI_Scene.unity       # 화면 고정 UI. 게임 내내 유지
+├─ Bootstrap.unity      # 시작 씬 (Build index 0). 로더 하나만 존재. 시스템 씬을 올린 뒤 언로드된다
+├─ SystemScene.unity    # GameManager, AudioManager, ObjectPoolManager. 게임 내내 유지
+├─ Title.unity          # 타이틀. 자체 Canvas를 가진다
+├─ StageSelect.unity    # 스테이지 선택. 자체 Canvas를 가진다
+├─ UI_Scene.unity       # 게임플레이 UI(HUD, 일시정지, 결과). 플레이 중에만 유지
 └─ Stage_XX.unity       # 스테이지. 교체 시 언로드/로드
+```
+
+씬은 **흐름 씬**과 **게임플레이 씬**으로 나뉜다.
+
+- **흐름 씬** (`Title`, `StageSelect`): 한 번에 하나만 로드된다. 각자 자기 Canvas를 품는다.
+- **게임플레이 씬** (`Stage_XX` + `UI_Scene`): 항상 함께 로드되고 함께 언로드된다.
+
+`UI_Scene`은 **게임의 모든 UI를 담지 않는다.** HUD, 일시정지, 결과처럼 플레이 중에만 필요한 UI만 담는다. 타이틀과 스테이지 선택 UI는 각 흐름 씬 안에 둔다. 타이틀 UI를 플레이 내내 메모리에 띄워 둘 이유가 없고, 씬을 나눠야 3인이 UI를 병렬로 작업할 때 씬 충돌이 나지 않기 때문이다.
+
+씬 스택은 항상 아래 셋 중 하나다.
+
+```
+[SystemScene] + [Title]
+[SystemScene] + [StageSelect]
+[SystemScene] + [Stage_XX] + [UI_Scene]    # Active Scene = Stage_XX
 ```
 
 AI가 지킬 규칙:
@@ -85,6 +102,8 @@ AI가 지킬 규칙:
 2. **게임 오브젝트를 씬에 직접 조립하는 것을 전제로 코드를 짜지 않는다.** 모든 게임 오브젝트는 프리팹으로 만들고 씬에는 배치만 한다고 가정한다.
 3. **씬 간 인스펙터 참조를 전제로 하는 코드를 작성하지 않는다.** Unity가 막아둔 기능이다. 다른 씬의 오브젝트와 통신해야 하면 3.2의 이벤트 채널을 쓴다.
 4. 씬 로드/언로드 코드는 `App/`에만 작성한다. `Gameplay/`나 `UI/`에서 `SceneManager`를 직접 호출하지 않는다.
+5. **`UI_Scene`의 Canvas는 Screen Space - Overlay만 쓴다.** Screen Space - Camera는 `Stage_XX`의 카메라를 인스펙터로 참조해야 해서 3번 규칙에 걸린다.
+6. 게임 흐름과 씬 전환의 상세 설계는 [Docs/GameFlowArchitecture.md](./Docs/GameFlowArchitecture.md)에 있다. 흐름·상태·전환을 건드리기 전에 읽는다.
 
 ### 2.3 에디터 조작 (Unity MCP / Unity CLI)
 

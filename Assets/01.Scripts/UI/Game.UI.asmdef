@@ -4,7 +4,9 @@
     "references": [
         "Game.Core",
         "Game.Data",
-        "Unity.TextMeshPro"
+        "UnityEngine.UI",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

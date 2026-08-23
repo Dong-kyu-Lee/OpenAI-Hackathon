@@ -5322,6 +5322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectPoolManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1425005959720688632, guid: 48182f3160d9727418fb10fb1abfac4f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7926362838109649936, guid: 48182f3160d9727418fb10fb1abfac4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
