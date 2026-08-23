@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapRuntime
       objectReference: {fileID: 0}
+    - target: {fileID: 9059717411377748750, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
+      propertyPath: _stageConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 640a2a27bab28ff4e84fbd196a2349d8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -666,7 +670,6 @@ MonoBehaviour:
   _surfaceLayers:
     serializedVersion: 2
     m_Bits: 1
-  _bridgeThickness: 1
   _maximumGapWidth: 12
 --- !u!114 &2095730023 stripped
 MonoBehaviour:

@@ -18,10 +18,7 @@ namespace Game.Gameplay.Stage
         [SerializeField] private MonoBehaviour _segmentPoolSource;
         [SerializeField] private Transform _segmentParent;
         [SerializeField] private MapSegment _startSafePrefab;
-        [SerializeField] private MapSegmentCatalogSO _segmentCatalog;
-        [SerializeField] private MapSegmentType[] _sequence;
-        [SerializeField] private MapSegmentSelectionMode _selectionMode;
-        [SerializeField] private int _testSeed;
+        [SerializeField] private StageMapConfigSO _stageConfig;
 
         private readonly List<MapSegment> _activeSegments = new();
 
@@ -30,16 +27,20 @@ namespace Game.Gameplay.Stage
         private string _lastSegmentId;
         private bool _hasValidReferences;
         private bool _isStreaming;
+        private MapSegmentSelectionMode _selectionMode;
         private MapSegmentSelectionMode _appliedSelectionMode;
         private int _sequenceIndex;
         private bool _isProcessingAfterScrollStep;
+        private bool _isSubscribedToScroll;
         private Vector2 _appliedDisplacementForCurrentStep;
 
         /// <summary>진입 순서대로 관리되는 현재 활성 세그먼트의 읽기 전용 목록을 가져옵니다.</summary>
         public IReadOnlyList<MapSegment> ActiveSegments => _activeSegments;
 
         /// <summary>세그먼트 선택 순서를 재현하는 테스트용 난수 시드를 가져옵니다.</summary>
-        public int TestSeed => _testSeed;
+        public int TestSeed => _stageConfig == null
+            ? default
+            : _stageConfig.RandomSeed;
 
         /// <summary>현재 적용 중인 세그먼트 선택 방식을 가져옵니다.</summary>
         public MapSegmentSelectionMode SelectionMode => _selectionMode;
@@ -47,16 +48,15 @@ namespace Game.Gameplay.Stage
         /// <summary>맵 반환과 선행 생성을 매 물리 프레임 처리 중인지 여부를 가져옵니다.</summary>
         public bool IsStreaming => _isStreaming;
 
+        /// <summary>현재 스트림에 적용된 스테이지 맵 설정입니다.</summary>
+        public StageMapConfigSO StageConfig => _stageConfig;
+
         private void Awake()
         {
             _segmentPool = _segmentPoolSource as IMapSegmentPool;
-            _random = new System.Random(_testSeed);
+            ApplyStageConfigRuntimeState();
             _hasValidReferences = ValidateReferences();
-
-            if (_hasValidReferences)
-            {
-                _scrollController.AfterScrollStep += ProcessStreamingAfterScroll;
-            }
+            UpdateScrollSubscription();
         }
 
         private void ProcessStreamingAfterScroll(Vector2 appliedDisplacement)
@@ -98,10 +98,31 @@ namespace Game.Gameplay.Stage
 
         private void OnDestroy()
         {
-            if (_scrollController != null)
+            SetScrollSubscription(false);
+        }
+
+        /// <summary>스트리밍 시작 전에 공용 게임 씬에서 사용할 스테이지 설정을 적용합니다.</summary>
+        public bool SetStageConfig(StageMapConfigSO stageConfig)
+        {
+            if (stageConfig == null)
             {
-                _scrollController.AfterScrollStep -= ProcessStreamingAfterScroll;
+                Debug.LogError("Cannot apply a null stage map config.", this);
+                return false;
             }
+
+            if (_isStreaming || _activeSegments.Count > default(int))
+            {
+                Debug.LogError(
+                    "Stage map config can only be changed before streaming starts and while no segments are active.",
+                    this);
+                return false;
+            }
+
+            _stageConfig = stageConfig;
+            ApplyStageConfigRuntimeState();
+            _hasValidReferences = ValidateReferences();
+            UpdateScrollSubscription();
+            return _hasValidReferences;
         }
 
         /// <summary>초기 맵 또는 부족한 선행 구간을 준비하고 맵 스크롤을 시작합니다.</summary>
@@ -210,16 +231,23 @@ namespace Game.Gameplay.Stage
                 _segmentPool == null ||
                 _segmentParent == null ||
                 _startSafePrefab == null ||
-                _segmentCatalog == null ||
-                _sequence == null)
+                _stageConfig == null ||
+                _stageConfig.SegmentCatalog == null)
             {
                 Debug.LogError("MapStreamManager has missing or invalid required references.", this);
                 return false;
             }
 
-            if (_segmentCatalog.Count == default)
+            if (_stageConfig.SegmentCatalog.Count == default)
             {
                 Debug.LogError("MapStreamManager requires at least one catalog entry.", this);
+                return false;
+            }
+
+            if (!_stageConfig.InfiniteRandom &&
+                _stageConfig.Sequence.Count == default)
+            {
+                Debug.LogError("Sequence mode requires at least one segment type.", this);
                 return false;
             }
 
@@ -282,7 +310,7 @@ namespace Game.Gameplay.Stage
             int alternativeCount = default;
             int validCount = default;
 
-            for (int index = default; index < _segmentCatalog.Count; index++)
+            for (int index = default; index < _stageConfig.SegmentCatalog.Count; index++)
             {
                 if (!TryGetCatalogPrefab(index, out MapSegment candidate))
                 {
@@ -308,7 +336,7 @@ namespace Game.Gameplay.Stage
 
             int selectedIndex = _random.Next(selectionCount);
 
-            for (int index = default; index < _segmentCatalog.Count; index++)
+            for (int index = default; index < _stageConfig.SegmentCatalog.Count; index++)
             {
                 if (!TryGetCatalogPrefab(index, out MapSegment candidate) ||
                     excludePrevious && string.Equals(candidate.SegmentId, _lastSegmentId, StringComparison.Ordinal))
@@ -329,17 +357,20 @@ namespace Game.Gameplay.Stage
 
         private MapSegment SelectNextSequentialPrefab()
         {
-            if (_sequence.Length == default)
+            if (_stageConfig.Sequence.Count == default)
             {
                 return null;
             }
 
-            for (int attempt = default; attempt < _sequence.Length; attempt++)
+            for (int attempt = default; attempt < _stageConfig.Sequence.Count; attempt++)
             {
                 int candidateIndex = _sequenceIndex;
-                _sequenceIndex = (_sequenceIndex + 1) % _sequence.Length;
+                _sequenceIndex =
+                    (_sequenceIndex + 1) % _stageConfig.Sequence.Count;
 
-                if (TryGetCatalogPrefab(_sequence[candidateIndex], out MapSegment candidate))
+                if (TryGetCatalogPrefab(
+                        _stageConfig.Sequence[candidateIndex],
+                        out MapSegment candidate))
                 {
                     return candidate;
                 }
@@ -350,7 +381,10 @@ namespace Game.Gameplay.Stage
 
         private bool TryGetCatalogPrefab(int index, out MapSegment prefab)
         {
-            if (_segmentCatalog.TryGetEntry(index, out _, out GameObject prefabObject) &&
+            if (_stageConfig.SegmentCatalog.TryGetEntry(
+                    index,
+                    out _,
+                    out GameObject prefabObject) &&
                 prefabObject.TryGetComponent(out prefab))
             {
                 return true;
@@ -362,7 +396,9 @@ namespace Game.Gameplay.Stage
 
         private bool TryGetCatalogPrefab(MapSegmentType type, out MapSegment prefab)
         {
-            if (_segmentCatalog.TryGetPrefab(type, out GameObject prefabObject) &&
+            if (_stageConfig.SegmentCatalog.TryGetPrefab(
+                    type,
+                    out GameObject prefabObject) &&
                 prefabObject.TryGetComponent(out prefab))
             {
                 return true;
@@ -521,10 +557,44 @@ namespace Game.Gameplay.Stage
         private void ResetSelectionState()
         {
             // 같은 테스트 시드로 재시작할 때 난수 선택 순서와 순차 선택 위치를 함께 재현합니다.
-            _random = new System.Random(_testSeed);
+            _random = new System.Random(TestSeed);
             _lastSegmentId = null;
             _sequenceIndex = default;
             _appliedSelectionMode = _selectionMode;
+        }
+
+        private void ApplyStageConfigRuntimeState()
+        {
+            _selectionMode = _stageConfig != null && _stageConfig.InfiniteRandom
+                ? MapSegmentSelectionMode.Random
+                : MapSegmentSelectionMode.Sequence;
+            ResetSelectionState();
+        }
+
+        private void UpdateScrollSubscription()
+        {
+            SetScrollSubscription(_hasValidReferences);
+        }
+
+        private void SetScrollSubscription(bool shouldSubscribe)
+        {
+            shouldSubscribe &= _scrollController != null;
+
+            if (_isSubscribedToScroll == shouldSubscribe)
+            {
+                return;
+            }
+
+            if (shouldSubscribe)
+            {
+                _scrollController.AfterScrollStep += ProcessStreamingAfterScroll;
+            }
+            else if (_scrollController != null)
+            {
+                _scrollController.AfterScrollStep -= ProcessStreamingAfterScroll;
+            }
+
+            _isSubscribedToScroll = shouldSubscribe;
         }
 
         private void FailStreaming(string message)
