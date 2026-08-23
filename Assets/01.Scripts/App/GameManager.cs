@@ -165,7 +165,7 @@ namespace Game.App
                 return;
             }
 
-            _stageSelectionState.SelectStage(definition.MapConfig);
+            _stageSelectionState.SelectStage(definition);
             SetState(GameState.Loading);
             _sceneFlow.EnterStage(definition.SceneName, StartGameplay);
         }

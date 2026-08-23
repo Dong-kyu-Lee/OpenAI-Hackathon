@@ -187,6 +187,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2095730024}
+    - targetCorrespondingSourceObject: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2095730025}
   m_SourcePrefab: {fileID: 100100000, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
 --- !u!114 &47525586 stripped
 MonoBehaviour:
@@ -723,6 +726,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.App::Game.App.StageRuntimeStarter
   _stageSelectionState: {fileID: 11400000, guid: 3844faf072639594ca9e39857fe4b10f, type: 2}
   _mapStreamManager: {fileID: 47525586}
+--- !u!114 &2095730025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47525587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ad8335e50254d4981d4f7aad5cf978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Stage.StageRunner
+  _stageDefinition: {fileID: 11400000, guid: 5b37a017d1f970143b3ffc9f01f7875a, type: 2}
+  _stageSelectionState: {fileID: 11400000, guid: 3844faf072639594ca9e39857fe4b10f, type: 2}
+  _streamManager: {fileID: 47525586}
+  _scrollController: {fileID: 2095730023}
+  _gameplayStartedChannel: {fileID: 11400000, guid: aa450847f3c8b604ba20fac78b79ac79, type: 2}
+  _gameplayStoppedChannel: {fileID: 11400000, guid: 019b46772fd7b9d43b1a31efe733c667, type: 2}
+  _playerDiedChannel: {fileID: 11400000, guid: ae691a1493f6d4b478fee64c57b7a0e6, type: 2}
+  _playerHealthChangedChannel: {fileID: 11400000, guid: 76b5d5c18c1a7a340ab7f2cd14763610, type: 2}
+  _stageFinishedChannel: {fileID: 11400000, guid: 70ced7e6914ba6743b255a6ed15d0afa, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

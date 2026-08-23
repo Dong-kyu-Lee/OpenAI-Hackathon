@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: StageSelectionState
   m_EditorClassIdentifier: Game.Data::Game.Data.Stage.StageSelectionStateSO
   _defaultStageConfig: {fileID: 11400000, guid: 85dc28fe2138ec647be8e66b01a80189, type: 2}
+  _defaultStageDefinition: {fileID: 11400000, guid: 5b37a017d1f970143b3ffc9f01f7875a, type: 2}

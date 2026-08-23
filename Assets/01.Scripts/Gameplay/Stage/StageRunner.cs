@@ -14,6 +14,7 @@ namespace Game.Gameplay.Stage
     public sealed class StageRunner : MonoBehaviour
     {
         [SerializeField] private StageDefinitionSO _stageDefinition;
+        [SerializeField] private StageSelectionStateSO _stageSelectionState;
         [SerializeField] private MapStreamManager _streamManager;
         [SerializeField] private MapScrollController _scrollController;
 
@@ -55,6 +56,11 @@ namespace Game.Gameplay.Stage
             {
                 _playerHealthChangedChannel.Raised += OnPlayerHealthChanged;
             }
+
+            if (_streamManager != null)
+            {
+                _streamManager.StageEndReached += OnStageEndReached;
+            }
         }
 
         private void OnDisable()
@@ -78,6 +84,11 @@ namespace Game.Gameplay.Stage
             {
                 _playerHealthChangedChannel.Raised -= OnPlayerHealthChanged;
             }
+
+            if (_streamManager != null)
+            {
+                _streamManager.StageEndReached -= OnStageEndReached;
+            }
         }
 
         private void Update()
@@ -89,12 +100,14 @@ namespace Game.Gameplay.Stage
 
             _elapsedTime += Time.deltaTime;
 
-            if (_stageDefinition == null || _scrollController == null)
+            StageDefinitionSO stageDefinition = ResolveStageDefinition();
+            if (stageDefinition == null || _scrollController == null)
             {
                 return;
             }
 
-            if (_scrollController.DistanceTravelled >= _stageDefinition.ClearDistance)
+            if (stageDefinition.ClearDistance > 0f &&
+                _scrollController.DistanceTravelled >= stageDefinition.ClearDistance)
             {
                 Finish(true);
             }
@@ -140,9 +153,25 @@ namespace Game.Gameplay.Stage
             Finish(false);
         }
 
+        private void OnStageEndReached()
+        {
+            if (_isRunning && !_hasFinished)
+            {
+                Finish(true);
+            }
+        }
+
         private void OnPlayerHealthChanged(int currentHealth)
         {
             _lastKnownHealth = currentHealth;
+        }
+
+        private StageDefinitionSO ResolveStageDefinition()
+        {
+            return _stageSelectionState != null &&
+                _stageSelectionState.CurrentStageDefinition != null
+                    ? _stageSelectionState.CurrentStageDefinition
+                    : _stageDefinition;
         }
 
         private void Finish(bool cleared)

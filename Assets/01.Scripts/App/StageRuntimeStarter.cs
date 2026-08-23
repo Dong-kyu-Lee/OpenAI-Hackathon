@@ -13,13 +13,13 @@ namespace Game.App
         [SerializeField] private StageSelectionStateSO _stageSelectionState;
         [SerializeField] private MapStreamManager _mapStreamManager;
 
-        private void Start()
+        private void Awake()
         {
-            StartSelectedStage();
+            PrepareSelectedStage();
         }
 
-        /// <summary>현재 선택된 스테이지 설정으로 맵 스트리밍을 초기화하고 시작합니다.</summary>
-        public bool StartSelectedStage()
+        /// <summary>현재 선택된 스테이지 설정으로 맵 스트리밍을 초기화합니다.</summary>
+        public bool PrepareSelectedStage()
         {
             if (_stageSelectionState == null || _mapStreamManager == null)
             {
@@ -37,13 +37,14 @@ namespace Game.App
 
             _mapStreamManager.StopStreaming();
 
-            if (!_mapStreamManager.SetStageConfig(stageConfig) ||
-                !_mapStreamManager.ResetForRestart())
-            {
-                return false;
-            }
+            return _mapStreamManager.SetStageConfig(stageConfig) &&
+                _mapStreamManager.ResetForRestart();
+        }
 
-            return _mapStreamManager.StartStreaming();
+        /// <summary>현재 선택된 스테이지를 즉시 준비하고 스트리밍을 시작합니다.</summary>
+        public bool StartSelectedStage()
+        {
+            return PrepareSelectedStage() && _mapStreamManager.StartStreaming();
         }
     }
 }

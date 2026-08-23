@@ -9,14 +9,37 @@ namespace Game.Data.Stage
     public sealed class StageSelectionStateSO : ScriptableObject
     {
         [SerializeField] private StageMapConfigSO _defaultStageConfig;
+        [SerializeField] private StageDefinitionSO _defaultStageDefinition;
 
         [System.NonSerialized] private StageMapConfigSO _selectedStageConfig;
+        [System.NonSerialized] private StageDefinitionSO _selectedStageDefinition;
+
+        /// <summary>현재 선택된 스테이지 정의를 가져옵니다.</summary>
+        public StageDefinitionSO CurrentStageDefinition =>
+            _selectedStageDefinition != null
+                ? _selectedStageDefinition
+                : _defaultStageDefinition;
 
         /// <summary>선택값이 있으면 선택된 설정을, 없으면 기본 설정을 가져옵니다.</summary>
         public StageMapConfigSO CurrentStageConfig =>
-            _selectedStageConfig != null
-                ? _selectedStageConfig
-                : _defaultStageConfig;
+            CurrentStageDefinition != null && CurrentStageDefinition.MapConfig != null
+                ? CurrentStageDefinition.MapConfig
+                : _selectedStageConfig != null
+                    ? _selectedStageConfig
+                    : _defaultStageConfig;
+
+        /// <summary>공용 게임 씬에서 사용할 스테이지 정의와 맵 설정을 함께 저장합니다.</summary>
+        public void SelectStage(StageDefinitionSO stageDefinition)
+        {
+            if (stageDefinition == null || stageDefinition.MapConfig == null)
+            {
+                Debug.LogError("Cannot select a null or incomplete Stage definition.", this);
+                return;
+            }
+
+            _selectedStageDefinition = stageDefinition;
+            _selectedStageConfig = null;
+        }
 
         /// <summary>공용 게임 씬에서 사용할 Stage 설정을 저장합니다.</summary>
         public void SelectStage(StageMapConfigSO stageConfig)
@@ -28,12 +51,14 @@ namespace Game.Data.Stage
             }
 
             _selectedStageConfig = stageConfig;
+            _selectedStageDefinition = null;
         }
 
         /// <summary>런타임 선택값을 지워 기본 Stage 설정을 다시 사용하게 합니다.</summary>
         public void ClearSelection()
         {
             _selectedStageConfig = null;
+            _selectedStageDefinition = null;
         }
     }
 }

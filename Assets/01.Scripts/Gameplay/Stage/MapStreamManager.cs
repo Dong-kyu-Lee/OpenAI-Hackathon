@@ -35,7 +35,11 @@ namespace Game.Gameplay.Stage
         private bool _isProcessingAfterScrollStep;
         private bool _isSubscribedToScroll;
         private bool _sequenceExhausted;
+        private bool _hasReachedStageEnd;
         private Vector2 _appliedDisplacementForCurrentStep;
+
+        /// <summary>유한 Sequence의 실제 끝이 플레이어 종료 경계에 도달했을 때 발생합니다.</summary>
+        public event Action StageEndReached;
 
         /// <summary>진입 순서대로 관리되는 현재 활성 세그먼트의 읽기 전용 목록을 가져옵니다.</summary>
         public IReadOnlyList<MapSegment> ActiveSegments => _activeSegments;
@@ -85,6 +89,8 @@ namespace Game.Gameplay.Stage
                 if (HasFiniteStageReachedEnd())
                 {
                     StopMapMovement();
+                    _hasReachedStageEnd = true;
+                    StageEndReached?.Invoke();
                     return;
                 }
 
@@ -597,12 +603,14 @@ namespace Game.Gameplay.Stage
             _lastSegmentId = null;
             _sequenceIndex = default;
             _sequenceExhausted = false;
+            _hasReachedStageEnd = false;
             _appliedSelectionMode = _selectionMode;
         }
 
         private bool HasFiniteStageReachedEnd()
         {
-            if (!_sequenceExhausted ||
+            if (_hasReachedStageEnd ||
+                !_sequenceExhausted ||
                 _stageConfig == null ||
                 _stageConfig.ContinueRandomAfterSequence ||
                 !TryGetLastExitPosition(out Vector3 exitPosition))
