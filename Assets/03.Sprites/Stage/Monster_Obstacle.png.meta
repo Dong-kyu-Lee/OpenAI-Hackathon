@@ -1,0 +1,615 @@
+fileFormatVersion: 2
+guid: 67db27faf6f81e24b8f19c38daca684e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2706270621404138049
+    second: Monster_Obstacle_0
+  - first:
+      213: -45884974837793924
+    second: Monster_Obstacle_1
+  - first:
+      213: -7303300566268546528
+    second: Monster_Obstacle_2
+  - first:
+      213: -4036453154028162544
+    second: Monster_Obstacle_3
+  - first:
+      213: -5530341948324429604
+    second: Monster_Obstacle_4
+  - first:
+      213: 6982942862646323574
+    second: Monster_Obstacle_5
+  - first:
+      213: -7252454833632637423
+    second: Monster_Obstacle_6
+  - first:
+      213: -980738824302127153
+    second: Monster_Obstacle_7
+  - first:
+      213: 7895564974556872639
+    second: Monster_Obstacle_8
+  - first:
+      213: 8273438028101722849
+    second: Monster_Obstacle_9
+  - first:
+      213: 8339835454161968168
+    second: Monster_Obstacle_10
+  - first:
+      213: 9182600895373580696
+    second: Monster_Obstacle_11
+  - first:
+      213: -7367608359695762395
+    second: Monster_Obstacle_12
+  - first:
+      213: -5428392804997038540
+    second: Monster_Obstacle_13
+  - first:
+      213: 4737278811268499019
+    second: Monster_Obstacle_14
+  - first:
+      213: 5094267128062268571
+    second: Monster_Obstacle_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Monster_Obstacle_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 733
+        width: 260
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb571215535617ad0800000000000000
+      internalID: -2706270621404138049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_2
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 721
+        width: 212
+        height: 251
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7bf346cbdbfc5ff0800000000000000
+      internalID: -45884974837793924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_3
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 724
+        width: 216
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02277ab54d675aa90800000000000000
+      internalID: -7303300566268546528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_8
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 419
+        width: 237
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01275a11e33abf7c0800000000000000
+      internalID: -4036453154028162544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_13
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 81
+        width: 203
+        height: 232
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd04eab8c474043b0800000000000000
+      internalID: -5530341948324429604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_6
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 420
+        width: 253
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67922ee498568e060800000000000000
+      internalID: 6982942862646323574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_7
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 420
+        width: 238
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11e03c301ca1a5b90800000000000000
+      internalID: -7252454833632637423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_9
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 418
+        width: 216
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e226305d0821d270800000000000000
+      internalID: 8273438028101722849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_10
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 417
+        width: 222
+        height: 247
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82c5882c82c0db370800000000000000
+      internalID: 8339835454161968168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_11
+      rect:
+        serializedVersion: 2
+        x: 1283
+        y: 414
+        width: 229
+        height: 247
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8991de2ecd62f6f70800000000000000
+      internalID: 9182600895373580696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_12
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 89
+        width: 203
+        height: 247
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52cb22c6b3ff0c990800000000000000
+      internalID: -7367608359695762395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_18
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 60
+        width: 162
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43e7dd431897aa4b0800000000000000
+      internalID: -5428392804997038540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_1
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 721
+        width: 239
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dafb821afc0304d46a783995da09852e
+      internalID: 380445413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_4
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 726
+        width: 228
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf276ea574e9aa2459cb44de8ada12a7
+      internalID: 27354113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_5
+      rect:
+        serializedVersion: 2
+        x: 1271
+        y: 721
+        width: 230
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6287586f2b2262240a12cf1dc5161de3
+      internalID: 576603328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_14
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 69
+        width: 175
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d32d756fee3ab74f8e6dc5067d96867
+      internalID: 7895564974556872639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_15
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 68
+        width: 213
+        height: 237
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a6aa952abeb476488c916a34fcc61c8
+      internalID: 4737278811268499019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_16
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 37
+        width: 215
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae20a4c8da6dd84eadaaa256d396985
+      internalID: 5094267128062268571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Obstacle_17
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 50
+        width: 199
+        height: 254
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8166c7cfa7c70df4490c5b272977ef0c
+      internalID: -1258961948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 09f8a92e364b64446959d39a6f486452
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Monster_Obstacle_0: -2706270621404138049
+      Monster_Obstacle_1: 380445413
+      Monster_Obstacle_10: 8339835454161968168
+      Monster_Obstacle_11: 9182600895373580696
+      Monster_Obstacle_12: -7367608359695762395
+      Monster_Obstacle_13: -5530341948324429604
+      Monster_Obstacle_14: 7895564974556872639
+      Monster_Obstacle_15: 4737278811268499019
+      Monster_Obstacle_16: 5094267128062268571
+      Monster_Obstacle_17: -1258961948
+      Monster_Obstacle_18: -5428392804997038540
+      Monster_Obstacle_2: -45884974837793924
+      Monster_Obstacle_3: -7303300566268546528
+      Monster_Obstacle_4: 27354113
+      Monster_Obstacle_5: 576603328
+      Monster_Obstacle_6: 6982942862646323574
+      Monster_Obstacle_7: -7252454833632637423
+      Monster_Obstacle_8: -4036453154028162544
+      Monster_Obstacle_9: 8273438028101722849
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
