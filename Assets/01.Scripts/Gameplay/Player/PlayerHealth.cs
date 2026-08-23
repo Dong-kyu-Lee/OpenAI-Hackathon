@@ -19,6 +19,20 @@ namespace Game.Gameplay.Player
         public bool IsDead { get; private set; }
         public int CurrentHealth => _currentHealth;
 
+        /// <summary>현재 체력을 즉시 0으로 만들고 기존 플레이어 사망 이벤트를 발생시킵니다.</summary>
+        public void Kill()
+        {
+            if (IsDead)
+            {
+                return;
+            }
+
+            _currentHealth = default;
+            RaiseHealthChanged();
+            IsDead = true;
+            _playerDiedChannel?.Raise();
+        }
+
         private void Awake()
         {
             _currentHealth = _stats.MaxHealth;
