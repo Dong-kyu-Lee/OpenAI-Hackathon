@@ -1836,6 +1836,7 @@ GameObject:
   - component: {fileID: 1444873914853132497}
   - component: {fileID: 84811239414046791}
   - component: {fileID: 1072814835432774079}
+  - component: {fileID: 7842704291876622416}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1983,6 +1984,7 @@ MonoBehaviour:
   _stats: {fileID: 11400000, guid: 16a0962d182e97147810064b5470e260, type: 2}
   _healthChangedChannel: {fileID: 11400000, guid: 76b5d5c18c1a7a340ab7f2cd14763610, type: 2}
   _playerDiedChannel: {fileID: 11400000, guid: ae691a1493f6d4b478fee64c57b7a0e6, type: 2}
+  _playerHitChannel: {fileID: 11400000, guid: f46440097b42e134eb0bc9c138cc96d8, type: 2}
 --- !u!114 &18655281290132276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2055,6 +2057,20 @@ MonoBehaviour:
   - {fileID: 8712897690054465389}
   _aimCamera: {fileID: 0}
   _playerHealth: {fileID: 5366394459057268837}
+--- !u!114 &7842704291876622416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018698082035752955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2138f37b75c47964c8c8119968971287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Player.PlayerHitFlash
+  _stats: {fileID: 11400000, guid: 16a0962d182e97147810064b5470e260, type: 2}
+  _playerHitChannel: {fileID: 11400000, guid: f46440097b42e134eb0bc9c138cc96d8, type: 2}
 --- !u!1 &8044047633938910377
 GameObject:
   m_ObjectHideFlags: 0

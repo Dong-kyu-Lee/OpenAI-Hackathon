@@ -29,6 +29,12 @@ namespace Game.Data
         [SerializeField] private float _obstacleHitInvulnerabilityDuration;
         [SerializeField] private LayerMask _obstacleLayers;
 
+        [Header("Hit Feedback")]
+        [SerializeField] private Color _hitFlashColor = Color.red;
+        [SerializeField, Min(0f)] private float _hitFlashDuration = 0.1f;
+        [SerializeField, Min(0f)] private float _hitShakeDuration = 0.1f;
+        [SerializeField, Min(0f)] private float _hitShakeStrength = 0.08f;
+
         public float WorldScrollSpeed => _worldScrollSpeed;
         public float JumpClearHeight => _jumpClearHeight;
         public float GravityScale => _gravityScale;
@@ -45,5 +51,9 @@ namespace Game.Data
         public int ObstacleDamageMaximum => _obstacleDamageMaximum;
         public float ObstacleHitInvulnerabilityDuration => _obstacleHitInvulnerabilityDuration;
         public LayerMask ObstacleLayers => _obstacleLayers;
+        public Color HitFlashColor => _hitFlashColor;
+        public float HitFlashDuration => _hitFlashDuration;
+        public float HitShakeDuration => _hitShakeDuration;
+        public float HitShakeStrength => _hitShakeStrength;
     }
 }

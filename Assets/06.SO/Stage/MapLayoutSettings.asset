@@ -15,3 +15,4 @@ MonoBehaviour:
   _groundHeight: -3
   _despawnBoundaryX: -12
   _preloadDistance: 32
+  _stageEndBoundaryX: 0

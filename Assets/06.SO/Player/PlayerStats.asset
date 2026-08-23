@@ -34,3 +34,7 @@ MonoBehaviour:
   _obstacleLayers:
     serializedVersion: 2
     m_Bits: 0
+  _hitFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  _hitFlashDuration: 0.1
+  _hitShakeDuration: 0.15
+  _hitShakeStrength: 0.2
