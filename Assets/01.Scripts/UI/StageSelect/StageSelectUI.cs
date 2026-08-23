@@ -7,24 +7,22 @@ using UnityEngine.UI;
 namespace Game.UI.StageSelect
 {
     /// <summary>
-    /// 스테이지 카탈로그를 목록 항목으로 펼쳐 보여주고, 뒤로가기 입력을 흐름 요청 채널로 전달합니다.
-    /// 어떤 스테이지가 선택됐는지는 각 항목이 직접 채널로 알립니다.
+    /// 씬에 직접 배치된 스테이지 항목들을 카탈로그 순번과 요청 채널에 배선하고,
+    /// 뒤로가기 입력을 흐름 요청 채널로 전달합니다.
+    /// 항목의 위치와 표시는 씬이, 순번은 카탈로그가 결정합니다.
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class StageSelectUI : MonoBehaviour
     {
         [SerializeField] private StageCatalogSO _stageCatalog;
-        [SerializeField] private StageEntryButton _entryPrefab;
-        [SerializeField] private Transform _entryParent;
+        [SerializeField] private StageEntryButton[] _entries;
         [SerializeField] private Button _backButton;
         [SerializeField] private StageRequestEventChannelSO _stageRequestedChannel;
         [SerializeField] private VoidEventChannelSO _titleRequestedChannel;
 
-        private readonly List<StageEntryButton> _entries = new();
-
         private void Start()
         {
-            BuildEntries();
+            BindEntries();
         }
 
         private void OnEnable()
@@ -43,25 +41,50 @@ namespace Game.UI.StageSelect
             }
         }
 
-        private void BuildEntries()
+        private void BindEntries()
         {
-            if (_stageCatalog == null || _entryPrefab == null || _entryParent == null)
+            if (_stageCatalog == null || _entries == null)
             {
-                Debug.LogError("스테이지 목록을 구성할 참조가 비어 있습니다.", this);
+                Debug.LogError("스테이지 항목을 배선할 참조가 비어 있습니다.", this);
                 return;
             }
 
-            for (int index = 0; index < _stageCatalog.Count; index++)
+            HashSet<int> boundIndices = new();
+
+            for (int order = 0; order < _entries.Length; order++)
             {
-                if (!_stageCatalog.TryGet(index, out StageDefinitionSO definition))
+                StageEntryButton entry = _entries[order];
+                if (entry == null)
                 {
-                    Debug.LogError($"카탈로그의 {index}번 항목이 비어 있어 건너뜁니다.", this);
+                    Debug.LogError($"{order}번 항목 슬롯이 비어 있어 건너뜁니다.", this);
                     continue;
                 }
 
-                StageEntryButton entry = Instantiate(_entryPrefab, _entryParent);
-                entry.Bind(definition, index, _stageRequestedChannel);
-                _entries.Add(entry);
+                StageDefinitionSO definition = entry.Definition;
+                if (definition == null)
+                {
+                    Debug.LogError($"'{entry.name}'에 표시할 스테이지가 지정되지 않았습니다.", entry);
+                    continue;
+                }
+
+                int stageIndex = _stageCatalog.IndexOf(definition);
+                if (stageIndex == StageCatalogSO.InvalidIndex)
+                {
+                    Debug.LogError(
+                        $"'{entry.name}'의 스테이지 '{definition.name}'이(가) 카탈로그에 없습니다.",
+                        entry);
+                    continue;
+                }
+
+                if (!boundIndices.Add(stageIndex))
+                {
+                    Debug.LogError(
+                        $"'{entry.name}'의 스테이지 '{definition.name}'이(가) 중복 배치돼 있습니다.",
+                        entry);
+                    continue;
+                }
+
+                entry.Bind(definition, stageIndex, _stageRequestedChannel);
             }
         }
 

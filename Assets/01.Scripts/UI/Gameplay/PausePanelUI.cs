@@ -16,6 +16,7 @@ namespace Game.UI.Gameplay
     public sealed class PausePanelUI : MonoBehaviour
     {
         [SerializeField] private GameObject _panelRoot;
+        [SerializeField] private GameObject _backgroundPanel;
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _stageSelectButton;
@@ -159,9 +160,11 @@ namespace Game.UI.Gameplay
 
         private void SetPanelVisible(bool isVisible)
         {
+            if(_backgroundPanel == null) Debug.LogWarning("backgroundPanel is null");
             if (_panelRoot != null)
             {
                 _panelRoot.SetActive(isVisible);
+                _backgroundPanel.SetActive(isVisible);
             }
         }
 

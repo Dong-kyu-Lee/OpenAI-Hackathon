@@ -12,6 +12,9 @@ namespace Game.Data.Stage
         menuName = "Game/Data/Stage/Stage Catalog")]
     public sealed class StageCatalogSO : ScriptableObject
     {
+        /// <summary>목록에서 찾지 못했을 때 <see cref="IndexOf"/>가 돌려주는 값입니다.</summary>
+        public const int InvalidIndex = -1;
+
         [SerializeField] private StageDefinitionSO[] _stages;
 
         /// <summary>등록된 스테이지를 표시 순서대로 담은 읽기 전용 목록을 가져옵니다.</summary>
@@ -34,6 +37,27 @@ namespace Game.Data.Stage
 
             definition = _stages[stageIndex];
             return definition != null;
+        }
+
+        /// <summary>스테이지가 목록에서 몇 번째인지 조회합니다.</summary>
+        /// <param name="definition">순번을 알아낼 스테이지입니다.</param>
+        /// <returns>목록 안의 순번이며, 없거나 <see langword="null"/>이면 <see cref="InvalidIndex"/>입니다.</returns>
+        public int IndexOf(StageDefinitionSO definition)
+        {
+            if (_stages == null || definition == null)
+            {
+                return InvalidIndex;
+            }
+
+            for (int index = 0; index < _stages.Length; index++)
+            {
+                if (_stages[index] == definition)
+                {
+                    return index;
+                }
+            }
+
+            return InvalidIndex;
         }
     }
 }

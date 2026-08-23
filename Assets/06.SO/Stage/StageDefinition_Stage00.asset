@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94a49ddb3b54c1a48ad04e4c1fa0a116, type: 3}
-  m_Name: StageDefinition_Stage01
+  m_Name: StageDefinition_Stage00
   m_EditorClassIdentifier: Game.Data::Game.Data.Stage.StageDefinitionSO
-  _displayName: Stage 01
+  _displayName: Stage 00 (Tutorial)
   _sceneName: Stage_Tmp
   _thumbnail: {fileID: -2522764951381739691, guid: 24cc9177d7fc87345a2080b58f9da78b, type: 3}
   _clearDistance: 50

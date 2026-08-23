@@ -36,6 +36,25 @@ namespace Game.Gameplay.Weapon
             _remainingTime = 0f;
         }
 
+        private void OnDisable()
+        {
+            // CFX_AutoDestructShuriken 처럼 외부 스크립트가 직접 SetActive(false)를 호출하면
+            // Update가 멈춰 풀에 반환되지 못하고 인스턴스가 그대로 새어 나간다. 여기서 회수한다.
+            // 풀이 반환 과정에서 비활성화한 경우에는 _isPlaying이 이미 false라 다시 반환하지 않는다.
+            if (!_isPlaying)
+            {
+                return;
+            }
+
+            // 씬 언로드나 플레이 종료 중에는 풀 자료구조를 건드리지 않는다.
+            if (!gameObject.scene.isLoaded)
+            {
+                return;
+            }
+
+            ReturnToPool();
+        }
+
         private void Update()
         {
             if (!_isPlaying)
