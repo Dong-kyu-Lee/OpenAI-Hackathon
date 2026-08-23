@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Game.Core.Events;
 using Game.Data.Stage;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace Game.Gameplay.Stage
         [SerializeField] private Transform _segmentParent;
         [SerializeField] private MapSegment _startSafePrefab;
         [SerializeField] private StageMapConfigSO _stageConfig;
+        [SerializeField] private VoidEventChannelSO _playerDiedChannel;
 
         private readonly List<MapSegment> _activeSegments = new();
 
@@ -32,6 +34,7 @@ namespace Game.Gameplay.Stage
         private int _sequenceIndex;
         private bool _isProcessingAfterScrollStep;
         private bool _isSubscribedToScroll;
+        private bool _sequenceExhausted;
         private Vector2 _appliedDisplacementForCurrentStep;
 
         /// <summary>진입 순서대로 관리되는 현재 활성 세그먼트의 읽기 전용 목록을 가져옵니다.</summary>
@@ -59,6 +62,14 @@ namespace Game.Gameplay.Stage
             UpdateScrollSubscription();
         }
 
+        private void OnEnable()
+        {
+            if (_playerDiedChannel != null)
+            {
+                _playerDiedChannel.Raised += StopMapMovement;
+            }
+        }
+
         private void ProcessStreamingAfterScroll(Vector2 appliedDisplacement)
         {
             if (!_isStreaming)
@@ -71,6 +82,12 @@ namespace Game.Gameplay.Stage
 
             try
             {
+                if (HasFiniteStageReachedEnd())
+                {
+                    StopMapMovement();
+                    return;
+                }
+
                 ReturnExpiredSegments();
 
                 if (_activeSegments.Count == default && !TryBuildInitialStream())
@@ -93,6 +110,11 @@ namespace Game.Gameplay.Stage
 
         private void OnDisable()
         {
+            if (_playerDiedChannel != null)
+            {
+                _playerDiedChannel.Raised -= StopMapMovement;
+            }
+
             StopStreaming();
         }
 
@@ -183,6 +205,7 @@ namespace Game.Gameplay.Stage
 
             _selectionMode = selectionMode;
             _appliedSelectionMode = selectionMode;
+            _sequenceExhausted = false;
 
             if (selectionMode == MapSegmentSelectionMode.Sequence)
             {
@@ -282,7 +305,12 @@ namespace Game.Gameplay.Stage
             {
                 MapSegment prefab = SelectNextPrefab();
 
-                if (prefab == null || !TryRentAndPlace(prefab, exitPosition))
+                if (prefab == null)
+                {
+                    return _sequenceExhausted;
+                }
+
+                if (!TryRentAndPlace(prefab, exitPosition))
                 {
                     return false;
                 }
@@ -362,11 +390,10 @@ namespace Game.Gameplay.Stage
                 return null;
             }
 
-            for (int attempt = default; attempt < _stageConfig.Sequence.Count; attempt++)
+            while (_sequenceIndex < _stageConfig.Sequence.Count)
             {
                 int candidateIndex = _sequenceIndex;
-                _sequenceIndex =
-                    (_sequenceIndex + 1) % _stageConfig.Sequence.Count;
+                _sequenceIndex++;
 
                 if (TryGetCatalogPrefab(
                         _stageConfig.Sequence[candidateIndex],
@@ -376,6 +403,14 @@ namespace Game.Gameplay.Stage
                 }
             }
 
+            if (_stageConfig.ContinueRandomAfterSequence)
+            {
+                _selectionMode = MapSegmentSelectionMode.Random;
+                _appliedSelectionMode = MapSegmentSelectionMode.Random;
+                return SelectNextRandomPrefab();
+            }
+
+            _sequenceExhausted = true;
             return null;
         }
 
@@ -420,6 +455,7 @@ namespace Game.Gameplay.Stage
             if (_selectionMode == MapSegmentSelectionMode.Sequence)
             {
                 _sequenceIndex = default;
+                _sequenceExhausted = false;
             }
         }
 
@@ -560,7 +596,31 @@ namespace Game.Gameplay.Stage
             _random = new System.Random(TestSeed);
             _lastSegmentId = null;
             _sequenceIndex = default;
+            _sequenceExhausted = false;
             _appliedSelectionMode = _selectionMode;
+        }
+
+        private bool HasFiniteStageReachedEnd()
+        {
+            if (!_sequenceExhausted ||
+                _stageConfig == null ||
+                _stageConfig.ContinueRandomAfterSequence ||
+                !TryGetLastExitPosition(out Vector3 exitPosition))
+            {
+                return false;
+            }
+
+            return exitPosition.x <= _layoutSettings.StageEndBoundaryX;
+        }
+
+        private void StopMapMovement()
+        {
+            _isStreaming = false;
+
+            if (_scrollController != null)
+            {
+                _scrollController.StopScrolling();
+            }
         }
 
         private void ApplyStageConfigRuntimeState()

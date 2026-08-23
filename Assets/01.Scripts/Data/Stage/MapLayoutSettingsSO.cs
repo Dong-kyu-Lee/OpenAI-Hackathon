@@ -14,6 +14,8 @@ namespace Game.Data.Stage
         [SerializeField] private float _groundHeight = 0f;
         [SerializeField] private float _despawnBoundaryX = -12f;
         [SerializeField] private float _preloadDistance = 32f;
+        [Tooltip("유한 Sequence의 마지막 출구가 이 X 좌표에 도달하면 맵 이동을 멈춥니다.")]
+        [SerializeField] private float _stageEndBoundaryX;
 
         /// <summary>세그먼트 진입 앵커를 배치할 월드 Y 좌표를 월드 유닛으로 가져옵니다.</summary>
         public float GroundHeight => _groundHeight;
@@ -23,5 +25,8 @@ namespace Game.Data.Stage
 
         /// <summary>세그먼트의 마지막 출구가 도달해야 하는 월드 X 선행 생성 경계를 월드 유닛으로 가져옵니다.</summary>
         public float PreloadDistance => _preloadDistance;
+
+        /// <summary>유한 스테이지의 마지막 출구가 도달해야 하는 종료 X 좌표입니다.</summary>
+        public float StageEndBoundaryX => _stageEndBoundaryX;
     }
 }
