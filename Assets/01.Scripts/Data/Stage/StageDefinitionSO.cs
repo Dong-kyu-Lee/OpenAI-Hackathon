@@ -13,6 +13,7 @@ namespace Game.Data.Stage
     {
         [SerializeField] private string _displayName;
         [SerializeField] private string _sceneName;
+        [SerializeField] private StageMapConfigSO _mapConfig;
         [SerializeField] private Sprite _thumbnail;
         [SerializeField, Min(0f)] private float _clearDistance;
 
@@ -24,6 +25,9 @@ namespace Game.Data.Stage
         /// Build Settings에 등록된 씬 파일명과 정확히 일치해야 합니다.
         /// </summary>
         public string SceneName => _sceneName;
+
+        /// <summary>공용 게임 씬에서 이 스테이지에 적용할 맵 생성 설정입니다.</summary>
+        public StageMapConfigSO MapConfig => _mapConfig;
 
         /// <summary>스테이지 선택 화면에 표시할 미리보기 이미지를 가져옵니다. 연결하지 않아도 됩니다.</summary>
         public Sprite Thumbnail => _thumbnail;

@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/00.Scenes/Stage_Tmp.unity
     guid: fb4851ff07611e041aaf63f3de3ba15a
   - enabled: 1
+    path: Assets/00.Scenes/MapTest.unity
+    guid: 6f2aa8e998fa8e64ca6be3c80a497788
+  - enabled: 1
     path: Assets/00.Scenes/UI_Scene.unity
     guid: c229bb9117e416a498437a8eba1e4e8c
   - enabled: 0

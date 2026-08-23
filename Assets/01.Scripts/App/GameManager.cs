@@ -18,6 +18,7 @@ namespace Game.App
 
         [SerializeField] private SceneFlowController _sceneFlow;
         [SerializeField] private StageCatalogSO _stageCatalog;
+        [SerializeField] private StageSelectionStateSO _stageSelectionState;
         [SerializeField] private string _titleSceneName = "Title";
         [SerializeField] private string _stageSelectSceneName = "StageSelect";
 
@@ -156,6 +157,15 @@ namespace Game.App
                 return;
             }
 
+            if (_stageSelectionState == null || definition.MapConfig == null)
+            {
+                Debug.LogError(
+                    $"'{definition.name}'의 맵 설정 또는 StageSelectionState가 연결되지 않았습니다.",
+                    this);
+                return;
+            }
+
+            _stageSelectionState.SelectStage(definition.MapConfig);
             SetState(GameState.Loading);
             _sceneFlow.EnterStage(definition.SceneName, StartGameplay);
         }

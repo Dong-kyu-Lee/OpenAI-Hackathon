@@ -183,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.App::Game.App.GameManager
   _sceneFlow: {fileID: 389535759}
   _stageCatalog: {fileID: 11400000, guid: f5f7fcab8859da74399ed9f8290e44f2, type: 2}
+  _stageSelectionState: {fileID: 11400000, guid: 3844faf072639594ca9e39857fe4b10f, type: 2}
   _titleSceneName: Title
   _stageSelectSceneName: StageSelect
   _gameStateChangedChannel: {fileID: 11400000, guid: 6fc0a6229452e3f458e3ff3e3926dedc, type: 2}
