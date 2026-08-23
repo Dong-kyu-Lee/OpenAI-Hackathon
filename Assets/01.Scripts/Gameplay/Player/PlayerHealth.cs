@@ -10,6 +10,7 @@ namespace Game.Gameplay.Player
         [SerializeField] private PlayerStatsSO _stats;
         [SerializeField] private IntEventChannelSO _healthChangedChannel;
         [SerializeField] private VoidEventChannelSO _playerDiedChannel;
+        [SerializeField] private VoidEventChannelSO _playerHitChannel;
 
         private float _passiveDrainElapsed;
         private float _invulnerableUntil;
@@ -84,14 +85,18 @@ namespace Game.Gameplay.Player
             }
 
             _invulnerableUntil = Time.time + _stats.ObstacleHitInvulnerabilityDuration;
-            ApplyDamage(damage);
+
+            if (ApplyDamage(damage))
+            {
+                _playerHitChannel?.Raise();
+            }
         }
 
-        private void ApplyDamage(int damage)
+        private bool ApplyDamage(int damage)
         {
             if (damage <= 0 || IsDead)
             {
-                return;
+                return false;
             }
 
             _currentHealth = Mathf.Max(0, _currentHealth - damage);
@@ -102,6 +107,8 @@ namespace Game.Gameplay.Player
                 IsDead = true;
                 _playerDiedChannel?.Raise();
             }
+
+            return true;
         }
 
         private bool IsObstacle(int layer)
