@@ -10,6 +10,7 @@ namespace Game.Gameplay.Weapon
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private LaserBeamVisual _beamVisual;
         [SerializeField] private PooledHitEffect _hitEffectPrefab;
+        [SerializeField] private IceBridgeBuilder _iceBridgeBuilder;
 
         private PooledHitEffect _hitEffectInstance;
         private float _firingElapsed;
@@ -17,6 +18,11 @@ namespace Game.Gameplay.Weapon
 
         private void Awake()
         {
+            if (_iceBridgeBuilder == null)
+            {
+                _iceBridgeBuilder = GetComponent<IceBridgeBuilder>();
+            }
+
             SetLineVisible(false);
         }
 
@@ -87,6 +93,15 @@ namespace Game.Gameplay.Weapon
             }
 
             UpdateHitEffect(hit);
+
+            if (Definition.DamageElement == WeaponDefinitionSO.Element.Ice &&
+                _iceBridgeBuilder != null)
+            {
+                float availableDistance = hit.collider == null
+                    ? Definition.Range
+                    : hit.distance;
+                _iceBridgeBuilder.TryBuild(origin, AimDirection, availableDistance);
+            }
 
             if (hit.collider == null)
             {
