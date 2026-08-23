@@ -2058,6 +2058,7 @@ MonoBehaviour:
   - {fileID: 8712897690054465389}
   _aimCamera: {fileID: 0}
   _playerHealth: {fileID: 5366394459057268837}
+  _gameStateChangedChannel: {fileID: 11400000, guid: 6fc0a6229452e3f458e3ff3e3926dedc, type: 2}
 --- !u!114 &7842704291876622416
 MonoBehaviour:
   m_ObjectHideFlags: 0

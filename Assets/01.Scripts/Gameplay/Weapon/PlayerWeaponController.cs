@@ -1,3 +1,5 @@
+using Game.Core.Events;
+using Game.Core.Flow;
 using Game.Data;
 using Game.Gameplay.Player;
 using UnityEngine;
@@ -10,6 +12,7 @@ namespace Game.Gameplay.Weapon
         [SerializeField] private WeaponBase[] _weapons;
         [SerializeField] private Camera _aimCamera;
         [SerializeField] private PlayerHealth _playerHealth;
+        [SerializeField] private GameStateEventChannelSO _gameStateChangedChannel;
 
         private Vector2 _aimScreenPosition;
         private float _switchCompleteTime;
@@ -17,6 +20,7 @@ namespace Game.Gameplay.Weapon
         private int _pendingWeaponIndex;
         private bool _isAttackHeld;
         private bool _isAttackBlockedUntilRelease;
+        private bool _isGameplayActive;
         private bool _isSwitching;
 
         private WeaponBase CurrentWeapon => IsValidWeaponIndex(_currentWeaponIndex)
@@ -52,6 +56,12 @@ namespace Game.Gameplay.Weapon
 
         private void Update()
         {
+            if (!_isGameplayActive)
+            {
+                CancelCurrentAttack();
+                return;
+            }
+
             if (_playerHealth != null && _playerHealth.IsDead)
             {
                 CancelCurrentAttack();
@@ -77,7 +87,21 @@ namespace Game.Gameplay.Weapon
 
         private void OnDisable()
         {
+            if (_gameStateChangedChannel != null)
+            {
+                _gameStateChangedChannel.Raised -= OnGameStateChanged;
+            }
+
+            _isGameplayActive = false;
             CancelCurrentAttack();
+        }
+
+        private void OnEnable()
+        {
+            if (_gameStateChangedChannel != null)
+            {
+                _gameStateChangedChannel.Raised += OnGameStateChanged;
+            }
         }
 
         public void SetAttackHeld(bool isHeld)
@@ -151,6 +175,24 @@ namespace Game.Gameplay.Weapon
         private void CancelCurrentAttack()
         {
             CurrentWeapon?.CancelAttack();
+        }
+
+        private void OnGameStateChanged(GameState state)
+        {
+            _isGameplayActive = state == GameState.Playing;
+
+            if (_isGameplayActive)
+            {
+                if (_isAttackHeld)
+                {
+                    _isAttackBlockedUntilRelease = true;
+                }
+
+                return;
+            }
+
+            _isAttackBlockedUntilRelease |= _isAttackHeld;
+            CancelCurrentAttack();
         }
 
         private int FindFirstWeaponIndex()
