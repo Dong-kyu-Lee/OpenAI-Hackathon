@@ -106,7 +106,8 @@ namespace Game.Gameplay.Stage
                 return;
             }
 
-            if (stageDefinition.ClearDistance > 0f &&
+            if (!stageDefinition.IsEndlessMode &&
+                stageDefinition.ClearDistance > 0f &&
                 _scrollController.DistanceTravelled >= stageDefinition.ClearDistance)
             {
                 Finish(true);
@@ -155,7 +156,11 @@ namespace Game.Gameplay.Stage
 
         private void OnStageEndReached()
         {
-            if (_isRunning && !_hasFinished)
+            StageDefinitionSO stageDefinition = ResolveStageDefinition();
+
+            if (_isRunning &&
+                !_hasFinished &&
+                (stageDefinition == null || !stageDefinition.IsEndlessMode))
             {
                 Finish(true);
             }

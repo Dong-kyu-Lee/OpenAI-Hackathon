@@ -16,6 +16,7 @@ namespace Game.Data.Stage
         [SerializeField] private StageMapConfigSO _mapConfig;
         [SerializeField] private Sprite _thumbnail;
         [SerializeField, Min(0f)] private float _clearDistance;
+        [SerializeField] private bool _isEndlessMode;
 
         /// <summary>스테이지 선택 화면에 표시할 이름을 가져옵니다.</summary>
         public string DisplayName => _displayName;
@@ -34,5 +35,8 @@ namespace Game.Data.Stage
 
         /// <summary>클리어로 판정할 누적 주행 거리를 월드 유닛으로 가져옵니다.</summary>
         public float ClearDistance => _clearDistance;
+
+        /// <summary>플레이어가 사망할 때까지 거리와 맵 끝으로 종료되지 않는 무한 모드인지 여부를 가져옵니다.</summary>
+        public bool IsEndlessMode => _isEndlessMode;
     }
 }
