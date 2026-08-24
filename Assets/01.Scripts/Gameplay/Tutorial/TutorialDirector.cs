@@ -11,6 +11,7 @@ namespace Game.Gameplay.Tutorial
     {
         [SerializeField] private MapScrollController _scrollController;
         [SerializeField] private InputActionReference _jumpAction;
+        [SerializeField] private InputActionReference _slideAction;
 
         [Header("Channels")]
         [SerializeField] private TutorialRequestEventChannelSO _requestChannel;
@@ -29,10 +30,8 @@ namespace Game.Gameplay.Tutorial
                 _requestChannel.Raised += BeginTutorial;
             }
 
-            if (_jumpAction != null && _jumpAction.action != null)
-            {
-                _jumpAction.action.performed += OnJumpPerformed;
-            }
+            Subscribe(_jumpAction, OnJumpPerformed);
+            Subscribe(_slideAction, OnSlidePerformed);
 
             if (_gameplayStoppedChannel != null)
             {
@@ -52,10 +51,8 @@ namespace Game.Gameplay.Tutorial
                 _requestChannel.Raised -= BeginTutorial;
             }
 
-            if (_jumpAction != null && _jumpAction.action != null)
-            {
-                _jumpAction.action.performed -= OnJumpPerformed;
-            }
+            Unsubscribe(_jumpAction, OnJumpPerformed);
+            Unsubscribe(_slideAction, OnSlidePerformed);
 
             if (_gameplayStoppedChannel != null)
             {
@@ -78,7 +75,8 @@ namespace Game.Gameplay.Tutorial
                 return;
             }
 
-            if (request.RequiredAction != TutorialAction.Jump)
+            if (request.RequiredAction != TutorialAction.Jump &&
+                request.RequiredAction != TutorialAction.Slide)
             {
                 Debug.LogWarning($"Tutorial action '{request.RequiredAction}' is not implemented yet.", this);
                 return;
@@ -97,7 +95,17 @@ namespace Game.Gameplay.Tutorial
 
         private void OnJumpPerformed(InputAction.CallbackContext context)
         {
-            if (!_isWaiting || _currentRequest.RequiredAction != TutorialAction.Jump)
+            TryComplete(TutorialAction.Jump);
+        }
+
+        private void OnSlidePerformed(InputAction.CallbackContext context)
+        {
+            TryComplete(TutorialAction.Slide);
+        }
+
+        private void TryComplete(TutorialAction performedAction)
+        {
+            if (!_isWaiting || _currentRequest.RequiredAction != performedAction)
             {
                 return;
             }
@@ -125,6 +133,26 @@ namespace Game.Gameplay.Tutorial
             _presentationChannel?.Raise(TutorialPresentation.Hidden);
             _currentRequest = default;
             _isWaiting = false;
+        }
+
+        private static void Subscribe(
+            InputActionReference actionReference,
+            System.Action<InputAction.CallbackContext> callback)
+        {
+            if (actionReference != null && actionReference.action != null)
+            {
+                actionReference.action.performed += callback;
+            }
+        }
+
+        private static void Unsubscribe(
+            InputActionReference actionReference,
+            System.Action<InputAction.CallbackContext> callback)
+        {
+            if (actionReference != null && actionReference.action != null)
+            {
+                actionReference.action.performed -= callback;
+            }
         }
     }
 }
