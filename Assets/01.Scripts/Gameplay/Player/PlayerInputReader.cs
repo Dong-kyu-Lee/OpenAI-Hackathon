@@ -1,3 +1,5 @@
+using Game.Core.Events;
+using Game.Core.Tutorial;
 using Game.Gameplay.Weapon;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,27 +24,27 @@ namespace Game.Gameplay.Player
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerSlide _playerSlide;
         [SerializeField] private PlayerWeaponController _playerWeaponController;
+        [SerializeField] private TutorialInputPermissionEventChannelSO _tutorialInputPermissionChannel;
+
+        private TutorialInputPermission _allowedInputs = TutorialInputPermission.All;
 
         private void Awake()
         {
-            if (_playerMovement == null)
-            {
-                _playerMovement = GetComponent<PlayerMovement>();
-            }
-
-            if (_playerSlide == null)
-            {
-                _playerSlide = GetComponent<PlayerSlide>();
-            }
-
-            if (_playerWeaponController == null)
-            {
-                _playerWeaponController = GetComponent<PlayerWeaponController>();
-            }
+            if (_playerMovement == null) _playerMovement = GetComponent<PlayerMovement>();
+            if (_playerSlide == null) _playerSlide = GetComponent<PlayerSlide>();
+            if (_playerWeaponController == null) _playerWeaponController = GetComponent<PlayerWeaponController>();
         }
 
         private void OnEnable()
         {
+            if (_tutorialInputPermissionChannel != null)
+            {
+                _tutorialInputPermissionChannel.Raised += OnInputPermissionChanged;
+                _allowedInputs = _tutorialInputPermissionChannel.HasValue
+                    ? _tutorialInputPermissionChannel.CurrentValue
+                    : TutorialInputPermission.All;
+            }
+
             Subscribe(_jumpAction, OnJumpPerformed, null);
             Subscribe(_slideAction, OnSlidePerformed, OnSlideCanceled);
             Subscribe(_attackAction, OnAttackPerformed, OnAttackCanceled);
@@ -55,6 +57,9 @@ namespace Game.Gameplay.Player
 
         private void OnDisable()
         {
+            if (_tutorialInputPermissionChannel != null)
+                _tutorialInputPermissionChannel.Raised -= OnInputPermissionChanged;
+
             Unsubscribe(_jumpAction, OnJumpPerformed, null);
             Unsubscribe(_slideAction, OnSlidePerformed, OnSlideCanceled);
             Unsubscribe(_attackAction, OnAttackPerformed, OnAttackCanceled);
@@ -63,96 +68,76 @@ namespace Game.Gameplay.Player
             Unsubscribe(_weaponTwoAction, OnWeaponTwoPerformed, null);
             Unsubscribe(_weaponThreeAction, OnWeaponThreePerformed, null);
             Unsubscribe(_weaponFourAction, OnWeaponFourPerformed, null);
-
-            _playerWeaponController?.SetAttackHeld(false);
+            ClearHeldInputs();
         }
+
+private void OnInputPermissionChanged(TutorialInputPermission permission)
+        {
+            _allowedInputs = permission;
+            if (!Allows(TutorialInputPermission.Attack))
+            {
+                _playerWeaponController?.SetAttackHeld(false);
+            }
+        }
+
+        private bool Allows(TutorialInputPermission permission) => (_allowedInputs & permission) != 0;
 
         private void OnJumpPerformed(InputAction.CallbackContext context)
         {
-            _playerMovement.RequestJump();
+            if (Allows(TutorialInputPermission.Jump)) _playerMovement?.RequestJump();
         }
 
         private void OnSlidePerformed(InputAction.CallbackContext context)
         {
-            _playerSlide.SetSlideRequested(true);
+            if (Allows(TutorialInputPermission.Slide)) _playerSlide?.SetSlideRequested(true);
         }
 
-        private void OnSlideCanceled(InputAction.CallbackContext context)
-        {
-            _playerSlide.SetSlideRequested(false);
-        }
+        private void OnSlideCanceled(InputAction.CallbackContext context) { _playerSlide?.SetSlideRequested(false); }
 
         private void OnAttackPerformed(InputAction.CallbackContext context)
         {
-            _playerWeaponController?.SetAttackHeld(true);
+            if (Allows(TutorialInputPermission.Attack)) _playerWeaponController?.SetAttackHeld(true);
         }
 
-        private void OnAttackCanceled(InputAction.CallbackContext context)
-        {
-            _playerWeaponController?.SetAttackHeld(false);
-        }
+        private void OnAttackCanceled(InputAction.CallbackContext context) { _playerWeaponController?.SetAttackHeld(false); }
 
         private void OnAimPositionPerformed(InputAction.CallbackContext context)
         {
-            _playerWeaponController?.SetAimScreenPosition(context.ReadValue<Vector2>());
+            if (Allows(TutorialInputPermission.Aim))
+                _playerWeaponController?.SetAimScreenPosition(context.ReadValue<Vector2>());
         }
 
-        private void OnWeaponOnePerformed(InputAction.CallbackContext context)
+        private void OnWeaponOnePerformed(InputAction.CallbackContext context) { SelectWeapon(WeaponOneIndex); }
+        private void OnWeaponTwoPerformed(InputAction.CallbackContext context) { SelectWeapon(WeaponTwoIndex); }
+        private void OnWeaponThreePerformed(InputAction.CallbackContext context) { SelectWeapon(WeaponThreeIndex); }
+        private void OnWeaponFourPerformed(InputAction.CallbackContext context) { SelectWeapon(WeaponFourIndex); }
+
+        private void SelectWeapon(int index)
         {
-            _playerWeaponController?.RequestWeaponSelection(WeaponOneIndex);
+            if (Allows(TutorialInputPermission.WeaponSelection))
+                _playerWeaponController?.RequestWeaponSelection(index);
         }
 
-        private void OnWeaponTwoPerformed(InputAction.CallbackContext context)
+        private void ClearHeldInputs()
         {
-            _playerWeaponController?.RequestWeaponSelection(WeaponTwoIndex);
+            _playerSlide?.SetSlideRequested(false);
+            _playerWeaponController?.SetAttackHeld(false);
         }
 
-        private void OnWeaponThreePerformed(InputAction.CallbackContext context)
+        private static void Subscribe(InputActionReference reference, System.Action<InputAction.CallbackContext> performed, System.Action<InputAction.CallbackContext> canceled)
         {
-            _playerWeaponController?.RequestWeaponSelection(WeaponThreeIndex);
+            if (reference == null || reference.action == null) return;
+            reference.action.performed += performed;
+            if (canceled != null) reference.action.canceled += canceled;
+            reference.action.Enable();
         }
 
-        private void OnWeaponFourPerformed(InputAction.CallbackContext context)
+        private static void Unsubscribe(InputActionReference reference, System.Action<InputAction.CallbackContext> performed, System.Action<InputAction.CallbackContext> canceled)
         {
-            _playerWeaponController?.RequestWeaponSelection(WeaponFourIndex);
-        }
-
-        private static void Subscribe(
-            InputActionReference actionReference,
-            System.Action<InputAction.CallbackContext> performed,
-            System.Action<InputAction.CallbackContext> canceled)
-        {
-            if (actionReference == null || actionReference.action == null)
-            {
-                return;
-            }
-
-            actionReference.action.performed += performed;
-            if (canceled != null)
-            {
-                actionReference.action.canceled += canceled;
-            }
-
-            actionReference.action.Enable();
-        }
-
-        private static void Unsubscribe(
-            InputActionReference actionReference,
-            System.Action<InputAction.CallbackContext> performed,
-            System.Action<InputAction.CallbackContext> canceled)
-        {
-            if (actionReference == null || actionReference.action == null)
-            {
-                return;
-            }
-
-            actionReference.action.performed -= performed;
-            if (canceled != null)
-            {
-                actionReference.action.canceled -= canceled;
-            }
-
-            actionReference.action.Disable();
+            if (reference == null || reference.action == null) return;
+            reference.action.performed -= performed;
+            if (canceled != null) reference.action.canceled -= canceled;
+            reference.action.Disable();
         }
     }
 }

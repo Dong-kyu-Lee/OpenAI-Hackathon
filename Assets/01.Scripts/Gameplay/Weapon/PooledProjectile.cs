@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Game.Core.Combat;
 using Game.Core.Pooling;
+
+using Game.Gameplay.Combat;
 using Game.Data;
 using UnityEngine;
 
@@ -133,37 +135,35 @@ namespace Game.Gameplay.Weapon
             ReturnToPool();
         }
 
-        private void ApplyDirectDamage(Collider2D directHit)
+private void ApplyDirectDamage(Collider2D directHit)
         {
+            IWeaponDamageable weaponDamageable = directHit.GetComponentInParent<IWeaponDamageable>();
+            if (weaponDamageable != null)
+            {
+                weaponDamageable.TakeDamage(_definition.Damage, _definition);
+                return;
+            }
+
             IDamageable damageable = directHit.GetComponentInParent<IDamageable>();
             damageable?.TakeDamage(_definition.Damage);
         }
 
-        private void ApplyExplosionDamage(Vector2 impactPoint)
+private void ApplyExplosionDamage(Vector2 impactPoint)
         {
             _damagedTargets.Clear();
-
-            int hitCount = Physics2D.OverlapCircleNonAlloc(
-                impactPoint,
-                _definition.ExplosionRadius,
-                _explosionHits,
-                _definition.HitLayers);
+            int hitCount = Physics2D.OverlapCircleNonAlloc(impactPoint, _definition.ExplosionRadius, _explosionHits, _definition.HitLayers);
 
             for (int i = 0; i < hitCount; i++)
             {
                 Collider2D hit = _explosionHits[i];
-                if (hit == null)
-                {
-                    continue;
-                }
+                if (hit == null) continue;
 
                 IDamageable damageable = hit.GetComponentInParent<IDamageable>();
-                if (damageable == null || !_damagedTargets.Add(damageable))
-                {
-                    continue;
-                }
+                if (damageable == null || !_damagedTargets.Add(damageable)) continue;
 
-                damageable.TakeDamage(_definition.Damage);
+                IWeaponDamageable weaponDamageable = damageable as IWeaponDamageable;
+                if (weaponDamageable != null) weaponDamageable.TakeDamage(_definition.Damage, _definition);
+                else damageable.TakeDamage(_definition.Damage);
             }
         }
 

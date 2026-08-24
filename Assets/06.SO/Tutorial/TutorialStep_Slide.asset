@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ece9bf364a491d48a6c976229d373b3, type: 3}
+  m_Name: TutorialStep_Slide
+  m_EditorClassIdentifier: Game.Data::Game.Data.Tutorial.TutorialStepSO
+  _stepId: SlideHighObstacle
+  _title: "\uC2AC\uB77C\uC774\uB4DC"
+  _message: "C\uB97C \uB20C\uB7EC \uC7A5\uC560\uBB3C \uC544\uB798\uB85C \uC2AC\uB77C\uC774\uB4DC\uD574\uBCF4\uC790"
+  _inputLabel: C
+  _requiredAction: 2
+  _allowedInputs: 2
+  _inputHints: 01000000

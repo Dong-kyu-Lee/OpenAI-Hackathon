@@ -1,3 +1,4 @@
+using Game.Core.Events;
 using Game.Data;
 using UnityEngine;
 
@@ -8,8 +9,11 @@ namespace Game.Gameplay.Player
     public sealed class PlayerAnimation : MonoBehaviour
     {
         private const string MotionStateParameterName = "MotionState";
+        private const float PausedAnimationSpeed = 0f;
+        private const float RunningAnimationSpeed = 1f;
 
         [SerializeField] private PlayerStatsSO _stats;
+        [SerializeField] private BoolEventChannelSO _tutorialActiveChannel;
 
         private static readonly int MotionStateParameter = Animator.StringToHash(MotionStateParameterName);
 
@@ -38,6 +42,27 @@ namespace Game.Gameplay.Player
             _playerMovement = GetComponent<PlayerMovement>();
             _playerSlide = GetComponent<PlayerSlide>();
             _playerHealth = GetComponent<PlayerHealth>();
+        }
+
+        private void OnEnable()
+        {
+            if (_tutorialActiveChannel != null)
+            {
+                _tutorialActiveChannel.Raised += OnTutorialActiveChanged;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_tutorialActiveChannel != null)
+            {
+                _tutorialActiveChannel.Raised -= OnTutorialActiveChanged;
+            }
+
+            if (_animator != null)
+            {
+                _animator.speed = RunningAnimationSpeed;
+            }
         }
 
         private void Update()
@@ -84,6 +109,11 @@ namespace Game.Gameplay.Player
             }
 
             return AnimationState.RunGun;
+        }
+
+        private void OnTutorialActiveChanged(bool isActive)
+        {
+            _animator.speed = isActive ? PausedAnimationSpeed : RunningAnimationSpeed;
         }
     }
 }

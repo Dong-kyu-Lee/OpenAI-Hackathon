@@ -14,7 +14,9 @@ namespace Game.Gameplay.Weapon
         [SerializeField] private PlayerHealth _playerHealth;
         [SerializeField] private GameStateEventChannelSO _gameStateChangedChannel;
 
-        private Vector2 _aimScreenPosition;
+        
+        private bool _hasAimInput;
+private Vector2 _aimScreenPosition;
         private float _switchCompleteTime;
         private int _currentWeaponIndex;
         private int _pendingWeaponIndex;
@@ -113,9 +115,10 @@ namespace Game.Gameplay.Weapon
             }
         }
 
-        public void SetAimScreenPosition(Vector2 screenPosition)
+public void SetAimScreenPosition(Vector2 screenPosition)
         {
             _aimScreenPosition = screenPosition;
+            _hasAimInput = true;
         }
 
         public void RequestWeaponSelection(int weaponIndex)
@@ -160,8 +163,13 @@ namespace Game.Gameplay.Weapon
             CurrentWeapon?.gameObject.SetActive(true);
         }
 
-        private Vector2 CalculateAimDirection(Vector3 muzzlePosition)
+private Vector2 CalculateAimDirection(Vector3 muzzlePosition)
         {
+            if (!_hasAimInput)
+            {
+                return Vector2.right;
+            }
+
             float distanceFromCamera = Mathf.Abs(_aimCamera.transform.position.z - muzzlePosition.z);
             Vector3 screenPoint = new Vector3(
                 _aimScreenPosition.x,

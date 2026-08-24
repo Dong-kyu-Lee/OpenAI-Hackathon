@@ -1,20 +1,23 @@
+using System;
 using Game.Core.Combat;
+using Game.Data;
+using Game.Gameplay.Tutorial;
 using UnityEngine;
 
 namespace Game.Gameplay.Combat
 {
-    /// <summary>피해를 받아 내구도가 소진되면 시각 요소와 충돌을 비활성화하는 장애물입니다.</summary>
     [DisallowMultipleComponent]
-    public sealed class DestructibleObstacle : MonoBehaviour, IDamageable
+    public sealed class DestructibleObstacle : MonoBehaviour, IDamageable, IWeaponDamageable, ITutorialDestructionTarget
     {
         [SerializeField, Min(0.01f)] private float _durability = 15f;
+        [SerializeField] private WeaponDefinitionSO _requiredDamageWeapon;
 
         private Collider2D[] _colliders;
         private Renderer[] _renderers;
         private float _currentDurability;
 
-        /// <summary>현재 파괴되었는지 여부를 가져옵니다.</summary>
         public bool IsBroken { get; private set; }
+        public event Action<WeaponDefinitionSO> DestroyedByWeapon;
 
         private void Awake()
         {
@@ -29,10 +32,19 @@ namespace Game.Gameplay.Combat
             SetContentEnabled(true);
         }
 
-        /// <summary>내구도에서 피해량을 차감하고 0 이하가 되면 장애물을 파괴 상태로 전환합니다.</summary>
         public void TakeDamage(float amount)
         {
+            TakeDamage(amount, null);
+        }
+
+        public void TakeDamage(float amount, WeaponDefinitionSO sourceWeapon)
+        {
             if (IsBroken || amount <= 0f)
+            {
+                return;
+            }
+
+            if (_requiredDamageWeapon != null && sourceWeapon != _requiredDamageWeapon)
             {
                 return;
             }
@@ -45,6 +57,7 @@ namespace Game.Gameplay.Combat
 
             IsBroken = true;
             SetContentEnabled(false);
+            DestroyedByWeapon?.Invoke(sourceWeapon);
         }
 
         private void SetContentEnabled(bool isEnabled)

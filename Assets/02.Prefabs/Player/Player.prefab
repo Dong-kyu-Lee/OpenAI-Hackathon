@@ -2038,6 +2038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Player.PlayerAnimation
   _stats: {fileID: 11400000, guid: 16a0962d182e97147810064b5470e260, type: 2}
+  _tutorialActiveChannel: {fileID: 11400000, guid: a454d40a15d7adb40b5ec96ad4945629, type: 2}
 --- !u!114 &1072814835432774079
 MonoBehaviour:
   m_ObjectHideFlags: 0
