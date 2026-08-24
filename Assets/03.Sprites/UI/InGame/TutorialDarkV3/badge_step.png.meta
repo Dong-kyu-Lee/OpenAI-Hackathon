@@ -1,52 +1,10 @@
 fileFormatVersion: 2
-guid: 10c3ae9599a2c2d40b83ddc733de1877
+guid: 05d5d8b5139e36b42945349d1baa4227
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1621628729765746193
-    second: Slide_Obstacle_0
-  - first:
-      213: -3382371150407015313
-    second: Slide_Obstacle_1
-  - first:
-      213: 2869993902229310937
-    second: Slide_Obstacle_2
-  - first:
-      213: -4482580686914240754
-    second: Slide_Obstacle_3
-  - first:
-      213: 8207933740262280590
-    second: Slide_Obstacle_4
-  - first:
-      213: -7198976965024810136
-    second: Slide_Obstacle_5
-  - first:
-      213: 6791308637853579533
-    second: Slide_Obstacle_6
-  - first:
-      213: -6268873795265128219
-    second: Slide_Obstacle_7
-  - first:
-      213: 4532396150263170116
-    second: Slide_Obstacle_8
-  - first:
-      213: 7535131432301693409
-    second: Slide_Obstacle_9
-  - first:
-      213: -5585227845364949664
-    second: Slide_Obstacle_10
-  - first:
-      213: 6529218504642606488
-    second: Slide_Obstacle_11
-  - first:
-      213: 7393614750983247395
-    second: Slide_Obstacle_12
-  - first:
-      213: 2931080266268768695
-    second: Slide_Obstacle_13
-  - first:
-      213: -2799473584938313315
-    second: Slide_Obstacle_14
+      213: -413052741505223404
+    second: badge_step_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -93,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 130
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -155,67 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Slide_Obstacle_0
+      name: badge_step_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 703
-        width: 421
-        height: 244
+        x: 0
+        y: 0
+        width: 173
+        height: 177
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 3}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe9aeb41341de79e0800000000000000
-      internalID: -1621628729765746193
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Slide_Obstacle_1
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 404
-        width: 449
-        height: 540
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f64e579fb576f01d0800000000000000
-      internalID: -3382371150407015313
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Slide_Obstacle_2
-      rect:
-        serializedVersion: 2
-        x: 1069
-        y: 76
-        width: 433
-        height: 869
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9dd4ae98f3444d720800000000000000
-      internalID: 2869993902229310937
+      spriteID: 415741558ba844af0800000000000000
+      internalID: -413052741505223404
       vertices: []
       indices: 
       edges: []
@@ -224,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f1760fad6f774034fa7dc9b8841fcf8d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -234,21 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Slide_Obstacle_0: -1621628729765746193
-      Slide_Obstacle_1: -3382371150407015313
-      Slide_Obstacle_10: -5585227845364949664
-      Slide_Obstacle_11: 6529218504642606488
-      Slide_Obstacle_12: 7393614750983247395
-      Slide_Obstacle_13: 2931080266268768695
-      Slide_Obstacle_14: -2799473584938313315
-      Slide_Obstacle_2: 2869993902229310937
-      Slide_Obstacle_3: -4482580686914240754
-      Slide_Obstacle_4: 8207933740262280590
-      Slide_Obstacle_5: -7198976965024810136
-      Slide_Obstacle_6: 6791308637853579533
-      Slide_Obstacle_7: -6268873795265128219
-      Slide_Obstacle_8: 4532396150263170116
-      Slide_Obstacle_9: 7535131432301693409
+      badge_step_0: -413052741505223404
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

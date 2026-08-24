@@ -14,6 +14,8 @@ namespace Game.Gameplay.Weapon
         private float _despawnBoundaryX;
         private float _halfWidth;
         private bool _isInitialized;
+        private bool _isReturningToPool;
+
 
         private void Awake()
         {
@@ -41,7 +43,13 @@ namespace Game.Gameplay.Weapon
             _despawnBoundaryX = despawnBoundaryX;
             _scrollController = scrollController;
             _isInitialized = true;
-            _scrollController.RegisterTarget(this);
+            _isReturningToPool = false;
+
+            if (_scrollController != null)
+            {
+                _scrollController.ScrollingStopped += OnScrollingStopped;
+                _scrollController.RegisterTarget(this);
+            }
         }
 
         /// <inheritdoc />
@@ -56,14 +64,25 @@ namespace Game.Gameplay.Weapon
         /// <inheritdoc />
         public void OnDespawned()
         {
-            _scrollController?.UnregisterTarget(this);
+            if (_scrollController != null)
+            {
+                _scrollController.ScrollingStopped -= OnScrollingStopped;
+                _scrollController.UnregisterTarget(this);
+            }
+
             _scrollController = null;
             _isInitialized = false;
+            _isReturningToPool = false;
             _rigidbody.linearVelocity = Vector2.zero;
         }
 
         private void ReturnToPool()
         {
+            if (!_isInitialized || _isReturningToPool)
+            {
+                return;
+            }
+
             ObjectPoolManager poolManager = ObjectPoolManager.Instance;
             if (poolManager == null)
             {
@@ -72,7 +91,14 @@ namespace Game.Gameplay.Weapon
                 return;
             }
 
+            _isReturningToPool = true;
             poolManager.Return(this);
+        }
+
+
+        private void OnScrollingStopped()
+        {
+            ReturnToPool();
         }
     }
 }

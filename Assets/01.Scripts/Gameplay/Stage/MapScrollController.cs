@@ -15,6 +15,8 @@ namespace Game.Gameplay.Stage
 
         /// <summary>기존 대상의 물리 이동을 처리한 직후 실제 이동량과 함께 호출됩니다.</summary>
         internal event System.Action<Vector2> AfterScrollStep;
+        internal event System.Action ScrollingStopped;
+
 
         private readonly List<IMapScrollTarget> _targets = new();
         private readonly List<IMapScrollTarget> _pendingRegistrations = new();
@@ -99,11 +101,12 @@ namespace Game.Gameplay.Stage
             _isPaused = false;
         }
 
-        /// <summary>스크롤을 정지하고 일시정지 상태를 해제합니다. 속도와 누적 거리는 유지됩니다.</summary>
-        public void StopScrolling()
+                /// <summary>스크롤을 정지하고 일시정지 상태를 해제합니다. 속도와 누적 거리는 유지됩니다.</summary>
+public void StopScrolling()
         {
             _isRunning = false;
             _isPaused = false;
+            ScrollingStopped?.Invoke();
         }
 
         /// <summary>실행 중인 스크롤을 일시정지합니다. 실행 중이 아니면 아무 작업도 하지 않습니다.</summary>
