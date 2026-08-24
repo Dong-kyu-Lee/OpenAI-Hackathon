@@ -591,7 +591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1197681171114308040, guid: 0f2feda6c8115f048a79fc2b7e9b012c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 1197681171114308040, guid: 0f2feda6c8115f048a79fc2b7e9b012c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -629,6 +629,14 @@ PrefabInstance:
       propertyPath: _requiredDamageWeapon
       value: 
       objectReference: {fileID: 11400000, guid: cddb1f2648ae65d49b5109a98e63ff38, type: 2}
+    - target: {fileID: 7557473185956159583, guid: 0f2feda6c8115f048a79fc2b7e9b012c, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557473185956159583, guid: 0f2feda6c8115f048a79fc2b7e9b012c, type: 3}
+      propertyPath: m_Size.y
+      value: 6.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
