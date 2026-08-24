@@ -167,6 +167,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
+      propertyPath: _definitions.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
+      propertyPath: _definitions.Array.data[5]._prefab
+      value: 
+      objectReference: {fileID: 7717927100128225067, guid: 772416d0695725448b8f4ff70e352e14, type: 3}
+    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
+      propertyPath: _definitions.Array.data[5]._initialCapacity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: m_Name
       value: MapRuntime
@@ -207,6 +219,57 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
   m_PrefabInstance: {fileID: 47525585}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &72289923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 72289925}
+  - component: {fileID: 72289924}
+  m_Layer: 0
+  m_Name: TutorialDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &72289924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72289923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97dd5692e20e8ea4fb6e67355b2e5305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Tutorial.TutorialDirector
+  _scrollController: {fileID: 2095730023}
+  _jumpAction: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  _requestChannel: {fileID: 11400000, guid: 4acb46392740ce344aa10648d68c278f, type: 2}
+  _presentationChannel: {fileID: 11400000, guid: eaeeb9d7c18a025468d4481a0d8176af, type: 2}
+  _tutorialActiveChannel: {fileID: 11400000, guid: a454d40a15d7adb40b5ec96ad4945629, type: 2}
+  _gameplayStoppedChannel: {fileID: 11400000, guid: 019b46772fd7b9d43b1a31efe733c667, type: 2}
+  _playerDiedChannel: {fileID: 11400000, guid: ae691a1493f6d4b478fee64c57b7a0e6, type: 2}
+--- !u!4 &72289925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72289923}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &797004020
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,3 +803,4 @@ SceneRoots:
   - {fileID: 47525585}
   - {fileID: 1438963034}
   - {fileID: 976072689}
+  - {fileID: 72289925}

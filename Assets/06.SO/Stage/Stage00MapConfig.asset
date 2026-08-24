@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage00MapConfig
   m_EditorClassIdentifier: Game.Data::Game.Data.Stage.StageMapConfigSO
   _infiniteRandom: 0
-  _continueRandomAfterSequence: 1
-  _segmentCatalog: {fileID: 11400000, guid: 2b4a2597aba37eb49bc8d2b65f15bfbb, type: 2}
-  _sequence: 01000000010000000100000001000000
+  _continueRandomAfterSequence: 0
+  _segmentCatalog: {fileID: 11400000, guid: 8a0efc3b2bb7c744989cc9b65ac7c7c7, type: 2}
+  _sequence: 00000000
   _randomSeed: 12312
