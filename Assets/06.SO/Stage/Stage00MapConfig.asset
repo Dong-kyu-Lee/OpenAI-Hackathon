@@ -15,6 +15,6 @@ MonoBehaviour:
   _infiniteRandom: 0
   _continueRandomAfterSequence: 0
   _segmentCatalog: {fileID: 11400000, guid: 8a0efc3b2bb7c744989cc9b65ac7c7c7, type: 2}
-  _sequence: 00000000010000000200000003000000
+  _sequence: 0000000001000000020000000300000004000000
   _randomSeed: 12312
   _isTutorial: 1

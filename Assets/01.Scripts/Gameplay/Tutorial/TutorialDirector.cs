@@ -13,24 +13,27 @@ namespace Game.Gameplay.Tutorial
         [SerializeField] private MapScrollController _scrollController;
         [SerializeField] private InputActionReference _jumpAction;
         [SerializeField] private InputActionReference _slideAction;
+
         [Header("Channels")]
         [SerializeField] private TutorialRequestEventChannelSO _requestChannel;
         [SerializeField] private TutorialPresentationEventChannelSO _presentationChannel;
         [SerializeField] private BoolEventChannelSO _tutorialActiveChannel;
         [SerializeField] private StringEventChannelSO _completionChannel;
+        [SerializeField] private StringEventChannelSO _continueChannel;
         [SerializeField] private TutorialInputPermissionEventChannelSO _inputPermissionChannel;
         [SerializeField] private VoidEventChannelSO _gameplayStoppedChannel;
         [SerializeField] private VoidEventChannelSO _playerDiedChannel;
 
         private TutorialRequest _currentRequest;
-        
         private Coroutine _inputCompletionRoutine;
-private bool _isWaiting;
+        private bool _isWaiting;
+        private bool _isTraversalPhase;
 
         private void OnEnable()
         {
             if (_requestChannel != null) _requestChannel.Raised += BeginTutorial;
             if (_completionChannel != null) _completionChannel.Raised += OnStepCompleted;
+            if (_continueChannel != null) _continueChannel.Raised += OnStepContinue;
             Subscribe(_jumpAction, OnJumpPerformed);
             Subscribe(_slideAction, OnSlidePerformed);
             if (_gameplayStoppedChannel != null) _gameplayStoppedChannel.Raised += CancelTutorial;
@@ -41,6 +44,7 @@ private bool _isWaiting;
         {
             if (_requestChannel != null) _requestChannel.Raised -= BeginTutorial;
             if (_completionChannel != null) _completionChannel.Raised -= OnStepCompleted;
+            if (_continueChannel != null) _continueChannel.Raised -= OnStepContinue;
             Unsubscribe(_jumpAction, OnJumpPerformed);
             Unsubscribe(_slideAction, OnSlidePerformed);
             if (_gameplayStoppedChannel != null) _gameplayStoppedChannel.Raised -= CancelTutorial;
@@ -48,7 +52,7 @@ private bool _isWaiting;
             CancelTutorial();
         }
 
-private void BeginTutorial(TutorialRequest request)
+        private void BeginTutorial(TutorialRequest request)
         {
             if (_isWaiting)
             {
@@ -58,7 +62,8 @@ private void BeginTutorial(TutorialRequest request)
 
             if (request.RequiredAction != TutorialAction.Jump &&
                 request.RequiredAction != TutorialAction.Slide &&
-                request.RequiredAction != TutorialAction.DestroyObstacle)
+                request.RequiredAction != TutorialAction.DestroyObstacle &&
+                request.RequiredAction != TutorialAction.CompleteIceBridge)
             {
                 Debug.LogWarning($"Tutorial action '{request.RequiredAction}' is not implemented yet.", this);
                 return;
@@ -66,6 +71,7 @@ private void BeginTutorial(TutorialRequest request)
 
             _currentRequest = request;
             _isWaiting = true;
+            _isTraversalPhase = false;
             _inputPermissionChannel?.Raise(request.AllowedInputs);
             _tutorialActiveChannel?.Raise(true);
             _scrollController?.Pause();
@@ -77,67 +83,51 @@ private void BeginTutorial(TutorialRequest request)
                 request.InputHints));
         }
 
-private void OnJumpPerformed(InputAction.CallbackContext context)
+        private void OnJumpPerformed(InputAction.CallbackContext context)
         {
             ScheduleInputCompletion(TutorialAction.Jump);
         }
-private void OnSlidePerformed(InputAction.CallbackContext context)
+
+        private void OnSlidePerformed(InputAction.CallbackContext context)
         {
             ScheduleInputCompletion(TutorialAction.Slide);
         }
 
-        private void OnStepCompleted(string stepId)
+        private void OnStepContinue(string stepId)
         {
-            if (!_isWaiting || _currentRequest.RequiredAction != TutorialAction.DestroyObstacle ||
-                _currentRequest.StepId != stepId) return;
-            CompleteTutorial();
-        }
+            if (!_isWaiting ||
+                _isTraversalPhase ||
+                _currentRequest.RequiredAction != TutorialAction.CompleteIceBridge ||
+                _currentRequest.StepId != stepId)
+            {
+                return;
+            }
 
-        private void TryComplete(TutorialAction action)
-        {
-            if (!_isWaiting || _currentRequest.RequiredAction != action) return;
-            CompleteTutorial();
-        }
-
-private void CompleteTutorial()
-        {
-            StopPendingInputCompletion();
+            _isTraversalPhase = true;
             _inputPermissionChannel?.Raise(TutorialInputPermission.None);
             _tutorialActiveChannel?.Raise(false);
             _presentationChannel?.Raise(TutorialPresentation.Hidden);
             _scrollController?.Resume();
-            _currentRequest = default;
-            _isWaiting = false;
         }
 
-private void CancelTutorial()
+        private void OnStepCompleted(string stepId)
         {
-            StopPendingInputCompletion();
-            if (!_isWaiting) return;
-            _inputPermissionChannel?.Raise(TutorialInputPermission.None);
-            _tutorialActiveChannel?.Raise(false);
-            _presentationChannel?.Raise(TutorialPresentation.Hidden);
-            _currentRequest = default;
-            _isWaiting = false;
+            if (!_isWaiting || _currentRequest.StepId != stepId)
+                return;
+
+            bool isDestructionStep = _currentRequest.RequiredAction == TutorialAction.DestroyObstacle;
+            bool isCompletedTraversal =
+                _currentRequest.RequiredAction == TutorialAction.CompleteIceBridge &&
+                _isTraversalPhase;
+
+            if (isDestructionStep || isCompletedTraversal)
+                CompleteTutorial();
         }
 
-        private static void Subscribe(InputActionReference reference, System.Action<InputAction.CallbackContext> callback)
-        {
-            if (reference != null && reference.action != null) reference.action.performed += callback;
-        }
-
-        private static void Unsubscribe(InputActionReference reference, System.Action<InputAction.CallbackContext> callback)
-        {
-            if (reference != null && reference.action != null) reference.action.performed -= callback;
-        }
-    
-
-private void ScheduleInputCompletion(TutorialAction action)
+        private void ScheduleInputCompletion(TutorialAction action)
         {
             if (!_isWaiting || _currentRequest.RequiredAction != action || _inputCompletionRoutine != null)
-            {
                 return;
-            }
 
             _inputCompletionRoutine = StartCoroutine(CompleteAfterPhysicsInput());
         }
@@ -148,21 +138,58 @@ private void ScheduleInputCompletion(TutorialAction action)
             _inputCompletionRoutine = null;
 
             if (_isWaiting)
-            {
                 CompleteTutorial();
-            }
         }
 
+        private void CompleteTutorial()
+        {
+            StopPendingInputCompletion();
+            _inputPermissionChannel?.Raise(TutorialInputPermission.None);
+            _tutorialActiveChannel?.Raise(false);
+            _presentationChannel?.Raise(TutorialPresentation.Hidden);
+            _scrollController?.Resume();
+            _currentRequest = default;
+            _isWaiting = false;
+            _isTraversalPhase = false;
+        }
 
-private void StopPendingInputCompletion()
+        private void CancelTutorial()
+        {
+            StopPendingInputCompletion();
+            if (!_isWaiting)
+                return;
+
+            _inputPermissionChannel?.Raise(TutorialInputPermission.None);
+            _tutorialActiveChannel?.Raise(false);
+            _presentationChannel?.Raise(TutorialPresentation.Hidden);
+            _currentRequest = default;
+            _isWaiting = false;
+            _isTraversalPhase = false;
+        }
+
+        private void StopPendingInputCompletion()
         {
             if (_inputCompletionRoutine == null)
-            {
                 return;
-            }
 
             StopCoroutine(_inputCompletionRoutine);
             _inputCompletionRoutine = null;
         }
-}
+
+        private static void Subscribe(
+            InputActionReference reference,
+            System.Action<InputAction.CallbackContext> callback)
+        {
+            if (reference != null && reference.action != null)
+                reference.action.performed += callback;
+        }
+
+        private static void Unsubscribe(
+            InputActionReference reference,
+            System.Action<InputAction.CallbackContext> callback)
+        {
+            if (reference != null && reference.action != null)
+                reference.action.performed -= callback;
+        }
+    }
 }
