@@ -1,5 +1,6 @@
 using Game.Core.Events;
 using Game.Data;
+using Game.Data.Stage;
 using Game.Gameplay.Combat;
 using UnityEngine;
 
@@ -11,10 +12,12 @@ namespace Game.Gameplay.Player
         [SerializeField] private IntEventChannelSO _healthChangedChannel;
         [SerializeField] private VoidEventChannelSO _playerDiedChannel;
         [SerializeField] private VoidEventChannelSO _playerHitChannel;
+        [SerializeField] private StageSelectionStateSO _stageSelectionState;
 
         private float _passiveDrainElapsed;
         private float _invulnerableUntil;
         private int _currentHealth;
+        private bool _isPassiveDrainEnabled;
 
         public bool IsDead { get; private set; }
         public int CurrentHealth => _currentHealth;
@@ -36,6 +39,11 @@ namespace Game.Gameplay.Player
         private void Awake()
         {
             _currentHealth = _stats.MaxHealth;
+
+            StageDefinitionSO stageDefinition = _stageSelectionState == null
+                ? null
+                : _stageSelectionState.CurrentStageDefinition;
+            _isPassiveDrainEnabled = stageDefinition == null || !stageDefinition.IsEndlessMode;
         }
 
         private void OnEnable()
@@ -45,7 +53,7 @@ namespace Game.Gameplay.Player
 
         private void Update()
         {
-            if (IsDead || _stats.PassiveDrainInterval <= 0f)
+            if (IsDead || !_isPassiveDrainEnabled || _stats.PassiveDrainInterval <= 0f)
             {
                 return;
             }

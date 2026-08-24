@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94a49ddb3b54c1a48ad04e4c1fa0a116, type: 3}
-  m_Name: StageDefinition_Stage01
+  m_Name: StageDefinition_Stage99
   m_EditorClassIdentifier: Game.Data::Game.Data.Stage.StageDefinitionSO
-  _displayName: Stage 01
+  _displayName: Infinite
   _sceneName: MapTest
-  _mapConfig: {fileID: 11400000, guid: 640a2a27bab28ff4e84fbd196a2349d8, type: 2}
-  _thumbnail: {fileID: -2454748483023707128, guid: 3748608189af5b84da519e630697bade, type: 3}
-  _clearDistance: 50
+  _mapConfig: {fileID: 11400000, guid: 9c2516d8535ae774090700abff7eeb03, type: 2}
+  _thumbnail: {fileID: -7564997713910450843, guid: 9f86d7b0c1f25254a9d97e012863661a, type: 3}
+  _clearDistance: 0
+  _isEndlessMode: 1
