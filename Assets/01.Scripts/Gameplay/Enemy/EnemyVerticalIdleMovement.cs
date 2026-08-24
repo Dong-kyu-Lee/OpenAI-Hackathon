@@ -11,8 +11,8 @@ namespace Game.Gameplay.Enemy
 
         private Rigidbody2D _rigidbody;
         private Transform _parent;
-        private Vector3 _startLocalPosition;
-        private Vector3 _startWorldPosition;
+        private Vector3 _authoredLocalPosition;
+        private Vector3 _authoredWorldPosition;
         private float _elapsedTime;
 
         private void Awake()
@@ -20,15 +20,23 @@ namespace Game.Gameplay.Enemy
             if (!TryGetComponent(out _rigidbody))
             {
                 enabled = false;
+                return;
             }
+
+            _parent = transform.parent;
+            _authoredLocalPosition = transform.localPosition;
+            _authoredWorldPosition = transform.position;
         }
 
         private void OnEnable()
         {
-            _parent = transform.parent;
-            _startLocalPosition = transform.localPosition;
-            _startWorldPosition = transform.position;
             _elapsedTime = default;
+            ResetPosition();
+        }
+
+        private void OnDisable()
+        {
+            ResetPosition();
         }
 
         private void FixedUpdate()
@@ -53,11 +61,24 @@ namespace Game.Gameplay.Enemy
         {
             if (_parent == null)
             {
-                return _startWorldPosition + Vector3.up * verticalOffset;
+                return _authoredWorldPosition + Vector3.up * verticalOffset;
             }
 
-            Vector3 targetLocalPosition = _startLocalPosition + Vector3.up * verticalOffset;
+            Vector3 targetLocalPosition = _authoredLocalPosition + Vector3.up * verticalOffset;
             return _parent.TransformPoint(targetLocalPosition);
+        }
+
+        private void ResetPosition()
+        {
+            if (_rigidbody == null)
+            {
+                return;
+            }
+
+            Vector2 resetPosition = GetTargetWorldPosition(default);
+            _rigidbody.position = resetPosition;
+            _rigidbody.linearVelocity = Vector2.zero;
+            _rigidbody.angularVelocity = default;
         }
     }
 }
