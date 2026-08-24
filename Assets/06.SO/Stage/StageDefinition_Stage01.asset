@@ -16,4 +16,4 @@ MonoBehaviour:
   _sceneName: MapTest
   _mapConfig: {fileID: 11400000, guid: 640a2a27bab28ff4e84fbd196a2349d8, type: 2}
   _thumbnail: {fileID: -2522764951381739691, guid: 24cc9177d7fc87345a2080b58f9da78b, type: 3}
-  _clearDistance: 50
+  _clearDistance: 200
