@@ -1986,6 +1986,7 @@ MonoBehaviour:
   _healthChangedChannel: {fileID: 11400000, guid: 76b5d5c18c1a7a340ab7f2cd14763610, type: 2}
   _playerDiedChannel: {fileID: 11400000, guid: ae691a1493f6d4b478fee64c57b7a0e6, type: 2}
   _playerHitChannel: {fileID: 11400000, guid: f46440097b42e134eb0bc9c138cc96d8, type: 2}
+  _stageSelectionState: {fileID: 11400000, guid: 3844faf072639594ca9e39857fe4b10f, type: 2}
 --- !u!114 &18655281290132276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2025,6 +2026,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 18655281290132276}
   _playerSlide: {fileID: 3956057354168411626}
   _playerWeaponController: {fileID: 1072814835432774079}
+  _tutorialInputPermissionChannel: {fileID: 0}
 --- !u!114 &84811239414046791
 MonoBehaviour:
   m_ObjectHideFlags: 0
