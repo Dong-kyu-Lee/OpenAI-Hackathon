@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4526241385636911187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5553186626909948506}
+  - component: {fileID: 1225967906636045539}
+  - component: {fileID: 524241579951802456}
+  m_Layer: 0
+  m_Name: RankingSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5553186626909948506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526241385636911187}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1225967906636045539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526241385636911187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da159de8a80174b9bbff625d82f43d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.App::Game.App.Ranking.LocalRankingRepository
+--- !u!114 &524241579951802456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526241385636911187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d96b8ec9b16ab84fb28d104e07c31eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.App::Game.App.Ranking.RankingService
+  _settings: {fileID: 11400000, guid: 089af7e2f3b9b964cab5e9ce032c9b65, type: 2}
+  _stageSelectionState: {fileID: 11400000, guid: 3844faf072639594ca9e39857fe4b10f, type: 2}
+  _repositoryComponent: {fileID: 1225967906636045539}
+  _rankingRefreshRequestedChannel: {fileID: 11400000, guid: 2758c494a411d43468fc808de0246f90, type: 2}
+  _submissionRequestedChannel: {fileID: 11400000, guid: e2b7eda02e72b4a42991119902d1d357, type: 2}
+  _rankingSnapshotChannel: {fileID: 11400000, guid: 30486864ce6be4f4e8754b167fb67b26, type: 2}
+  _submissionResultChannel: {fileID: 11400000, guid: c19eefb6dfbadff47a332f123e4861c9, type: 2}
