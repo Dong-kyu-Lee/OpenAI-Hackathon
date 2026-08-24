@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Game.Data.Settings;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -13,21 +12,11 @@ namespace Game.App
     /// The one-frame delay includes UI elements instantiated from Start methods.
     /// </summary>
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(AudioSource))]
     public sealed class UIButtonClickSoundPlayer : MonoBehaviour
     {
         [SerializeField] private AudioClip _clickClip;
-        [SerializeField] private AudioSettingsSO _audioSettings;
 
         private readonly Dictionary<Button, UnityAction> _listeners = new();
-        private AudioSource _audioSource;
-
-        private void Awake()
-        {
-            _audioSource = GetComponent<AudioSource>();
-            _audioSource.playOnAwake = false;
-            _audioSource.loop = false;
-        }
 
         private void OnEnable()
         {
@@ -75,7 +64,7 @@ namespace Game.App
             _listeners.Add(button, listener);
         }
 
-private void PlayClickSound(Button button)
+        private void PlayClickSound(Button button)
         {
             // Another click listener may hide the panel or change interactability before this
             // listener runs. Reaching onClick already proves that Unity accepted the click.
@@ -84,8 +73,7 @@ private void PlayClickSound(Button button)
                 return;
             }
 
-            float volume = _audioSettings != null ? _audioSettings.SfxVolume : 1f;
-            _audioSource.PlayOneShot(_clickClip, volume);
+            AudioManager.Instance?.PlaySfx(_clickClip);
         }
 
         private void RemoveDestroyedButtonReferences()
