@@ -1,17 +1,22 @@
+using System;
 using System.Collections;
 using Game.Core.Combat;
+using Game.Data;
 using Game.Data.Enemy;
+using Game.Gameplay.Combat;
+using Game.Gameplay.Tutorial;
 using UnityEngine;
 
 namespace Game.Gameplay.Enemy
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
-    public sealed class EnemyObstacleDestruction : MonoBehaviour, IDamageable
+    public sealed class EnemyObstacleDestruction : MonoBehaviour, IDamageable, IWeaponDamageable, ITutorialDestructionTarget
     {
         [SerializeField] private EnemyObstacleStatsSO _stats;
         [SerializeField] private Animator _animator;
         [SerializeField] private AnimationClip _destructionClip;
+        [SerializeField] private WeaponDefinitionSO _requiredDamageWeapon;
 
         private Collider2D[] _colliders;
         private EnemyVerticalIdleMovement _idleMovement;
@@ -20,6 +25,8 @@ namespace Game.Gameplay.Enemy
         private Sprite _idleSprite;
         private float _currentDurability;
         private bool _isDestroyed;
+
+        public event Action<WeaponDefinitionSO> DestroyedByWeapon;
 
         private void Awake()
         {
@@ -34,40 +41,33 @@ namespace Game.Gameplay.Enemy
             }
         }
 
-        private void OnEnable()
+        private void OnEnable() { ResetState(); }
+        private void OnDisable() { StopDestructionRoutine(); }
+
+public void TakeDamage(float amount)
         {
-            ResetState();
+            TakeDamage(amount, null);
         }
 
-        private void OnDisable()
+        public void TakeDamage(float amount, WeaponDefinitionSO sourceWeapon)
         {
-            StopDestructionRoutine();
-        }
-
-        public void TakeDamage(float amount)
-        {
-            if (_isDestroyed || amount <= 0f || _stats == null)
-            {
-                return;
-            }
+            if (_isDestroyed || amount <= 0f || _stats == null) return;
+            if (_requiredDamageWeapon != null && sourceWeapon != _requiredDamageWeapon) return;
 
             _currentDurability -= amount;
+            if (_currentDurability > 0f) return;
 
-            if (_currentDurability <= 0f)
-            {
-                BeginDestruction();
-            }
+            BeginDestruction();
+            DestroyedByWeapon?.Invoke(sourceWeapon);
         }
+
 
         private void BeginDestruction()
         {
             _isDestroyed = true;
             SetCollidersEnabled(false);
 
-            if (_idleMovement != null)
-            {
-                _idleMovement.enabled = false;
-            }
+            if (_idleMovement != null) _idleMovement.enabled = false;
 
             if (_animator == null || _destructionClip == null)
             {
@@ -84,7 +84,6 @@ namespace Game.Gameplay.Enemy
         private IEnumerator CompleteDestruction()
         {
             yield return new WaitForSeconds(_destructionClip.length);
-
             _animator.enabled = false;
             _spriteRenderer.enabled = false;
             _destructionRoutine = null;
@@ -93,43 +92,29 @@ namespace Game.Gameplay.Enemy
         private void ResetState()
         {
             StopDestructionRoutine();
-
             _currentDurability = _stats != null ? _stats.Durability : default;
             _isDestroyed = false;
 
-            if (_animator != null)
-            {
-                _animator.enabled = false;
-            }
+            if (_animator != null) _animator.enabled = false;
 
             _spriteRenderer.sprite = _idleSprite;
             _spriteRenderer.enabled = true;
             SetCollidersEnabled(true);
 
-            if (_idleMovement != null)
-            {
-                _idleMovement.enabled = true;
-            }
+            if (_idleMovement != null) _idleMovement.enabled = true;
         }
 
         private void SetCollidersEnabled(bool isEnabled)
         {
             for (int index = default; index < _colliders.Length; index++)
             {
-                if (_colliders[index] != null)
-                {
-                    _colliders[index].enabled = isEnabled;
-                }
+                if (_colliders[index] != null) _colliders[index].enabled = isEnabled;
             }
         }
 
         private void StopDestructionRoutine()
         {
-            if (_destructionRoutine == null)
-            {
-                return;
-            }
-
+            if (_destructionRoutine == null) return;
             StopCoroutine(_destructionRoutine);
             _destructionRoutine = null;
         }

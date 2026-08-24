@@ -17,3 +17,5 @@ MonoBehaviour:
   _message: "C\uB97C \uB20C\uB7EC \uC7A5\uC560\uBB3C \uC544\uB798\uB85C \uC2AC\uB77C\uC774\uB4DC\uD574\uBCF4\uC790"
   _inputLabel: C
   _requiredAction: 2
+  _allowedInputs: 2
+  _inputHints: 01000000

@@ -169,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: _definitions.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: _definitions.Array.data[5]._prefab
@@ -180,12 +180,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7717927100128225067, guid: 14bdbb9110379d94ea8851a423b76aa6, type: 3}
     - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
+      propertyPath: _definitions.Array.data[7]._prefab
+      value: 
+      objectReference: {fileID: 6828536598366809128, guid: 192da0d843d1fb04f82a05d38f8a9da2, type: 3}
+    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: _definitions.Array.data[5]._initialCapacity
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: _definitions.Array.data[6]._initialCapacity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
+      propertyPath: _definitions.Array.data[7]._initialCapacity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: m_Name
@@ -262,6 +270,8 @@ MonoBehaviour:
   _requestChannel: {fileID: 11400000, guid: 4acb46392740ce344aa10648d68c278f, type: 2}
   _presentationChannel: {fileID: 11400000, guid: eaeeb9d7c18a025468d4481a0d8176af, type: 2}
   _tutorialActiveChannel: {fileID: 11400000, guid: a454d40a15d7adb40b5ec96ad4945629, type: 2}
+  _completionChannel: {fileID: 11400000, guid: df5156310cee6f040a4a4493926c64ee, type: 2}
+  _inputPermissionChannel: {fileID: 11400000, guid: b69fc19d8aa97594c8f40588572a2e86, type: 2}
   _gameplayStoppedChannel: {fileID: 11400000, guid: 019b46772fd7b9d43b1a31efe733c667, type: 2}
   _playerDiedChannel: {fileID: 11400000, guid: ae691a1493f6d4b478fee64c57b7a0e6, type: 2}
 --- !u!4 &72289925
@@ -678,6 +688,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1444873914853132497, guid: 52d11f25ae8f5e64aa02d7be6adad8d4, type: 3}
+      propertyPath: _tutorialInputPermissionChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: b69fc19d8aa97594c8f40588572a2e86, type: 2}
     - target: {fileID: 2475892985724843795, guid: 52d11f25ae8f5e64aa02d7be6adad8d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5
@@ -783,6 +797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.App::Game.App.StageRuntimeStarter
   _stageSelectionState: {fileID: 11400000, guid: 3844faf072639594ca9e39857fe4b10f, type: 2}
   _mapStreamManager: {fileID: 47525586}
+  _tutorialInputPermissionChannel: {fileID: 11400000, guid: b69fc19d8aa97594c8f40588572a2e86, type: 2}
 --- !u!114 &2095730025
 MonoBehaviour:
   m_ObjectHideFlags: 0
