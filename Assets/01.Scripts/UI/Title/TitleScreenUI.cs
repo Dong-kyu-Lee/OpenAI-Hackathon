@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using Game.Core.Events;
 using Game.UI.Options;
+using Game.UI.Ranking;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,10 +18,12 @@ namespace Game.UI.Title
     {
         [SerializeField] private Button _startButton;
         [SerializeField] private Button _settingsButton;
+        [SerializeField] private Button _rankingButton;
         [SerializeField] private Button _quitButton;
         [SerializeField] private VoidEventChannelSO _stageSelectRequestedChannel;
         [SerializeField] private VoidEventChannelSO _quitRequestedChannel;
         [SerializeField] private GameObject _settingsPanel;
+        [SerializeField] private RankingBoardPanelUI _rankingPanel;
         [SerializeField] private GameObject _backgroundPanel;
 
         private OptionsPanelUI _optionsPanel;
@@ -39,6 +42,7 @@ namespace Game.UI.Title
             }
 
             CloseSettings();
+            CloseRanking();
         }
 
         private void OnEnable()
@@ -53,6 +57,11 @@ namespace Game.UI.Title
                 _settingsButton.onClick.AddListener(OpenSettings);
             }
 
+            if (_rankingButton != null)
+            {
+                _rankingButton.onClick.AddListener(OpenRanking);
+            }
+
             if (_quitButton != null)
             {
                 _quitButton.onClick.AddListener(RequestQuit);
@@ -61,6 +70,11 @@ namespace Game.UI.Title
             if (_optionsPanel != null)
             {
                 _optionsPanel.Closed += OnSettingsClosed;
+            }
+
+            if (_rankingPanel != null)
+            {
+                _rankingPanel.Closed += OnRankingClosed;
             }
         }
 
@@ -76,6 +90,11 @@ namespace Game.UI.Title
                 _settingsButton.onClick.RemoveListener(OpenSettings);
             }
 
+            if (_rankingButton != null)
+            {
+                _rankingButton.onClick.RemoveListener(OpenRanking);
+            }
+
             if (_quitButton != null)
             {
                 _quitButton.onClick.RemoveListener(RequestQuit);
@@ -84,6 +103,11 @@ namespace Game.UI.Title
             if (_optionsPanel != null)
             {
                 _optionsPanel.Closed -= OnSettingsClosed;
+            }
+
+            if (_rankingPanel != null)
+            {
+                _rankingPanel.Closed -= OnRankingClosed;
             }
         }
 
@@ -94,6 +118,8 @@ namespace Game.UI.Title
                 Debug.LogError("설정 패널이 연결되지 않아 설정 화면을 열 수 없습니다.", this);
                 return;
             }
+
+            CloseRanking();
 
             if (_optionsPanel != null)
             {
@@ -123,6 +149,32 @@ namespace Game.UI.Title
         }
 
         private void OnSettingsClosed()
+        {
+            SetBackgroundVisible(false);
+        }
+
+        private void OpenRanking()
+        {
+            if (_rankingPanel == null)
+            {
+                Debug.LogError("랭킹 패널이 연결되지 않아 랭킹보드를 열 수 없습니다.", this);
+                return;
+            }
+
+            CloseSettings();
+            _rankingPanel.Open();
+            SetBackgroundVisible(true);
+        }
+
+        private void CloseRanking()
+        {
+            if (_rankingPanel != null)
+            {
+                _rankingPanel.Close();
+            }
+        }
+
+        private void OnRankingClosed()
         {
             SetBackgroundVisible(false);
         }
