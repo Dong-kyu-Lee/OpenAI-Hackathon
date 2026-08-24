@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075e4b64dab941747b6faf08d7868797, type: 3}
   m_Name: WeaponLoadout
   m_EditorClassIdentifier: Game.Data::Game.Data.WeaponLoadoutSO
-  _switchDuration: 1
+  _switchDuration: 0.1

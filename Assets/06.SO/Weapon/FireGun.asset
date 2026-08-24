@@ -15,7 +15,7 @@ MonoBehaviour:
   _fireMode: 1
   _impactMode: 0
   _element: 2
-  _damage: 1.5
+  _damage: 2
   _cooldown: 5
   _burstCount: 3
   _burstInterval: 1
