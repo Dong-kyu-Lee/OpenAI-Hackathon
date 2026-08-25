@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: Game.Data::Game.Data.PlayerStatsSO
   _worldScrollSpeed: 5
-  _jumpClearHeight: 2.25
-  _gravityScale: 3
+  _jumpClearHeight: 2.75
+  _gravityScale: 3.5
   _jumpApexVelocityThreshold: 3
   _groundCheckSize: {x: 0.8, y: 0.12}
   _groundLayers:
@@ -37,5 +37,7 @@ MonoBehaviour:
   _fallDeathY: -5
   _hitFlashColor: {r: 1, g: 0, b: 0, a: 1}
   _hitFlashDuration: 0.1
+  _invulnerabilityBlinkAlpha: 0.3
+  _invulnerabilityBlinkInterval: 0.1
   _hitShakeDuration: 0.15
   _hitShakeStrength: 0.2

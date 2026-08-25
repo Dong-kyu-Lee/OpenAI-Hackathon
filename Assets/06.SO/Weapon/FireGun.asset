@@ -15,10 +15,10 @@ MonoBehaviour:
   _fireMode: 1
   _impactMode: 0
   _element: 2
-  _damage: 4
-  _cooldown: 5
+  _damage: 10
+  _cooldown: 3
   _burstCount: 3
-  _burstInterval: 1
+  _burstInterval: 0.5
   _maxContinuousDuration: 3
   _range: 20
   _projectileSpeed: 25
