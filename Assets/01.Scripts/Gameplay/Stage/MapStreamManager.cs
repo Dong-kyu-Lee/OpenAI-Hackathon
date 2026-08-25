@@ -19,6 +19,7 @@ namespace Game.Gameplay.Stage
         [SerializeField] private MonoBehaviour _segmentPoolSource;
         [SerializeField] private Transform _segmentParent;
         [SerializeField] private MapSegment _startSafePrefab;
+        [SerializeField] private MapSegment _endSafePrefab;
         [SerializeField] private StageMapConfigSO _stageConfig;
         [SerializeField] private VoidEventChannelSO _playerDiedChannel;
 
@@ -36,6 +37,8 @@ namespace Game.Gameplay.Stage
         private bool _isSubscribedToScroll;
         private bool _sequenceExhausted;
         private bool _hasReachedStageEnd;
+        private bool _endSafePlaced;
+        private MapSegment _activeEndSafeSegment;
         private Vector2 _appliedDisplacementForCurrentStep;
 
         /// <summary>유한 Sequence의 실제 끝이 플레이어 종료 경계에 도달했을 때 발생합니다.</summary>
@@ -274,10 +277,68 @@ namespace Game.Gameplay.Stage
             }
 
             if (!_stageConfig.InfiniteRandom &&
+                !_stageConfig.UsesFiniteOrderedSequence &&
                 _stageConfig.Sequence.Count == default)
             {
                 Debug.LogError("Sequence mode requires at least one segment type.", this);
                 return false;
+            }
+
+            if (!_segmentPool.IsRegistered(_startSafePrefab))
+            {
+                Debug.LogError("The StartSafe prefab is not registered in MapSegmentPool.", this);
+                return false;
+            }
+
+            if (_stageConfig.UsesFiniteOrderedSequence && !ValidateFiniteOrderedSequence())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateFiniteOrderedSequence()
+        {
+            if (_stageConfig.ContinueRandomAfterSequence)
+            {
+                Debug.LogError(
+                    "A finite ordered prefab sequence must disable Continue Random After Sequence so EndSafe can be reached.",
+                    this);
+                return false;
+            }
+
+            if (_endSafePrefab == null)
+            {
+                Debug.LogError("A finite ordered prefab sequence requires an EndSafe prefab.", this);
+                return false;
+            }
+
+            if (!_segmentPool.IsRegistered(_endSafePrefab))
+            {
+                Debug.LogError("The EndSafe prefab is not registered in MapSegmentPool.", this);
+                return false;
+            }
+
+            for (int index = default; index < _stageConfig.OrderedSegmentPrefabs.Count; index++)
+            {
+                GameObject prefabObject = _stageConfig.OrderedSegmentPrefabs[index];
+
+                if (prefabObject == null || !prefabObject.TryGetComponent(out MapSegment prefab))
+                {
+                    Debug.LogError(
+                        $"Ordered segment element {index} is null or does not have MapSegment on its root.",
+                        this);
+                    return false;
+                }
+
+                if (!_segmentPool.IsRegistered(prefab))
+                {
+                    Debug.LogError(
+                        $"Ordered segment element {index} ({prefab.name}) is not registered in MapSegmentPool.",
+                        this);
+                    return false;
+                }
             }
 
             return true;
@@ -391,6 +452,11 @@ namespace Game.Gameplay.Stage
 
         private MapSegment SelectNextSequentialPrefab()
         {
+            if (_stageConfig.UsesFiniteOrderedSequence)
+            {
+                return SelectNextFiniteOrderedPrefab();
+            }
+
             if (_stageConfig.Sequence.Count == default)
             {
                 return null;
@@ -420,6 +486,29 @@ namespace Game.Gameplay.Stage
             return null;
         }
 
+        private MapSegment SelectNextFiniteOrderedPrefab()
+        {
+            while (_sequenceIndex < _stageConfig.OrderedSegmentPrefabs.Count)
+            {
+                int candidateIndex = _sequenceIndex;
+                _sequenceIndex++;
+
+                if (TryGetOrderedPrefab(candidateIndex, out MapSegment candidate))
+                {
+                    return candidate;
+                }
+            }
+
+            if (!_endSafePlaced)
+            {
+                _endSafePlaced = true;
+                return _endSafePrefab;
+            }
+
+            _sequenceExhausted = true;
+            return null;
+        }
+
         private bool TryGetCatalogPrefab(int index, out MapSegment prefab)
         {
             if (_stageConfig.SegmentCatalog.TryGetEntry(
@@ -440,6 +529,20 @@ namespace Game.Gameplay.Stage
             if (_stageConfig.SegmentCatalog.TryGetPrefab(
                     type,
                     out GameObject prefabObject) &&
+                prefabObject.TryGetComponent(out prefab))
+            {
+                return true;
+            }
+
+            prefab = null;
+            return false;
+        }
+
+        private bool TryGetOrderedPrefab(int index, out MapSegment prefab)
+        {
+            if (index >= default(int) &&
+                index < _stageConfig.OrderedSegmentPrefabs.Count &&
+                _stageConfig.OrderedSegmentPrefabs[index] is GameObject prefabObject &&
                 prefabObject.TryGetComponent(out prefab))
             {
                 return true;
@@ -511,6 +614,15 @@ namespace Game.Gameplay.Stage
             }
 
             _lastSegmentId = segment.SegmentId;
+
+            if (_stageConfig.UsesFiniteOrderedSequence &&
+                _endSafePlaced &&
+                _activeEndSafeSegment == null &&
+                prefab == _endSafePrefab)
+            {
+                _activeEndSafeSegment = segment;
+            }
+
             return true;
         }
 
@@ -569,6 +681,11 @@ namespace Game.Gameplay.Stage
                 _scrollController.UnregisterTarget(segment);
             }
 
+            if (segment == _activeEndSafeSegment)
+            {
+                _activeEndSafeSegment = null;
+            }
+
             segment.Deactivate();
 
             if (_segmentPool != null && _segmentPoolSource != null)
@@ -604,6 +721,8 @@ namespace Game.Gameplay.Stage
             _sequenceIndex = default;
             _sequenceExhausted = false;
             _hasReachedStageEnd = false;
+            _endSafePlaced = false;
+            _activeEndSafeSegment = null;
             _appliedSelectionMode = _selectionMode;
         }
 
@@ -612,7 +731,19 @@ namespace Game.Gameplay.Stage
             if (_hasReachedStageEnd ||
                 !_sequenceExhausted ||
                 _stageConfig == null ||
-                _stageConfig.ContinueRandomAfterSequence ||
+                _stageConfig.InfiniteRandom)
+            {
+                return false;
+            }
+
+            if (_stageConfig.UsesFiniteOrderedSequence)
+            {
+                return _activeEndSafeSegment != null &&
+                    _activeEndSafeSegment.TryGetPhysicsExitPosition(out Vector3 endSafeExitPosition) &&
+                    endSafeExitPosition.x <= _layoutSettings.StageEndBoundaryX;
+            }
+
+            if (_stageConfig.ContinueRandomAfterSequence ||
                 !TryGetLastExitPosition(out Vector3 exitPosition))
             {
                 return false;

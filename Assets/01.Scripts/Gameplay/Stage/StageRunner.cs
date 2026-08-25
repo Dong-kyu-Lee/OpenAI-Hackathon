@@ -106,6 +106,12 @@ namespace Game.Gameplay.Stage
                 return;
             }
 
+            if (stageDefinition.MapConfig != null &&
+                stageDefinition.MapConfig.UsesFiniteOrderedSequence)
+            {
+                return;
+            }
+
             if (!stageDefinition.IsEndlessMode &&
                 stageDefinition.ClearDistance > 0f &&
                 _scrollController.DistanceTravelled >= stageDefinition.ClearDistance)
