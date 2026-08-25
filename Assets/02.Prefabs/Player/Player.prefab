@@ -1987,6 +1987,10 @@ MonoBehaviour:
   _playerDiedChannel: {fileID: 11400000, guid: ae691a1493f6d4b478fee64c57b7a0e6, type: 2}
   _playerHitChannel: {fileID: 11400000, guid: f46440097b42e134eb0bc9c138cc96d8, type: 2}
   _stageSelectionState: {fileID: 11400000, guid: 3844faf072639594ca9e39857fe4b10f, type: 2}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _hitVoiceClip: {fileID: 8300000, guid: 2da0f4226d614492eaf48171c98f5ccb, type: 3}
+  _bumpClip: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
+  _deathClip: {fileID: 8300000, guid: 0fcccacff396a4e2b86aaab9fc07aaec, type: 3}
 --- !u!114 &18655281290132276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2003,6 +2007,9 @@ MonoBehaviour:
   _groundCheck: {fileID: 1884510028226733056}
   _playerSlide: {fileID: 3956057354168411626}
   _playerHealth: {fileID: 5366394459057268837}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _jumpClip: {fileID: 8300000, guid: f42760acdd77d6c459020ab0f9db4f30, type: 3}
+  _landClip: {fileID: 8300000, guid: 304f2bf2228cba94e91cd22803e54bcf, type: 3}
 --- !u!114 &1444873914853132497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2460,6 +2467,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2674427938659521689, guid: ea7c319a35600234093d7816d1b01f6c, type: 3}
+      propertyPath: _sfxChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+    - target: {fileID: 2674427938659521689, guid: ea7c319a35600234093d7816d1b01f6c, type: 3}
+      propertyPath: _firingLoopClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 82f9d6e3937eeb84fb8ce884180494f8, type: 3}
     - target: {fileID: 7628090163248399033, guid: ea7c319a35600234093d7816d1b01f6c, type: 3}
       propertyPath: m_FlipY
       value: 0
@@ -2545,6 +2560,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9002955018823517454, guid: b1c14f1983fddd64fa8264515c811da4, type: 3}
+      propertyPath: _shotClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ed3475fc5c5b4b4fba60ffbfcac9f25, type: 3}
+    - target: {fileID: 9002955018823517454, guid: b1c14f1983fddd64fa8264515c811da4, type: 3}
+      propertyPath: _sfxChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2582,6 +2605,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 941712806184676363, guid: e4a262895fa2bc843bd854312fc20236, type: 3}
+      propertyPath: _sfxChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
     - target: {fileID: 2928871287610511261, guid: e4a262895fa2bc843bd854312fc20236, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2699,6 +2726,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2844904992849821176, guid: b600717ae18ccbc41bd221396ccd8d30, type: 3}
+      propertyPath: _sfxChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+    - target: {fileID: 2844904992849821176, guid: b600717ae18ccbc41bd221396ccd8d30, type: 3}
+      propertyPath: _firingLoopClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 449ec326335ad8148b04b05c9cedac75, type: 3}
     - target: {fileID: 6207460053352404763, guid: b600717ae18ccbc41bd221396ccd8d30, type: 3}
       propertyPath: m_Name
       value: firegun

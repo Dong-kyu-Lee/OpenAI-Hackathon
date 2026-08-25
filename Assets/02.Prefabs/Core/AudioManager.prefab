@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Game.App::Game.App.AudioManager
   _audioSettings: {fileID: 11400000, guid: db02bf53c4b1efc4891fb9ba37e3f560, type: 2}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
   _bgmSource: {fileID: 4170088003996092934}
   _sfxSource: {fileID: 280580856869458383}
   _titleSceneName: Title

@@ -1,16 +1,22 @@
+using System.Collections.Generic;
+using Game.Core.Events;
 using Game.Data.Settings;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Game.App
 {
-    /// <summary>
-    /// SystemScene에서 유지되며 배경음과 공용 효과음 재생을 담당합니다.
-    /// </summary>
     [DisallowMultipleComponent]
     public sealed class AudioManager : MonoBehaviour
     {
+        private sealed class LoopPlayback
+        {
+            public AudioSource Source;
+            public float VolumeScale;
+        }
+
         [SerializeField] private AudioSettingsSO _audioSettings;
+        [SerializeField] private SfxEventChannelSO _sfxChannel;
         [SerializeField] private AudioSource _bgmSource;
         [SerializeField] private AudioSource _sfxSource;
 
@@ -21,6 +27,8 @@ namespace Game.App
         [SerializeField] private AudioClip _stageSelectBgm;
         [SerializeField] private string _gameplaySceneName = "MapTest";
         [SerializeField] private AudioClip _gameplayBgm;
+
+        private readonly Dictionary<int, LoopPlayback> _loopPlaybacks = new();
 
         public static AudioManager Instance { get; private set; }
 
@@ -40,9 +48,12 @@ namespace Game.App
 
         private void OnEnable()
         {
-            if (_audioSettings != null)
+            if (_audioSettings != null) _audioSettings.Changed += ApplyVolumes;
+            if (_sfxChannel != null)
             {
-                _audioSettings.Changed += ApplyVolumes;
+                _sfxChannel.OneShotRequested += PlaySfx;
+                _sfxChannel.LoopStarted += StartLoopSfx;
+                _sfxChannel.LoopStopped += StopLoopSfx;
             }
 
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -51,33 +62,27 @@ namespace Game.App
 
         private void OnDisable()
         {
-            if (_audioSettings != null)
+            if (_audioSettings != null) _audioSettings.Changed -= ApplyVolumes;
+            if (_sfxChannel != null)
             {
-                _audioSettings.Changed -= ApplyVolumes;
+                _sfxChannel.OneShotRequested -= PlaySfx;
+                _sfxChannel.LoopStarted -= StartLoopSfx;
+                _sfxChannel.LoopStopped -= StopLoopSfx;
             }
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            StopAllLoopSfx();
         }
 
         private void OnDestroy()
         {
-            if (Instance == this)
-            {
-                Instance = null;
-            }
+            if (Instance == this) Instance = null;
         }
 
         public void PlayBgm(AudioClip clip, bool restart = false)
         {
-            if (_bgmSource == null || clip == null)
-            {
-                return;
-            }
-
-            if (_bgmSource.clip == clip && _bgmSource.isPlaying && !restart)
-            {
-                return;
-            }
+            if (_bgmSource == null || clip == null) return;
+            if (_bgmSource.clip == clip && _bgmSource.isPlaying && !restart) return;
 
             _bgmSource.loop = true;
             _bgmSource.clip = clip;
@@ -86,23 +91,57 @@ namespace Game.App
 
         public void StopBgm()
         {
-            if (_bgmSource == null)
-            {
-                return;
-            }
-
+            if (_bgmSource == null) return;
             _bgmSource.Stop();
             _bgmSource.clip = null;
         }
 
         public void PlaySfx(AudioClip clip, float volumeScale = 1f)
         {
-            if (_sfxSource == null || clip == null)
+            if (_sfxSource == null || clip == null) return;
+            _sfxSource.PlayOneShot(clip, Mathf.Clamp01(volumeScale));
+        }
+
+        private void StartLoopSfx(int playbackId, AudioClip clip, float volumeScale)
+        {
+            if (clip == null) return;
+
+            if (!_loopPlaybacks.TryGetValue(playbackId, out LoopPlayback playback))
             {
-                return;
+                AudioSource source = gameObject.AddComponent<AudioSource>();
+                source.playOnAwake = false;
+                source.loop = true;
+                source.spatialBlend = 0f;
+                playback = new LoopPlayback { Source = source };
+                _loopPlaybacks.Add(playbackId, playback);
             }
 
-            _sfxSource.PlayOneShot(clip, Mathf.Clamp01(volumeScale));
+            playback.VolumeScale = Mathf.Clamp01(volumeScale);
+            playback.Source.volume = GetSfxVolume() * playback.VolumeScale;
+            if (playback.Source.clip == clip && playback.Source.isPlaying) return;
+
+            playback.Source.clip = clip;
+            playback.Source.Play();
+        }
+
+        private void StopLoopSfx(int playbackId)
+        {
+            if (!_loopPlaybacks.TryGetValue(playbackId, out LoopPlayback playback)) return;
+
+            playback.Source.Stop();
+            playback.Source.clip = null;
+        }
+
+        private void StopAllLoopSfx()
+        {
+            foreach (LoopPlayback playback in _loopPlaybacks.Values)
+            {
+                if (playback.Source == null) continue;
+                playback.Source.Stop();
+                Destroy(playback.Source);
+            }
+
+            _loopPlaybacks.Clear();
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -114,10 +153,7 @@ namespace Game.App
         {
             for (int i = 0; i < SceneManager.sceneCount; i++)
             {
-                if (TryPlaySceneBgm(SceneManager.GetSceneAt(i).name))
-                {
-                    return;
-                }
+                if (TryPlaySceneBgm(SceneManager.GetSceneAt(i).name)) return;
             }
         }
 
@@ -163,18 +199,22 @@ namespace Game.App
 
         private void ApplyVolumes()
         {
-            float bgmVolume = _audioSettings != null ? _audioSettings.BgmVolume : 1f;
-            float sfxVolume = _audioSettings != null ? _audioSettings.SfxVolume : 1f;
-
             if (_bgmSource != null)
-            {
-                _bgmSource.volume = bgmVolume;
-            }
+                _bgmSource.volume = _audioSettings != null ? _audioSettings.BgmVolume : 1f;
 
-            if (_sfxSource != null)
+            float sfxVolume = GetSfxVolume();
+            if (_sfxSource != null) _sfxSource.volume = sfxVolume;
+
+            foreach (LoopPlayback playback in _loopPlaybacks.Values)
             {
-                _sfxSource.volume = sfxVolume;
+                if (playback.Source != null)
+                    playback.Source.volume = sfxVolume * playback.VolumeScale;
             }
+        }
+
+        private float GetSfxVolume()
+        {
+            return _audioSettings != null ? _audioSettings.SfxVolume : 1f;
         }
     }
 }

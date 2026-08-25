@@ -10,7 +10,10 @@ namespace Game.Gameplay.Combat
     public sealed class DestructibleObstacle : MonoBehaviour, IDamageable, IWeaponDamageable, ITutorialDestructionTarget
     {
         [SerializeField, Min(0.01f)] private float _durability = 15f;
-        [SerializeField] private WeaponDefinitionSO _requiredDamageWeapon;
+        
+        [SerializeField] private Game.Core.Events.SfxEventChannelSO _sfxChannel;
+        [SerializeField] private AudioClip _destroyedClip;
+[SerializeField] private WeaponDefinitionSO _requiredDamageWeapon;
 
         private Collider2D[] _colliders;
         private Renderer[] _renderers;
@@ -55,7 +58,9 @@ namespace Game.Gameplay.Combat
                 return;
             }
 
-            IsBroken = true;
+            
+            _sfxChannel?.PlayOneShot(_destroyedClip);
+IsBroken = true;
             SetContentEnabled(false);
             DestroyedByWeapon?.Invoke(sourceWeapon);
         }

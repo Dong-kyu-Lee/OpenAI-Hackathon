@@ -291,3 +291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Weapon.PooledProjectile
   _trailRenderer: {fileID: 5420036599289050127}
   _hitEffectPrefab: {fileID: 183162363626093605, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _flightClip: {fileID: 8300000, guid: 6bfda6b55bce38e44a8e64313429c15c, type: 3}
+  _flightVolume: 1

@@ -15,7 +15,10 @@ namespace Game.UI.Tutorial
         [SerializeField] private TMP_Text _messageText;
         [SerializeField] private TMP_Text _inputLabelText;
         [SerializeField] private TutorialPresentationEventChannelSO _presentationChannel;
-        [SerializeField] private VoidEventChannelSO _bindingsChangedChannel;
+        
+        [SerializeField] private SfxEventChannelSO _sfxChannel;
+        [SerializeField] private AudioClip _appearClip;
+[SerializeField] private VoidEventChannelSO _bindingsChangedChannel;
 
         [Header("Input Actions")]
         [SerializeField] private InputActionReference _jumpAction;
@@ -54,8 +57,9 @@ namespace Game.UI.Tutorial
             SetVisible(false);
         }
 
-        private void OnPresentationChanged(TutorialPresentation presentation)
+private void OnPresentationChanged(TutorialPresentation presentation)
         {
+            bool becameVisible = presentation.IsVisible && !_currentPresentation.IsVisible;
             _currentPresentation = presentation;
 
             if (_titleText != null) _titleText.text = presentation.Title;
@@ -63,6 +67,11 @@ namespace Game.UI.Tutorial
 
             RefreshInputLabel();
             SetVisible(presentation.IsVisible);
+
+            if (becameVisible)
+            {
+                _sfxChannel?.PlayOneShot(_appearClip);
+            }
         }
 
         private void RefreshInputLabel()

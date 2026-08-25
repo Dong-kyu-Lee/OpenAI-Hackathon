@@ -223,3 +223,6 @@ MonoBehaviour:
   _stats: {fileID: 11400000, guid: 07e4082fa938b604ba633113104935cb, type: 2}
   _animator: {fileID: 2167361051085618946}
   _destructionClip: {fileID: 7400000, guid: 0edd9b0dc44e0ac49a0f45e1077b4ad1, type: 2}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _destroyedClip: {fileID: 8300000, guid: 880a7ed8fc69d8948a5961515fd19500, type: 3}
+  _requiredDamageWeapon: {fileID: 0}
