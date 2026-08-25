@@ -1,0 +1,375 @@
+fileFormatVersion: 2
+guid: 2e008da8e13edf447b2cd42d7275a78e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4886511278667317171
+    second: Stage 01 Jump_0
+  - first:
+      213: 650067266568594225
+    second: Stage 01 Jump_1
+  - first:
+      213: -5686219055416498727
+    second: Stage 01 Jump_2
+  - first:
+      213: -4182994662377205696
+    second: Stage 01 Jump_3
+  - first:
+      213: 1115123002751206169
+    second: Stage 01 Jump_4
+  - first:
+      213: -4852638146767168774
+    second: Stage 01 Jump_5
+  - first:
+      213: 2051006786910075661
+    second: Stage 01 Jump_6
+  - first:
+      213: 7066025793284488737
+    second: Stage 01 Jump_7
+  - first:
+      213: -6817833629844674240
+    second: Stage 01 Jump_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stage 01 Jump_0
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 403
+        width: 210
+        height: 562
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bfb7eb3e1060d340800000000000000
+      internalID: 4886511278667317171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Jump_1
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 400
+        width: 190
+        height: 563
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1332ee71cb0850900800000000000000
+      internalID: 650067266568594225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Jump_2
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 403
+        width: 210
+        height: 560
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d5a7de55ed7611b0800000000000000
+      internalID: -5686219055416498727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Jump_3
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 404
+        width: 116
+        height: 561
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 040d6ab548403f5c0800000000000000
+      internalID: -4182994662377205696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Jump_4
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 399
+        width: 207
+        height: 567
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9134adb7676b97f00800000000000000
+      internalID: 1115123002751206169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Jump_6
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 80
+        width: 226
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0bb0b55ec3a67c10800000000000000
+      internalID: 2051006786910075661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Jump_7
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 81
+        width: 228
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12e387685019f0260800000000000000
+      internalID: 7066025793284488737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Jump_8
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 80
+        width: 234
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0496563af603261a0800000000000000
+      internalID: -6817833629844674240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Jump_9
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 82
+        width: 221
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e76064981ee6dd429e37a4002f8586a
+      internalID: 1434218271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Jump_10
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 82
+        width: 230
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed06ed155c6f71c44aee438fe61bb6c7
+      internalID: -1645961399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 81e8897728bdcbe4f8795e61a5c2a093
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Stage 01 Jump_0: 4886511278667317171
+      Stage 01 Jump_1: 650067266568594225
+      Stage 01 Jump_10: -1645961399
+      Stage 01 Jump_2: -5686219055416498727
+      Stage 01 Jump_3: -4182994662377205696
+      Stage 01 Jump_4: 1115123002751206169
+      Stage 01 Jump_5: -4852638146767168774
+      Stage 01 Jump_6: 2051006786910075661
+      Stage 01 Jump_7: 7066025793284488737
+      Stage 01 Jump_8: -6817833629844674240
+      Stage 01 Jump_9: 1434218271
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
