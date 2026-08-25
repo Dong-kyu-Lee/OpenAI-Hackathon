@@ -33,6 +33,8 @@ namespace Game.Data
         [Header("Hit Feedback")]
         [SerializeField] private Color _hitFlashColor = Color.red;
         [SerializeField, Min(0f)] private float _hitFlashDuration = 0.1f;
+        [SerializeField, Range(0f, 1f)] private float _invulnerabilityBlinkAlpha = 0.3f;
+        [SerializeField, Min(0f)] private float _invulnerabilityBlinkInterval = 0.1f;
         [SerializeField, Min(0f)] private float _hitShakeDuration = 0.1f;
         [SerializeField, Min(0f)] private float _hitShakeStrength = 0.08f;
 
@@ -55,6 +57,8 @@ namespace Game.Data
         public float FallDeathY => _fallDeathY;
         public Color HitFlashColor => _hitFlashColor;
         public float HitFlashDuration => _hitFlashDuration;
+        public float InvulnerabilityBlinkAlpha => _invulnerabilityBlinkAlpha;
+        public float InvulnerabilityBlinkInterval => _invulnerabilityBlinkInterval;
         public float HitShakeDuration => _hitShakeDuration;
         public float HitShakeStrength => _hitShakeStrength;
     }
