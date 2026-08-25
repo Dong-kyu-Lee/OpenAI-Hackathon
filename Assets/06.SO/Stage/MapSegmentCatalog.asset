@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.Stage.MapSegmentCatalogSO
   _entries:
   - _type: 0
-    _prefab: {fileID: 8365735427777965882, guid: e2da279f2582af8428725547a153f8cd, type: 3}
+    _prefab: {fileID: 5778848805719648015, guid: ed345a37b5527eb4a82f9cc7dd6abee7, type: 3}
   - _type: 1
-    _prefab: {fileID: 491360650965225744, guid: fc78bb2a9afe0844b84fb5065d3c2dec, type: 3}
+    _prefab: {fileID: 491360650965225744, guid: 83fe05d9ed322ad49b934fbf3a5f195f, type: 3}
   - _type: 2
-    _prefab: {fileID: 3784420321465745045, guid: f5805c030a3352d42a5d835060a4ee2f, type: 3}
+    _prefab: {fileID: 8365735427777965882, guid: 6a001596d536c63498e7bebfbdae53b3, type: 3}
   - _type: 3
-    _prefab: {fileID: 2814748361491735257, guid: 5cf6d499c4981d843a1001fc9152fe13, type: 3}
+    _prefab: {fileID: 8365735427777965882, guid: 3a2ca445c4625d244bd18f3c71c84d11, type: 3}
+  - _type: 4
+    _prefab: {fileID: 8365735427777965882, guid: a2f7599cd572a384f98ce5a3fac39955, type: 3}
