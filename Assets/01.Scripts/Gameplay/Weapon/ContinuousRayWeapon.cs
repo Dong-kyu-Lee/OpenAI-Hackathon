@@ -1,6 +1,7 @@
 using Game.Core.Combat;
 using Game.Core.Pooling;
 using Game.Data;
+using Game.Gameplay.Combat;
 using UnityEngine;
 
 namespace Game.Gameplay.Weapon
@@ -108,8 +109,17 @@ namespace Game.Gameplay.Weapon
                 return;
             }
 
-            IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
-            damageable?.TakeDamage(Definition.Damage * appliedDuration);
+            float appliedDamage = Definition.Damage * appliedDuration;
+            IWeaponDamageable weaponDamageable = hit.collider.GetComponentInParent<IWeaponDamageable>();
+            if (weaponDamageable != null)
+            {
+                weaponDamageable.TakeDamage(appliedDamage, Definition);
+            }
+            else
+            {
+                IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+                damageable?.TakeDamage(appliedDamage);
+            }
 
             if (Definition.DamageElement == WeaponDefinitionSO.Element.Ice)
             {
