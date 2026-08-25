@@ -20,6 +20,10 @@ namespace Game.Data.Stage
         [Header("Stage Rules")]
         [SerializeField] private bool _isTutorial;
 
+        [Header("Background")]
+        [SerializeField] private Sprite _backgroundA;
+        [SerializeField] private Sprite _backgroundB;
+
         public bool InfiniteRandom => _infiniteRandom;
         public bool ContinueRandomAfterSequence => _continueRandomAfterSequence;
         public MapSegmentCatalogSO SegmentCatalog => _segmentCatalog;
@@ -30,5 +34,7 @@ namespace Game.Data.Stage
         public IReadOnlyList<MapSegmentType> Sequence => _sequence ?? System.Array.Empty<MapSegmentType>();
         public int RandomSeed => _randomSeed;
         public bool IsTutorial => _isTutorial;
+        public Sprite BackgroundA => _backgroundA;
+        public Sprite BackgroundB => _backgroundB;
     }
 }

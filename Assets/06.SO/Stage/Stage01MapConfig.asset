@@ -31,3 +31,5 @@ MonoBehaviour:
   _randomSeed: 12345
   _sequence: 0000000001000000020000000300000004000000
   _isTutorial: 0
+  _backgroundA: {fileID: -2045999987958129151, guid: 2c8bb44bc7ec9cc41989f41a06888462, type: 3}
+  _backgroundB: {fileID: -2045999987958129151, guid: 2c8bb44bc7ec9cc41989f41a06888462, type: 3}

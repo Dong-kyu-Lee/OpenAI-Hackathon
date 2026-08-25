@@ -16,3 +16,5 @@ MonoBehaviour:
   _despawnBoundaryX: -12
   _preloadDistance: 32
   _stageEndBoundaryX: 0
+  _backgroundRecycleBoundaryX: -10
+  _backgroundCoverageBoundaryX: 10
