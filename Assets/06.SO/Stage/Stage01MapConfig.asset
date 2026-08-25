@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: Stage01MapConfig
   m_EditorClassIdentifier: Game.Data::Game.Data.Stage.StageMapConfigSO
   _infiniteRandom: 0
-  _continueRandomAfterSequence: 1
+  _continueRandomAfterSequence: 0
   _segmentCatalog: {fileID: 11400000, guid: 2b4a2597aba37eb49bc8d2b65f15bfbb, type: 2}
+  _orderedSegmentPrefabs:
+  - {fileID: 5778848805719648015, guid: ed345a37b5527eb4a82f9cc7dd6abee7, type: 3}
+  - {fileID: 491360650965225744, guid: 83fe05d9ed322ad49b934fbf3a5f195f, type: 3}
+  - {fileID: 8365735427777965882, guid: 6a001596d536c63498e7bebfbdae53b3, type: 3}
+  - {fileID: 8365735427777965882, guid: 3a2ca445c4625d244bd18f3c71c84d11, type: 3}
+  - {fileID: 8365735427777965882, guid: a2f7599cd572a384f98ce5a3fac39955, type: 3}
   _sequence: 0000000001000000020000000300000004000000
   _randomSeed: 12345
   _isTutorial: 0

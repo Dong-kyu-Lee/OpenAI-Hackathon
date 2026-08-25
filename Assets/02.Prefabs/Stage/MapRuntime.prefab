@@ -192,6 +192,10 @@ MonoBehaviour:
     _initialCapacity: 2
   - _prefab: {fileID: 6041661461488739745, guid: 07ffcddb53a154d4bb2c59b55e269447, type: 3}
     _initialCapacity: 2
+  - _prefab: {fileID: 8709325885325011305, guid: af7a90755b9efd4439ef9425fa1fd4ea, type: 3}
+    _initialCapacity: 1
+  - _prefab: {fileID: 8709325885325011305, guid: 641a96b0151fdc347af732d2ed3628ea, type: 3}
+    _initialCapacity: 1
   _poolRoot: {fileID: 236013320110066629}
 --- !u!114 &9059717411377748750
 MonoBehaviour:
@@ -209,6 +213,7 @@ MonoBehaviour:
   _scrollController: {fileID: 8884110675804651043}
   _segmentPoolSource: {fileID: 4689053711719357201}
   _segmentParent: {fileID: 2439850134054580946}
-  _startSafePrefab: {fileID: 8709325885325011305, guid: 426255aa83b8b8d44a4efa3636ab7ec0, type: 3}
+  _startSafePrefab: {fileID: 8709325885325011305, guid: ed345a37b5527eb4a82f9cc7dd6abee7, type: 3}
+  _endSafePrefab: {fileID: 8709325885325011305, guid: 641a96b0151fdc347af732d2ed3628ea, type: 3}
   _stageConfig: {fileID: 11400000, guid: 640a2a27bab28ff4e84fbd196a2349d8, type: 2}
   _playerDiedChannel: {fileID: 0}

@@ -8,6 +8,11 @@ namespace Game.Gameplay.Stage
     /// </summary>
     public interface IMapSegmentPool
     {
+        /// <summary>지정한 원본 프리팹이 이 풀에 등록되어 있는지 확인합니다.</summary>
+        /// <param name="prefab">등록 여부를 확인할 원본 프리팹입니다.</param>
+        /// <returns>프리팹을 대여할 수 있도록 정의가 등록되어 있으면 <see langword="true"/>입니다.</returns>
+        bool IsRegistered(MapSegment prefab);
+
         /// <summary>지정한 프리팹의 세그먼트를 풀에서 대여하고 요청한 부모 아래에 배치합니다.</summary>
         /// <param name="prefab">대여할 세그먼트 종류를 식별하는 원본 프리팹입니다.</param>
         /// <param name="parent">대여된 세그먼트의 부모입니다. 구현에 따라 <see langword="null"/>을 기본 부모로 처리할 수 있습니다.</param>

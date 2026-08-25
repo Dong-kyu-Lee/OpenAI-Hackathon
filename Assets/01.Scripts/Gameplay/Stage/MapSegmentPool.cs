@@ -89,6 +89,27 @@ namespace Game.Gameplay.Stage
             _isInitialized = true;
         }
 
+        /// <inheritdoc />
+        public bool IsRegistered(MapSegment prefab)
+        {
+            if (prefab == null || _definitions == null)
+            {
+                return false;
+            }
+
+            for (int index = default; index < _definitions.Length; index++)
+            {
+                PoolDefinition definition = _definitions[index];
+
+                if (definition != null && definition.Prefab == prefab)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         /// <summary>지정한 프리팹 버킷에서 세그먼트를 대여하고 로컬 Transform을 초기화합니다.</summary>
         /// <param name="prefab">등록된 원본 세그먼트 프리팹입니다.</param>
         /// <param name="parent">대여된 세그먼트의 부모입니다. <see langword="null"/>이면 풀 루트를 사용합니다.</param>
