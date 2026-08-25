@@ -192,6 +192,8 @@ MonoBehaviour:
     _initialCapacity: 2
   - _prefab: {fileID: 6041661461488739745, guid: 07ffcddb53a154d4bb2c59b55e269447, type: 3}
     _initialCapacity: 2
+  - _prefab: {fileID: 6828536598366809128, guid: 0d0a767b70508d54ebf55e5ce23404c8, type: 3}
+    _initialCapacity: 1
   - _prefab: {fileID: 8709325885325011305, guid: af7a90755b9efd4439ef9425fa1fd4ea, type: 3}
     _initialCapacity: 1
   - _prefab: {fileID: 8709325885325011305, guid: 641a96b0151fdc347af732d2ed3628ea, type: 3}
