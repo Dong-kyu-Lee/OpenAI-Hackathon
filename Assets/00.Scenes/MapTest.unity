@@ -167,73 +167,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[5]._prefab
-      value: 
-      objectReference: {fileID: 7717927100128225067, guid: 772416d0695725448b8f4ff70e352e14, type: 3}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[6]._prefab
-      value: 
-      objectReference: {fileID: 7717927100128225067, guid: 14bdbb9110379d94ea8851a423b76aa6, type: 3}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[7]._prefab
-      value: 
-      objectReference: {fileID: 6828536598366809128, guid: 192da0d843d1fb04f82a05d38f8a9da2, type: 3}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[8]._prefab
-      value: 
-      objectReference: {fileID: 8158174628123050211, guid: 9cc4807b60e8d4c41927470f1b4426af, type: 3}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[9]._prefab
-      value: 
-      objectReference: {fileID: 6041661461488739745, guid: 07ffcddb53a154d4bb2c59b55e269447, type: 3}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[5]._initialCapacity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[6]._initialCapacity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[7]._initialCapacity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[8]._initialCapacity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689053711719357201, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _definitions.Array.data[9]._initialCapacity
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       propertyPath: m_Name
       value: MapRuntime
       objectReference: {fileID: 0}
-    - target: {fileID: 9059717411377748750, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _stageConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: 640a2a27bab28ff4e84fbd196a2349d8, type: 2}
-    - target: {fileID: 9059717411377748750, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
-      propertyPath: _playerDiedChannel
-      value: 
-      objectReference: {fileID: 11400000, guid: ae691a1493f6d4b478fee64c57b7a0e6, type: 2}
-    m_RemovedComponents:
-    - {fileID: 2638594530611346943, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2095730024}
+      addedObject: {fileID: 2095730025}
     - targetCorrespondingSourceObject: {fileID: 5515997317209871263, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2095730025}
+      addedObject: {fileID: 2095730024}
   m_SourcePrefab: {fileID: 100100000, guid: 62e307f6f220cde4890b0533cbdc65a5, type: 3}
 --- !u!114 &47525586 stripped
 MonoBehaviour:
@@ -810,21 +757,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 47525587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cf02972bd1ed844d89058ce599e02ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Game.App::Game.App.StageRuntimeStarter
-  _stageSelectionState: {fileID: 11400000, guid: 3844faf072639594ca9e39857fe4b10f, type: 2}
-  _mapStreamManager: {fileID: 47525586}
-  _tutorialInputPermissionChannel: {fileID: 11400000, guid: b69fc19d8aa97594c8f40588572a2e86, type: 2}
---- !u!114 &2095730025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 47525587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63ad8335e50254d4981d4f7aad5cf978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Stage.StageRunner
@@ -837,6 +769,21 @@ MonoBehaviour:
   _playerDiedChannel: {fileID: 11400000, guid: ae691a1493f6d4b478fee64c57b7a0e6, type: 2}
   _playerHealthChangedChannel: {fileID: 11400000, guid: 76b5d5c18c1a7a340ab7f2cd14763610, type: 2}
   _stageFinishedChannel: {fileID: 11400000, guid: 70ced7e6914ba6743b255a6ed15d0afa, type: 2}
+--- !u!114 &2095730025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47525587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf02972bd1ed844d89058ce599e02ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.App::Game.App.StageRuntimeStarter
+  _stageSelectionState: {fileID: 11400000, guid: 3844faf072639594ca9e39857fe4b10f, type: 2}
+  _mapStreamManager: {fileID: 47525586}
+  _tutorialInputPermissionChannel: {fileID: 11400000, guid: b69fc19d8aa97594c8f40588572a2e86, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

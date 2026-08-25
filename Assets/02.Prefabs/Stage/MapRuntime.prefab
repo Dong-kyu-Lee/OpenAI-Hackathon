@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 8884110675804651043}
   - component: {fileID: 4689053711719357201}
   - component: {fileID: 9059717411377748750}
-  - component: {fileID: 2638594530611346943}
   m_Layer: 0
   m_Name: MapRuntime
   m_TagString: Untagged
@@ -127,13 +126,71 @@ MonoBehaviour:
   _definitions:
   - _prefab: {fileID: 8709325885325011305, guid: 426255aa83b8b8d44a4efa3636ab7ec0, type: 3}
     _initialCapacity: 1
-  - _prefab: {fileID: 7717927100128225067, guid: e2da279f2582af8428725547a153f8cd, type: 3}
+  - _prefab: {fileID: 8419579179638131766, guid: 2f8188187c18ad14bb65a24b15ab9937, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 8419579179638131766, guid: a0640af785d8dcf498a4de47341065a9, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: a2bac1d3cf16e0b44a03a80a43ebfe17, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 988479779e94e404880935c2fd019ec3, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 8709325885325011305, guid: ed345a37b5527eb4a82f9cc7dd6abee7, type: 3}
+    _initialCapacity: 1
+  - _prefab: {fileID: 5616384668205684931, guid: 83fe05d9ed322ad49b934fbf3a5f195f, type: 3}
+    _initialCapacity: 1
+  - _prefab: {fileID: 7717927100128225067, guid: 6a001596d536c63498e7bebfbdae53b3, type: 3}
+    _initialCapacity: 1
+  - _prefab: {fileID: 7717927100128225067, guid: 3a2ca445c4625d244bd18f3c71c84d11, type: 3}
+    _initialCapacity: 1
+  - _prefab: {fileID: 7717927100128225067, guid: a2f7599cd572a384f98ce5a3fac39955, type: 3}
+    _initialCapacity: 1
+  - _prefab: {fileID: 7717927100128225067, guid: 732313c541668454fb069f3187bd8dff, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 122bbc95afd73464cbea3970719c359b, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 79a3a794e62fd164e9324dffed1810b6, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: e77ba97184c9ac54486584df560f3ec1, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 5aff17fa20343ba4c9a3dbe0e94f6731, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 5db2b45ad1dabf94cb816843c8d8082b, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: d571f00de09d7b648bb3b1593f60531a, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 727c165194a835a408c2bd60878a7434, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: a7c44954d940e8a448c91523b61e5884, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 848fb0851a3da504294625681d3fa5be, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: b494148a6dcdb8e4fb961c066b406a5f, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 8419579179638131766, guid: 33d4c1c02a099b240af4f72a46e30a85, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 8419579179638131766, guid: 85826d7d1e635a24a8b844f622308b41, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 8419579179638131766, guid: 18d931c493a432d488ea0acc5b587ca7, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 8419579179638131766, guid: 2f0cdc570bf33ec41bb827fcc6e92f89, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 8419579179638131766, guid: 09fd302ab803a444d8e0aef1072730cb, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 8419579179638131766, guid: 0214453c84df40e4a8bb4122a210663b, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 743da8f0f9c6a1443918c244dd3c78d4, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 987a8353852935a4b927c0d43af64260, type: 3}
+    _initialCapacity: 0
+  - _prefab: {fileID: 7717927100128225067, guid: 772416d0695725448b8f4ff70e352e14, type: 3}
+    _initialCapacity: 1
+  - _prefab: {fileID: 7717927100128225067, guid: 14bdbb9110379d94ea8851a423b76aa6, type: 3}
+    _initialCapacity: 1
+  - _prefab: {fileID: 6828536598366809128, guid: 192da0d843d1fb04f82a05d38f8a9da2, type: 3}
     _initialCapacity: 2
-  - _prefab: {fileID: 5616384668205684931, guid: fc78bb2a9afe0844b84fb5065d3c2dec, type: 3}
+  - _prefab: {fileID: 8158174628123050211, guid: 9cc4807b60e8d4c41927470f1b4426af, type: 3}
     _initialCapacity: 2
-  - _prefab: {fileID: 297052194231936484, guid: f5805c030a3352d42a5d835060a4ee2f, type: 3}
-    _initialCapacity: 2
-  - _prefab: {fileID: 8419579179638131766, guid: 5cf6d499c4981d843a1001fc9152fe13, type: 3}
+  - _prefab: {fileID: 6041661461488739745, guid: 07ffcddb53a154d4bb2c59b55e269447, type: 3}
     _initialCapacity: 2
   _poolRoot: {fileID: 236013320110066629}
 --- !u!114 &9059717411377748750
@@ -153,19 +210,5 @@ MonoBehaviour:
   _segmentPoolSource: {fileID: 4689053711719357201}
   _segmentParent: {fileID: 2439850134054580946}
   _startSafePrefab: {fileID: 8709325885325011305, guid: 426255aa83b8b8d44a4efa3636ab7ec0, type: 3}
-  _segmentCatalog: {fileID: 11400000, guid: 2b4a2597aba37eb49bc8d2b65f15bfbb, type: 2}
-  _sequence: 00000000010000000200000003000000
-  _selectionMode: 1
-  _testSeed: 12345
---- !u!114 &2638594530611346943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5515997317209871263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e811bf5c435d946acb0d1f60e33368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Sandbox.Stage.MapRuntimeTestStarter
+  _stageConfig: {fileID: 11400000, guid: 640a2a27bab28ff4e84fbd196a2349d8, type: 2}
+  _playerDiedChannel: {fileID: 0}

@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ca3b276b7fa314d8e38caac08dfff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game.UI::Game.UI.Options.OptionsPanelUI
-  _audioSettings: {fileID: 0}
+  _audioSettings: {fileID: 11400000, guid: db02bf53c4b1efc4891fb9ba37e3f560, type: 2}
   _bgmSlider: {fileID: 1988504949210084481}
   _sfxSlider: {fileID: 2487213174404345552}
   _backButton: {fileID: 1839413326370002141}
