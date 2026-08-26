@@ -109,6 +109,9 @@ MonoBehaviour:
   _muzzle: {fileID: 7309136019611928820}
   _spriteRenderer: {fileID: 6261336849298194108}
   _projectilePrefab: {fileID: 7067742087661858118, guid: e710e4bc1b0f823488fca4ace15f3008, type: 3}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _shotClip: {fileID: 8300000, guid: 0ed3475fc5c5b4b4fba60ffbfcac9f25, type: 3}
+  _shotVolume: 1
 --- !u!1 &2762854229543316276
 GameObject:
   m_ObjectHideFlags: 0

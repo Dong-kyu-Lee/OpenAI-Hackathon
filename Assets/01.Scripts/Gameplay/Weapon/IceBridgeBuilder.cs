@@ -19,7 +19,10 @@ private const float OverlapInset = 0.1f;
         [SerializeField] private MapLayoutSettingsSO _layoutSettings;
         [SerializeField] private LayerMask _surfaceLayers;
         [SerializeField, Min(BridgeSize)] private float _maximumGapWidth = 12f;
-        [SerializeField] private Vector2EventChannelSO _bridgeBuiltChannel;
+        
+        [SerializeField] private SfxEventChannelSO _sfxChannel;
+        [SerializeField] private AudioClip _bridgeBuiltClip;
+[SerializeField] private Vector2EventChannelSO _bridgeBuiltChannel;
 
 public bool TryBuild(Vector2 origin, Vector2 direction, float availableDistance)
         {
@@ -74,7 +77,9 @@ public bool TryBuild(Vector2 origin, Vector2 direction, float availableDistance)
                 return false;
 
             bridge.Initialize(Vector2.one * BridgeSize, _scrollController, _layoutSettings.DespawnBoundaryX);
-            _bridgeBuiltChannel?.Raise(center);
+            
+            _sfxChannel?.PlayOneShot(_bridgeBuiltClip);
+_bridgeBuiltChannel?.Raise(center);
             return true;
         }
     }

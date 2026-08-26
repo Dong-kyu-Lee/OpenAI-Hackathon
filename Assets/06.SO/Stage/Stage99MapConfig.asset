@@ -15,6 +15,9 @@ MonoBehaviour:
   _infiniteRandom: 1
   _continueRandomAfterSequence: 1
   _segmentCatalog: {fileID: 11400000, guid: 2b4a2597aba37eb49bc8d2b65f15bfbb, type: 2}
-  _sequence: 0000000001000000020000000300000004000000
+  _orderedSegmentPrefabs: []
   _randomSeed: 12354
+  _sequence: 0000000001000000020000000300000004000000
   _isTutorial: 0
+  _backgroundA: {fileID: -2045999987958129151, guid: 2c8bb44bc7ec9cc41989f41a06888462, type: 3}
+  _backgroundB: {fileID: -2045999987958129151, guid: 2c8bb44bc7ec9cc41989f41a06888462, type: 3}

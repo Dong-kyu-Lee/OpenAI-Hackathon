@@ -112,6 +112,10 @@ MonoBehaviour:
   _lineRenderer: {fileID: 4288471664028853443}
   _beamVisual: {fileID: 5910855682216605447}
   _hitEffectPrefab: {fileID: 4405833808688301428, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
+  _iceBridgeBuilder: {fileID: 0}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _firingLoopClip: {fileID: 8300000, guid: 82f9d6e3937eeb84fb8ce884180494f8, type: 3}
+  _firingVolume: 1
 --- !u!1 &2295553656380993295
 GameObject:
   m_ObjectHideFlags: 0

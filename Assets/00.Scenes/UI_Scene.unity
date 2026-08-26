@@ -631,6 +631,9 @@ MonoBehaviour:
   _retryButton: {fileID: 1430832163}
   _stageSelectButton: {fileID: 1946309359}
   _gameStateChangedChannel: {fileID: 11400000, guid: 6fc0a6229452e3f458e3ff3e3926dedc, type: 2}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _clearClip: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
+  _failClip: {fileID: 8300000, guid: 2638c2b606981594db1099ec3a72ff48, type: 3}
   _stageFinishedChannel: {fileID: 11400000, guid: 70ced7e6914ba6743b255a6ed15d0afa, type: 2}
   _retryRequestedChannel: {fileID: 11400000, guid: 2ba750b91d587314fa01a816067f2987, type: 2}
   _stageSelectRequestedChannel: {fileID: 11400000, guid: 12e840f24de5cd849bfea091f5d3fc82, type: 2}
@@ -3957,6 +3960,8 @@ MonoBehaviour:
   _messageText: {fileID: 857615594}
   _inputLabelText: {fileID: 836850160}
   _presentationChannel: {fileID: 11400000, guid: eaeeb9d7c18a025468d4481a0d8176af, type: 2}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _appearClip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
   _bindingsChangedChannel: {fileID: 11400000, guid: f849e23af348dcc46bcf47d79a0b31a0, type: 2}
   _jumpAction: {fileID: 335763634227698153, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   _slideAction: {fileID: 5064262545289094806, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
@@ -7117,6 +7122,8 @@ MonoBehaviour:
   _resumeRequestedChannel: {fileID: 11400000, guid: bdd30168028e08641975e3355ee1f087, type: 2}
   _retryRequestedChannel: {fileID: 11400000, guid: 2ba750b91d587314fa01a816067f2987, type: 2}
   _stageSelectRequestedChannel: {fileID: 11400000, guid: 12e840f24de5cd849bfea091f5d3fc82, type: 2}
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _appearClip: {fileID: 8300000, guid: 130a177e727814a2ea78a886ab72213d, type: 3}
   _pauseInputSuppressedChannel: {fileID: 11400000, guid: a7425a5f1b0642e449d6408de7167477, type: 2}
 --- !u!114 &2135942476
 MonoBehaviour:

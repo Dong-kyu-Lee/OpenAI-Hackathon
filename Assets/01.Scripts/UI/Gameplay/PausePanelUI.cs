@@ -31,7 +31,10 @@ namespace Game.UI.Gameplay
         [SerializeField] private VoidEventChannelSO _resumeRequestedChannel;
         [SerializeField] private VoidEventChannelSO _retryRequestedChannel;
         [SerializeField] private VoidEventChannelSO _stageSelectRequestedChannel;
-        [SerializeField] private BoolEventChannelSO _pauseInputSuppressedChannel;
+        
+        [SerializeField] private SfxEventChannelSO _sfxChannel;
+        [SerializeField] private AudioClip _appearClip;
+[SerializeField] private BoolEventChannelSO _pauseInputSuppressedChannel;
 
         private bool _isPaused;
         private bool _isPauseInputSuppressed;
@@ -123,9 +126,15 @@ namespace Game.UI.Gameplay
             SetPauseInputSuppressed(false);
         }
 
-        private void OnGameStateChanged(GameState state)
+private void OnGameStateChanged(GameState state)
         {
+            bool wasPaused = _isPaused;
             _isPaused = state == GameState.Paused;
+
+            if (_isPaused && !wasPaused)
+            {
+                _sfxChannel?.PlayOneShot(_appearClip);
+            }
 
             if (!_isPaused)
             {

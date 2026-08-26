@@ -16,6 +16,7 @@ namespace Game.Gameplay.Player
 
         private SpriteRenderer[] _renderers;
         private Color[] _originalColors;
+        private PlayerHealth _playerHealth;
         private Coroutine _flashRoutine;
 
         private void Awake()
@@ -33,6 +34,7 @@ namespace Game.Gameplay.Player
 
             _renderers = characterRenderers.ToArray();
             _originalColors = new Color[_renderers.Length];
+            _playerHealth = GetComponent<PlayerHealth>();
 
             for (int index = 0; index < _renderers.Length; index++)
             {
@@ -64,6 +66,18 @@ namespace Game.Gameplay.Player
             RestoreColors();
         }
 
+        private void LateUpdate()
+        {
+            if (_flashRoutine == null || _playerHealth == null || !_playerHealth.IsDead)
+            {
+                return;
+            }
+
+            StopCoroutine(_flashRoutine);
+            _flashRoutine = null;
+            RestoreColors();
+        }
+
         private void PlayFlash()
         {
             if (_stats == null || _renderers.Length == default)
@@ -81,6 +95,8 @@ namespace Game.Gameplay.Player
 
         private IEnumerator FlashRoutine()
         {
+            float invulnerabilityEndTime = Time.time + _stats.ObstacleHitInvulnerabilityDuration;
+
             for (int index = 0; index < _renderers.Length; index++)
             {
                 if (_renderers[index] != null)
@@ -92,7 +108,50 @@ namespace Game.Gameplay.Player
             yield return new WaitForSeconds(_stats.HitFlashDuration);
 
             RestoreColors();
+
+            while (Time.time < invulnerabilityEndTime &&
+                   _stats.InvulnerabilityBlinkInterval > 0f &&
+                   (_playerHealth == null || !_playerHealth.IsDead))
+            {
+                SetBlinkAlpha(_stats.InvulnerabilityBlinkAlpha);
+
+                float remainingDuration = invulnerabilityEndTime - Time.time;
+                float blinkDuration = Mathf.Min(
+                    _stats.InvulnerabilityBlinkInterval,
+                    remainingDuration);
+                yield return new WaitForSeconds(blinkDuration);
+
+                RestoreColors();
+
+                remainingDuration = invulnerabilityEndTime - Time.time;
+                if (remainingDuration <= 0f)
+                {
+                    break;
+                }
+
+                blinkDuration = Mathf.Min(
+                    _stats.InvulnerabilityBlinkInterval,
+                    remainingDuration);
+                yield return new WaitForSeconds(blinkDuration);
+            }
+
+            RestoreColors();
             _flashRoutine = null;
+        }
+
+        private void SetBlinkAlpha(float alphaMultiplier)
+        {
+            for (int index = 0; index < _renderers.Length; index++)
+            {
+                if (_renderers[index] == null)
+                {
+                    continue;
+                }
+
+                Color blinkColor = _originalColors[index];
+                blinkColor.a *= alphaMultiplier;
+                _renderers[index].color = blinkColor;
+            }
         }
 
         private void RestoreColors()
