@@ -1,0 +1,806 @@
+fileFormatVersion: 2
+guid: 7856bb7f1f684d94badf4a97bfecbc41
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -136427448430852992
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_0
+  - first:
+      213: 6310301740065102389
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_1
+  - first:
+      213: -3289497489022559608
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_2
+  - first:
+      213: 4179194881381971148
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_3
+  - first:
+      213: 5672446407895686431
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_4
+  - first:
+      213: -4112562530790186113
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_5
+  - first:
+      213: -1482880273257698095
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_6
+  - first:
+      213: -3638545065785299199
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_7
+  - first:
+      213: -5335709195990129486
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_8
+  - first:
+      213: 7027186308995605954
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_9
+  - first:
+      213: 7517042232084979830
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_10
+  - first:
+      213: 2657230864759692383
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_11
+  - first:
+      213: 2597787046601193957
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_12
+  - first:
+      213: -8352853773027712056
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_13
+  - first:
+      213: -3961599360579837031
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_14
+  - first:
+      213: 4196377538157193400
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_15
+  - first:
+      213: 7214021111107938450
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_16
+  - first:
+      213: -8471645430484215705
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_17
+  - first:
+      213: -4738876808596898983
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_18
+  - first:
+      213: -2595938339625816240
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_19
+  - first:
+      213: -4582756929140227257
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_20
+  - first:
+      213: 2422203881487478857
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_21
+  - first:
+      213: -8937147380375847182
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_22
+  - first:
+      213: 288835158895138572
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_23
+  - first:
+      213: 8875688056310075961
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_24
+  - first:
+      213: 1540293346739632378
+    second: LOG_LightOnGalaxy_Logo_Clean_V2_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_0
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 139
+        width: 676
+        height: 549
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0848aae55ff4b1ef0800000000000000
+      internalID: -136427448430852992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_1
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 112
+        width: 237
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53a1c1acff1b29750800000000000000
+      internalID: 6310301740065102389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_2
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 100
+        width: 51
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a5545567b5952d0800000000000000
+      internalID: -3289497489022559608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_3
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 104
+        width: 21
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc437ef2a9b7ff930800000000000000
+      internalID: 4179194881381971148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_4
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 56
+        width: 74
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1d101e34f398be40800000000000000
+      internalID: 5672446407895686431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_5
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 169
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f736ba3ea2e3de6c0800000000000000
+      internalID: -4112562530790186113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_6
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 167
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc6a048f30cb6be0800000000000000
+      internalID: -1482880273257698095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_7
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 25
+        width: 152
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10fed9e5a8a418dc0800000000000000
+      internalID: -3638545065785299199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_8
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 104
+        width: 56
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b4293c81c0c3f5b0800000000000000
+      internalID: -5335709195990129486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_9
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 120
+        width: 1114
+        height: 598
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c5eb2667b4958160800000000000000
+      internalID: 7027186308995605954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_10
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 96
+        width: 97
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 670e8054516e15860800000000000000
+      internalID: 7517042232084979830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_11
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 104
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5c9434946160e420800000000000000
+      internalID: 2657230864759692383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_12
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 166
+        width: 7
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e976c22e813d0420800000000000000
+      internalID: 2597787046601193957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_13
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 169
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c3e6edafb3b41c80800000000000000
+      internalID: -8352853773027712056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_14
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 101
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 993693afe529509c0800000000000000
+      internalID: -3961599360579837031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_15
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 104
+        width: 56
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b8a94933278c3a30800000000000000
+      internalID: 4196377538157193400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_16
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 168
+        width: 59
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 298e1c1aaf95d1460800000000000000
+      internalID: 7214021111107938450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_17
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 100
+        width: 59
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7685dec9d5bae6a80800000000000000
+      internalID: -8471645430484215705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_18
+      rect:
+        serializedVersion: 2
+        x: 1378
+        y: 43
+        width: 58
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95bbe3576a02c3eb0800000000000000
+      internalID: -4738876808596898983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_19
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 171
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05f29cf75df59fbd0800000000000000
+      internalID: -2595938339625816240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_20
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 160
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74303aa7ad6c660c0800000000000000
+      internalID: -4582756929140227257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_21
+      rect:
+        serializedVersion: 2
+        x: 1427
+        y: 163
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94032a9c8956d9120800000000000000
+      internalID: 2422203881487478857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_22
+      rect:
+        serializedVersion: 2
+        x: 1457
+        y: 167
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fe726ffecfd8f380800000000000000
+      internalID: -8937147380375847182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_23
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 104
+        width: 95
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c079694fb06220400800000000000000
+      internalID: 288835158895138572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_24
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 102
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9321a850347cc2b70800000000000000
+      internalID: 8875688056310075961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LOG_LightOnGalaxy_Logo_Clean_V2_25
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 25
+        width: 252
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af8305653a8306510800000000000000
+      internalID: 1540293346739632378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LOG_LightOnGalaxy_Logo_Clean_V2_0: -136427448430852992
+      LOG_LightOnGalaxy_Logo_Clean_V2_1: 6310301740065102389
+      LOG_LightOnGalaxy_Logo_Clean_V2_10: 7517042232084979830
+      LOG_LightOnGalaxy_Logo_Clean_V2_11: 2657230864759692383
+      LOG_LightOnGalaxy_Logo_Clean_V2_12: 2597787046601193957
+      LOG_LightOnGalaxy_Logo_Clean_V2_13: -8352853773027712056
+      LOG_LightOnGalaxy_Logo_Clean_V2_14: -3961599360579837031
+      LOG_LightOnGalaxy_Logo_Clean_V2_15: 4196377538157193400
+      LOG_LightOnGalaxy_Logo_Clean_V2_16: 7214021111107938450
+      LOG_LightOnGalaxy_Logo_Clean_V2_17: -8471645430484215705
+      LOG_LightOnGalaxy_Logo_Clean_V2_18: -4738876808596898983
+      LOG_LightOnGalaxy_Logo_Clean_V2_19: -2595938339625816240
+      LOG_LightOnGalaxy_Logo_Clean_V2_2: -3289497489022559608
+      LOG_LightOnGalaxy_Logo_Clean_V2_20: -4582756929140227257
+      LOG_LightOnGalaxy_Logo_Clean_V2_21: 2422203881487478857
+      LOG_LightOnGalaxy_Logo_Clean_V2_22: -8937147380375847182
+      LOG_LightOnGalaxy_Logo_Clean_V2_23: 288835158895138572
+      LOG_LightOnGalaxy_Logo_Clean_V2_24: 8875688056310075961
+      LOG_LightOnGalaxy_Logo_Clean_V2_25: 1540293346739632378
+      LOG_LightOnGalaxy_Logo_Clean_V2_3: 4179194881381971148
+      LOG_LightOnGalaxy_Logo_Clean_V2_4: 5672446407895686431
+      LOG_LightOnGalaxy_Logo_Clean_V2_5: -4112562530790186113
+      LOG_LightOnGalaxy_Logo_Clean_V2_6: -1482880273257698095
+      LOG_LightOnGalaxy_Logo_Clean_V2_7: -3638545065785299199
+      LOG_LightOnGalaxy_Logo_Clean_V2_8: -5335709195990129486
+      LOG_LightOnGalaxy_Logo_Clean_V2_9: 7027186308995605954
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
