@@ -28,7 +28,11 @@ namespace Game.UI.Gameplay
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _stageSelectButton;
         [SerializeField] private GameStateEventChannelSO _gameStateChangedChannel;
-        [SerializeField] private StageResultEventChannelSO _stageFinishedChannel;
+        
+        [SerializeField] private SfxEventChannelSO _sfxChannel;
+        [SerializeField] private AudioClip _clearClip;
+        [SerializeField] private AudioClip _failClip;
+[SerializeField] private StageResultEventChannelSO _stageFinishedChannel;
         [SerializeField] private VoidEventChannelSO _retryRequestedChannel;
         [SerializeField] private VoidEventChannelSO _stageSelectRequestedChannel;
 
@@ -88,8 +92,10 @@ namespace Game.UI.Gameplay
             SetPanelVisible(state == GameState.Result);
         }
 
+        
         private void OnStageFinished(StageResult result)
         {
+            _sfxChannel?.PlayOneShot(result.Cleared ? _clearClip : _failClip);
             // 표시는 상태 채널이 결정하므로 여기서는 값만 채웁니다.
             if (_outcomeLabel != null)
             {

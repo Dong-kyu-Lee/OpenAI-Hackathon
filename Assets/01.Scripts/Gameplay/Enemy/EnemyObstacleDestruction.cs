@@ -16,7 +16,10 @@ namespace Game.Gameplay.Enemy
         [SerializeField] private EnemyObstacleStatsSO _stats;
         [SerializeField] private Animator _animator;
         [SerializeField] private AnimationClip _destructionClip;
-        [SerializeField] private WeaponDefinitionSO _requiredDamageWeapon;
+        
+        [SerializeField] private Game.Core.Events.SfxEventChannelSO _sfxChannel;
+        [SerializeField] private AudioClip _destroyedClip;
+[SerializeField] private WeaponDefinitionSO _requiredDamageWeapon;
 
         private Collider2D[] _colliders;
         private EnemyVerticalIdleMovement _idleMovement;
@@ -64,7 +67,9 @@ public void TakeDamage(float amount)
 
         private void BeginDestruction()
         {
-            _isDestroyed = true;
+            
+            _sfxChannel?.PlayOneShot(_destroyedClip);
+_isDestroyed = true;
             SetCollidersEnabled(false);
 
             if (_idleMovement != null) _idleMovement.enabled = false;

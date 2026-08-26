@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: 2da08de7d4bfcf647b0fc3591a6dff73
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2065023731600640659
+    second: Stage 01 Slide_0
+  - first:
+      213: -8677825604405063850
+    second: Stage 01 Slide_1
+  - first:
+      213: 8781040655389432191
+    second: Stage 01 Slide_2
+  - first:
+      213: -4150968512535017298
+    second: Stage 01 Slide_3
+  - first:
+      213: -7923763679423561491
+    second: Stage 01 Slide_4
+  - first:
+      213: 922053135488690841
+    second: Stage 01 Slide_5
+  - first:
+      213: 8923615181973761394
+    second: Stage 01 Slide_6
+  - first:
+      213: -9110193269588744765
+    second: Stage 01 Slide_7
+  - first:
+      213: 928584902709927793
+    second: Stage 01 Slide_8
+  - first:
+      213: -4379228938517563326
+    second: Stage 01 Slide_9
+  - first:
+      213: 4823225224876266914
+    second: Stage 01 Slide_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stage 01 Slide_0
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 164
+        width: 406
+        height: 745
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6531396bdf8753e0800000000000000
+      internalID: -2065023731600640659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Slide_5
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 191
+        width: 366
+        height: 717
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99aa6d4017acbcc00800000000000000
+      internalID: 922053135488690841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Slide_10
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 168
+        width: 405
+        height: 744
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a5147899c98fe240800000000000000
+      internalID: 4823225224876266914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f220bcd792dc2194fbf84f433fbd412d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Stage 01 Slide_0: -2065023731600640659
+      Stage 01 Slide_1: -8677825604405063850
+      Stage 01 Slide_10: 4823225224876266914
+      Stage 01 Slide_2: 8781040655389432191
+      Stage 01 Slide_3: -4150968512535017298
+      Stage 01 Slide_4: -7923763679423561491
+      Stage 01 Slide_5: 922053135488690841
+      Stage 01 Slide_6: 8923615181973761394
+      Stage 01 Slide_7: -9110193269588744765
+      Stage 01 Slide_8: 928584902709927793
+      Stage 01 Slide_9: -4379228938517563326
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

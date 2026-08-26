@@ -1,0 +1,556 @@
+fileFormatVersion: 2
+guid: b6c9ee7a05be4d142866031e8567039e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6037118645112576956
+    second: Stage 01 Monster_0
+  - first:
+      213: -2598529649982990820
+    second: Stage 01 Monster_1
+  - first:
+      213: 342869716510545286
+    second: Stage 01 Monster_2
+  - first:
+      213: 8986340567126243877
+    second: Stage 01 Monster_3
+  - first:
+      213: 1937791673504858546
+    second: Stage 01 Monster_4
+  - first:
+      213: -1339610681546916857
+    second: Stage 01 Monster_5
+  - first:
+      213: 4682943045168546572
+    second: Stage 01 Monster_6
+  - first:
+      213: -4020950988557874890
+    second: Stage 01 Monster_7
+  - first:
+      213: 4636315179421311338
+    second: Stage 01 Monster_8
+  - first:
+      213: -1167092777888605813
+    second: Stage 01 Monster_9
+  - first:
+      213: -6689538941892596630
+    second: Stage 01 Monster_10
+  - first:
+      213: 2030731089601614423
+    second: Stage 01 Monster_11
+  - first:
+      213: -3793335282392865401
+    second: Stage 01 Monster_12
+  - first:
+      213: -108886675789667043
+    second: Stage 01 Monster_13
+  - first:
+      213: -3888450779732702276
+    second: Stage 01 Monster_14
+  - first:
+      213: 3905838434887602059
+    second: Stage 01 Monster_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stage 01 Monster_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 423
+        width: 237
+        height: 202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4446d2b0498d73ca0800000000000000
+      internalID: -6037118645112576956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 731
+        width: 257
+        height: 263
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c16917a0d0b20fbd0800000000000000
+      internalID: -2598529649982990820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_2
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 688
+        width: 291
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68599d8c03e12c400800000000000000
+      internalID: 342869716510545286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_3
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 681
+        width: 299
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52afd365225e5bc70800000000000000
+      internalID: 8986340567126243877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_4
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 417
+        width: 246
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b187fb924b64ea10800000000000000
+      internalID: 1937791673504858546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_5
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 733
+        width: 291
+        height: 236
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70cb315ce2fb86de0800000000000000
+      internalID: -1339610681546916857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_6
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 671
+        width: 295
+        height: 299
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0348a663e72df040800000000000000
+      internalID: 4682943045168546572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_7
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 423
+        width: 269
+        height: 203
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63980cb3166b238c0800000000000000
+      internalID: -4020950988557874890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_8
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 416
+        width: 250
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61a8286710875040800000000000000
+      internalID: 4636315179421311338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_9
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 409
+        width: 228
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8996025d47adcfe0800000000000000
+      internalID: -1167092777888605813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_10
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 67
+        width: 268
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6c695966cbf923a0800000000000000
+      internalID: -6689538941892596630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_11
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 415
+        width: 257
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 752db0eaa2b9e2c10800000000000000
+      internalID: 2030731089601614423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_12
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 67
+        width: 238
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 785640b98ad5b5bc0800000000000000
+      internalID: -3793335282392865401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_13
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 68
+        width: 236
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d15a8c035282d7ef0800000000000000
+      internalID: -108886675789667043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_14
+      rect:
+        serializedVersion: 2
+        x: 1267
+        y: 69
+        width: 257
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbb01732e92790ac0800000000000000
+      internalID: -3888450779732702276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_15
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 68
+        width: 229
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8f0b8dcc53543630800000000000000
+      internalID: 3905838434887602059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 01 Monster_16
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 69
+        width: 226
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3e21a0094c92bd4a96fe1f5aaf377b0
+      internalID: 628567307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0b60d03022862c34cb61c91a403a8b53
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Stage 01 Monster_0: -6037118645112576956
+      Stage 01 Monster_1: -2598529649982990820
+      Stage 01 Monster_10: -6689538941892596630
+      Stage 01 Monster_11: 2030731089601614423
+      Stage 01 Monster_12: -3793335282392865401
+      Stage 01 Monster_13: -108886675789667043
+      Stage 01 Monster_14: -3888450779732702276
+      Stage 01 Monster_15: 3905838434887602059
+      Stage 01 Monster_16: 628567307
+      Stage 01 Monster_2: 342869716510545286
+      Stage 01 Monster_3: 8986340567126243877
+      Stage 01 Monster_4: 1937791673504858546
+      Stage 01 Monster_5: -1339610681546916857
+      Stage 01 Monster_6: 4682943045168546572
+      Stage 01 Monster_7: -4020950988557874890
+      Stage 01 Monster_8: 4636315179421311338
+      Stage 01 Monster_9: -1167092777888605813
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

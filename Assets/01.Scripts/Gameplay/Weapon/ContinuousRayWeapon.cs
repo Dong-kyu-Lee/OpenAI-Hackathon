@@ -1,4 +1,5 @@
 using Game.Core.Combat;
+using Game.Core.Events;
 using Game.Core.Pooling;
 using Game.Data;
 using Game.Gameplay.Combat;
@@ -12,6 +13,9 @@ namespace Game.Gameplay.Weapon
         [SerializeField] private LaserBeamVisual _beamVisual;
         [SerializeField] private PooledHitEffect _hitEffectPrefab;
         [SerializeField] private IceBridgeBuilder _iceBridgeBuilder;
+        [SerializeField] private SfxEventChannelSO _sfxChannel;
+        [SerializeField] private AudioClip _firingLoopClip;
+        [SerializeField, Range(0f, 1f)] private float _firingVolume = 1f;
 
         private PooledHitEffect _hitEffectInstance;
         private float _firingElapsed;
@@ -19,11 +23,7 @@ namespace Game.Gameplay.Weapon
 
         private void Awake()
         {
-            if (_iceBridgeBuilder == null)
-            {
-                _iceBridgeBuilder = GetComponent<IceBridgeBuilder>();
-            }
-
+            if (_iceBridgeBuilder == null) _iceBridgeBuilder = GetComponent<IceBridgeBuilder>();
             SetLineVisible(false);
         }
 
@@ -41,14 +41,12 @@ namespace Game.Gameplay.Weapon
         {
             if (!_isFiring)
             {
-                if (!triggerHeld || !IsCooldownReady)
-                {
-                    return;
-                }
+                if (!triggerHeld || !IsCooldownReady) return;
 
                 _isFiring = true;
                 _firingElapsed = 0f;
                 SetLineVisible(true);
+                _sfxChannel?.StartLoop(GetInstanceID(), _firingLoopClip, _firingVolume);
             }
 
             if (!triggerHeld || _firingElapsed >= Definition.MaxContinuousDuration)
@@ -57,36 +55,20 @@ namespace Game.Gameplay.Weapon
                 return;
             }
 
-            float appliedDuration = Mathf.Min(
-                deltaTime,
-                Definition.MaxContinuousDuration - _firingElapsed);
-
+            float appliedDuration = Mathf.Min(deltaTime, Definition.MaxContinuousDuration - _firingElapsed);
             _firingElapsed += appliedDuration;
             ProcessRay(appliedDuration);
 
-            if (_firingElapsed >= Definition.MaxContinuousDuration)
-            {
-                StopAttack(true);
-            }
+            if (_firingElapsed >= Definition.MaxContinuousDuration) StopAttack(true);
         }
 
         private void ProcessRay(float appliedDuration)
         {
             Vector2 origin = Muzzle.position;
-            RaycastHit2D hit = Physics2D.Raycast(
-                origin,
-                AimDirection,
-                Definition.Range,
-                Definition.HitLayers);
+            RaycastHit2D hit = Physics2D.Raycast(origin, AimDirection, Definition.Range, Definition.HitLayers);
+            Vector3 endPosition = hit.collider != null ? hit.point : origin + AimDirection * Definition.Range;
 
-            Vector3 endPosition = hit.collider != null
-                ? hit.point
-                : origin + AimDirection * Definition.Range;
-
-            if (_beamVisual != null)
-            {
-                _beamVisual.SetBeam(origin, endPosition);
-            }
+            if (_beamVisual != null) _beamVisual.SetBeam(origin, endPosition);
             else if (_lineRenderer != null)
             {
                 _lineRenderer.SetPosition(0, origin);
@@ -95,19 +77,13 @@ namespace Game.Gameplay.Weapon
 
             UpdateHitEffect(hit);
 
-            if (Definition.DamageElement == WeaponDefinitionSO.Element.Ice &&
-                _iceBridgeBuilder != null)
+            if (Definition.DamageElement == WeaponDefinitionSO.Element.Ice && _iceBridgeBuilder != null)
             {
-                float availableDistance = hit.collider == null
-                    ? Definition.Range
-                    : hit.distance;
+                float availableDistance = hit.collider == null ? Definition.Range : hit.distance;
                 _iceBridgeBuilder.TryBuild(origin, AimDirection, availableDistance);
             }
 
-            if (hit.collider == null)
-            {
-                return;
-            }
+            if (hit.collider == null) return;
 
             float appliedDamage = Definition.Damage * appliedDuration;
             IWeaponDamageable weaponDamageable = hit.collider.GetComponentInParent<IWeaponDamageable>();
@@ -135,14 +111,9 @@ namespace Game.Gameplay.Weapon
 
         private void UpdateHitEffect(RaycastHit2D hit)
         {
-            if (_hitEffectPrefab == null)
-            {
-                return;
-            }
-
+            if (_hitEffectPrefab == null) return;
             if (hit.collider == null)
             {
-                // 레이가 허공을 향한 동안에도 인스턴스는 유지하고 방출만 멈춰 풀 스래싱을 막는다.
                 _hitEffectInstance?.SetEmitting(false);
                 return;
             }
@@ -161,27 +132,20 @@ namespace Game.Gameplay.Weapon
                 return;
             }
 
-            _hitEffectInstance = poolManager.Spawn(
-                _hitEffectPrefab,
-                hit.point,
-                Quaternion.identity);
-
+            _hitEffectInstance = poolManager.Spawn(_hitEffectPrefab, hit.point, Quaternion.identity);
             _hitEffectInstance?.Play(hit.point, hit.normal);
         }
 
         private void ReleaseHitEffect()
         {
-            if (_hitEffectInstance == null)
-            {
-                return;
-            }
-
+            if (_hitEffectInstance == null) return;
             _hitEffectInstance.Release();
             _hitEffectInstance = null;
         }
 
         private void StopAttack(bool startCooldown)
         {
+            _sfxChannel?.StopLoop(GetInstanceID());
             ReleaseHitEffect();
 
             if (!_isFiring)
@@ -193,34 +157,19 @@ namespace Game.Gameplay.Weapon
             _isFiring = false;
             _firingElapsed = 0f;
             SetLineVisible(false);
-
-            if (startCooldown)
-            {
-                StartCooldown();
-            }
+            if (startCooldown) StartCooldown();
         }
 
         private void SetLineVisible(bool isVisible)
         {
             if (_beamVisual != null)
             {
-                if (isVisible)
-                {
-                    _beamVisual.Play();
-                }
-                else
-                {
-                    _beamVisual.Stop();
-                }
-
+                if (isVisible) _beamVisual.Play();
+                else _beamVisual.Stop();
                 return;
             }
 
-            if (_lineRenderer == null)
-            {
-                return;
-            }
-
+            if (_lineRenderer == null) return;
             _lineRenderer.positionCount = 2;
             _lineRenderer.enabled = isVisible;
         }

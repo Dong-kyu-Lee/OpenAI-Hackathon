@@ -166,4 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Game.Gameplay::Game.Gameplay.Combat.DestructibleObstacle
   _durability: 15
+  _sfxChannel: {fileID: 11400000, guid: 6d9e5c0819cf40d4d955ae05e114411f, type: 2}
+  _destroyedClip: {fileID: 8300000, guid: 3800c98cd7ba93b43b033da9fe6caf5f, type: 3}
   _requiredDamageWeapon: {fileID: 0}
