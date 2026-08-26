@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.Stage.MapSegmentCatalogSO
   _entries:
   - _type: 0
-    _prefab: {fileID: 5778848805719648015, guid: ed345a37b5527eb4a82f9cc7dd6abee7, type: 3}
+    _prefab: {fileID: 5778848805719648015, guid: d7bcffcc36f7e1545975cad546ad9e3d, type: 3}
   - _type: 1
     _prefab: {fileID: 491360650965225744, guid: 83fe05d9ed322ad49b934fbf3a5f195f, type: 3}
   - _type: 2

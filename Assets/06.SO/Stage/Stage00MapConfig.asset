@@ -15,9 +15,17 @@ MonoBehaviour:
   _infiniteRandom: 0
   _continueRandomAfterSequence: 0
   _segmentCatalog: {fileID: 11400000, guid: 8a0efc3b2bb7c744989cc9b65ac7c7c7, type: 2}
-  _orderedSegmentPrefabs: []
+  _orderedSegmentPrefabs:
+  - {fileID: 8365735427777965882, guid: 772416d0695725448b8f4ff70e352e14, type: 3}
+  - {fileID: 8365735427777965882, guid: 14bdbb9110379d94ea8851a423b76aa6, type: 3}
+  - {fileID: 7480033696789455342, guid: 0d0a767b70508d54ebf55e5ce23404c8, type: 3}
+  - {fileID: 2702407885243141117, guid: 9cc4807b60e8d4c41927470f1b4426af, type: 3}
+  - {fileID: 8009161105239148420, guid: 07ffcddb53a154d4bb2c59b55e269447, type: 3}
+  - {fileID: 7480033696789455342, guid: 192da0d843d1fb04f82a05d38f8a9da2, type: 3}
   _randomSeed: 12312
   _sequence: 0000000001000000020000000300000004000000
+  _startSafePrefab: {fileID: 5778848805719648015, guid: d7bcffcc36f7e1545975cad546ad9e3d, type: 3}
+  _endSafePrefab: {fileID: 5778848805719648015, guid: 641a96b0151fdc347af732d2ed3628ea, type: 3}
   _isTutorial: 1
   _backgroundA: {fileID: -2045999987958129151, guid: 2c8bb44bc7ec9cc41989f41a06888462, type: 3}
   _backgroundB: {fileID: -2045999987958129151, guid: 2c8bb44bc7ec9cc41989f41a06888462, type: 3}

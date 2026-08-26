@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 537083714576803168, guid: 1fedf4bd9298b3d42b3facce41f691b7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2522764951381739691, guid: 24cc9177d7fc87345a2080b58f9da78b, type: 3}
+      objectReference: {fileID: -2454748483023707128, guid: 3748608189af5b84da519e630697bade, type: 3}
     - target: {fileID: 537083714576803168, guid: 1fedf4bd9298b3d42b3facce41f691b7, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1132,7 +1132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2326165171142067922, guid: 1fedf4bd9298b3d42b3facce41f691b7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 680
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 2326165171142067922, guid: 1fedf4bd9298b3d42b3facce41f691b7, type: 3}
       propertyPath: m_SizeDelta.y

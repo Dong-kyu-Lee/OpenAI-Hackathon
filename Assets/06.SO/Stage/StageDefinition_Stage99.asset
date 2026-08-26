@@ -15,6 +15,6 @@ MonoBehaviour:
   _displayName: Infinite
   _sceneName: MapTest
   _mapConfig: {fileID: 11400000, guid: 9c2516d8535ae774090700abff7eeb03, type: 2}
-  _thumbnail: {fileID: -7564997713910450843, guid: 9f86d7b0c1f25254a9d97e012863661a, type: 3}
+  _thumbnail: {fileID: -2522764951381739691, guid: 24cc9177d7fc87345a2080b58f9da78b, type: 3}
   _clearDistance: 0
   _isEndlessMode: 1
