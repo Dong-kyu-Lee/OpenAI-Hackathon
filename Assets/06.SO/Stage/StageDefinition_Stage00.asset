@@ -15,5 +15,6 @@ MonoBehaviour:
   _displayName: Stage 00 (Tutorial)
   _sceneName: MapTest
   _mapConfig: {fileID: 11400000, guid: 85dc28fe2138ec647be8e66b01a80189, type: 2}
-  _thumbnail: {fileID: -2522764951381739691, guid: 24cc9177d7fc87345a2080b58f9da78b, type: 3}
+  _thumbnail: {fileID: -7994557146078268730, guid: 029d596aa4899ca458105207520b4f4e, type: 3}
   _clearDistance: 200
+  _isEndlessMode: 0
