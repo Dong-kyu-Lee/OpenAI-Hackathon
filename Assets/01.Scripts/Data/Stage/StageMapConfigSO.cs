@@ -17,6 +17,12 @@ namespace Game.Data.Stage
         [Header("Legacy Type Sequence")]
         [SerializeField] private MapSegmentType[] _sequence;
 
+        [Header("Safe Segments")]
+        [Tooltip("이 스테이지의 첫 세그먼트로 배치할 StartSafe 프리팹입니다. 비워 두면 MapStreamManager의 기본값을 사용합니다.")]
+        [SerializeField] private GameObject _startSafePrefab;
+        [Tooltip("유한 스테이지의 마지막 세그먼트로 배치할 EndSafe 프리팹입니다. 비워 두면 MapStreamManager의 기본값을 사용합니다.")]
+        [SerializeField] private GameObject _endSafePrefab;
+
         [Header("Stage Rules")]
         [SerializeField] private bool _isTutorial;
 
@@ -33,6 +39,8 @@ namespace Game.Data.Stage
             !_infiniteRandom && OrderedSegmentPrefabs.Count > default(int);
         public IReadOnlyList<MapSegmentType> Sequence => _sequence ?? System.Array.Empty<MapSegmentType>();
         public int RandomSeed => _randomSeed;
+        public GameObject StartSafePrefab => _startSafePrefab;
+        public GameObject EndSafePrefab => _endSafePrefab;
         public bool IsTutorial => _isTutorial;
         public Sprite BackgroundA => _backgroundA;
         public Sprite BackgroundB => _backgroundB;

@@ -18,6 +18,8 @@ MonoBehaviour:
   _orderedSegmentPrefabs: []
   _randomSeed: 12354
   _sequence: 0000000001000000020000000300000004000000
+  _startSafePrefab: {fileID: 5778848805719648015, guid: d7bcffcc36f7e1545975cad546ad9e3d, type: 3}
+  _endSafePrefab: {fileID: 0}
   _isTutorial: 0
   _backgroundA: {fileID: -2045999987958129151, guid: 2c8bb44bc7ec9cc41989f41a06888462, type: 3}
   _backgroundB: {fileID: -2045999987958129151, guid: 2c8bb44bc7ec9cc41989f41a06888462, type: 3}

@@ -18,7 +18,9 @@ namespace Game.Gameplay.Stage
         [SerializeField] private MapScrollController _scrollController;
         [SerializeField] private MonoBehaviour _segmentPoolSource;
         [SerializeField] private Transform _segmentParent;
+        [Tooltip("StageMapConfig가 StartSafe를 지정하지 않았을 때 사용할 기본 프리팹입니다.")]
         [SerializeField] private MapSegment _startSafePrefab;
+        [Tooltip("StageMapConfig가 EndSafe를 지정하지 않았을 때 사용할 기본 프리팹입니다.")]
         [SerializeField] private MapSegment _endSafePrefab;
         [SerializeField] private StageMapConfigSO _stageConfig;
         [SerializeField] private VoidEventChannelSO _playerDiedChannel;
@@ -38,6 +40,11 @@ namespace Game.Gameplay.Stage
         private bool _sequenceExhausted;
         private bool _hasReachedStageEnd;
         private bool _endSafePlaced;
+
+        // 스테이지마다 Start/End가 달라지므로 SetStageConfig 시점에 한 번만 해석해 두고,
+        // 배치·검증·EndSafe 판별은 이 두 필드만 본다.
+        private MapSegment _activeStartSafePrefab;
+        private MapSegment _activeEndSafePrefab;
         private MapSegment _activeEndSafeSegment;
         private Vector2 _appliedDisplacementForCurrentStep;
 
@@ -262,7 +269,7 @@ namespace Game.Gameplay.Stage
                 _segmentPoolSource == null ||
                 _segmentPool == null ||
                 _segmentParent == null ||
-                _startSafePrefab == null ||
+                _activeStartSafePrefab == null ||
                 _stageConfig == null ||
                 _stageConfig.SegmentCatalog == null)
             {
@@ -284,9 +291,12 @@ namespace Game.Gameplay.Stage
                 return false;
             }
 
-            if (!_segmentPool.IsRegistered(_startSafePrefab))
+            if (!_segmentPool.IsRegistered(_activeStartSafePrefab))
             {
-                Debug.LogError("The StartSafe prefab is not registered in MapSegmentPool.", this);
+                Debug.LogError(
+                    $"The StartSafe prefab '{_activeStartSafePrefab.name}' used by stage config " +
+                    $"'{_stageConfig.name}' is not registered in MapSegmentPool.",
+                    this);
                 return false;
             }
 
@@ -308,15 +318,21 @@ namespace Game.Gameplay.Stage
                 return false;
             }
 
-            if (_endSafePrefab == null)
+            if (_activeEndSafePrefab == null)
             {
-                Debug.LogError("A finite ordered prefab sequence requires an EndSafe prefab.", this);
+                Debug.LogError(
+                    $"A finite ordered prefab sequence requires an EndSafe prefab, " +
+                    $"but stage config '{_stageConfig.name}' resolved none.",
+                    this);
                 return false;
             }
 
-            if (!_segmentPool.IsRegistered(_endSafePrefab))
+            if (!_segmentPool.IsRegistered(_activeEndSafePrefab))
             {
-                Debug.LogError("The EndSafe prefab is not registered in MapSegmentPool.", this);
+                Debug.LogError(
+                    $"The EndSafe prefab '{_activeEndSafePrefab.name}' used by stage config " +
+                    $"'{_stageConfig.name}' is not registered in MapSegmentPool.",
+                    this);
                 return false;
             }
 
@@ -352,7 +368,7 @@ namespace Game.Gameplay.Stage
                 _layoutSettings.GroundHeight,
                 _segmentParent.position.z);
 
-            if (!TryRentAndPlace(_startSafePrefab, initialEntryPosition))
+            if (!TryRentAndPlace(_activeStartSafePrefab, initialEntryPosition))
             {
                 return false;
             }
@@ -502,7 +518,7 @@ namespace Game.Gameplay.Stage
             if (!_endSafePlaced)
             {
                 _endSafePlaced = true;
-                return _endSafePrefab;
+                return _activeEndSafePrefab;
             }
 
             _sequenceExhausted = true;
@@ -618,7 +634,7 @@ namespace Game.Gameplay.Stage
             if (_stageConfig.UsesFiniteOrderedSequence &&
                 _endSafePlaced &&
                 _activeEndSafeSegment == null &&
-                prefab == _endSafePrefab)
+                prefab == _activeEndSafePrefab)
             {
                 _activeEndSafeSegment = segment;
             }
@@ -767,7 +783,43 @@ namespace Game.Gameplay.Stage
             _selectionMode = _stageConfig != null && _stageConfig.InfiniteRandom
                 ? MapSegmentSelectionMode.Random
                 : MapSegmentSelectionMode.Sequence;
+            _activeStartSafePrefab = ResolveSafePrefab(
+                _stageConfig == null ? null : _stageConfig.StartSafePrefab,
+                _startSafePrefab,
+                "StartSafe");
+            _activeEndSafePrefab = ResolveSafePrefab(
+                _stageConfig == null ? null : _stageConfig.EndSafePrefab,
+                _endSafePrefab,
+                "EndSafe");
             ResetSelectionState();
+        }
+
+        /// <summary>스테이지 설정이 지정한 Safe 프리팹을 해석하고, 지정이 없으면 인스펙터 기본값을 사용합니다.</summary>
+        /// <param name="configuredObject">스테이지 설정이 지정한 프리팹입니다. <see langword="null"/>이면 기본값을 사용합니다.</param>
+        /// <param name="fallbackPrefab">설정에 지정이 없을 때 사용할 인스펙터 기본 프리팹입니다.</param>
+        /// <param name="role">에러 메시지에 표기할 Safe 프리팹 역할 이름입니다.</param>
+        /// <returns>사용할 세그먼트 프리팹이며, 설정 값이 유효하지 않으면 <see langword="null"/>입니다.</returns>
+        private MapSegment ResolveSafePrefab(
+            GameObject configuredObject,
+            MapSegment fallbackPrefab,
+            string role)
+        {
+            if (configuredObject == null)
+            {
+                return fallbackPrefab;
+            }
+
+            if (!configuredObject.TryGetComponent(out MapSegment prefab))
+            {
+                // 기본값으로 조용히 되돌리면 의도한 스테이지와 다른 맵이 나오므로 여기서 실패를 확정한다.
+                Debug.LogError(
+                    $"Stage config '{_stageConfig.name}' assigns a {role} prefab " +
+                    $"('{configuredObject.name}') without MapSegment on its root.",
+                    this);
+                return null;
+            }
+
+            return prefab;
         }
 
         private void UpdateScrollSubscription()
